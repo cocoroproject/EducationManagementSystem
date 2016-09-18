@@ -1,7 +1,7 @@
 package professorDomain;
 
 public class Lecture {
-  private int professor_number;
+	private int professor_number;
 	private int subject_number;
 	private int semester_number;
 	private String lecture_time;

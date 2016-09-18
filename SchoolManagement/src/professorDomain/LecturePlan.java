@@ -1,7 +1,7 @@
 package professorDomain;
 
 public class LecturePlan {
-  private String curriculum;
+	private String curriculum;
 	private String textbook;
 	private int lecturePlan_number;	
 	
