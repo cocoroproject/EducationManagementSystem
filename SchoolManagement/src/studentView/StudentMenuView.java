@@ -2,7 +2,6 @@ package studentView;
 
 import java.util.Scanner;
 
-import controllers.Controllers;
 import professorView.AlertView;
 
 public class StudentMenuView {
