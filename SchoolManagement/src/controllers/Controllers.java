@@ -1,5 +1,6 @@
 package controllers;
 
+import loginController.LoginController;
 import professorControllers.ProfessorCourseController;
 import professorControllers.ProfessorMainController;
 import professorControllers.ProfessorNoticeController;
@@ -12,6 +13,7 @@ public class Controllers {
 	private static ProfessorMainController professorMainController;
 	private static ProfessorNoticeController professorNoticeController;
 	private static ProfessorScoreController professorScoreController;	
+	private static LoginController loginController;
 	
 	public Controllers() {
 		
@@ -19,7 +21,7 @@ public class Controllers {
 		professorMainController = new ProfessorMainController();
 		professorNoticeController = new ProfessorNoticeController();
 		professorScoreController = new ProfessorScoreController();
-		
+		loginController = new LoginController();
 	}
 
 	public static ProgramController getProgramController() {
@@ -40,6 +42,10 @@ public class Controllers {
 
 	public static ProfessorScoreController getProfessorScoreController() {
 		return professorScoreController;
+	}
+
+	public static LoginController getLoginController() {
+		return loginController;
 	}
 	
 	
