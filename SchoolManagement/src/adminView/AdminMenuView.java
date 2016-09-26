@@ -50,7 +50,6 @@ public class AdminMenuView {
 			default:
 				break;
 			}
-			
 		}
 	}
 	
