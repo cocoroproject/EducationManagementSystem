@@ -12,6 +12,7 @@ public class Student {
 	private int college_number;
 	private int professor_number;
 	private int major_number;
+	private String student_accessRight;
 	
 	// 디폴트 생성자
 	public Student() {
@@ -99,4 +100,12 @@ public class Student {
 		this.major_number = major_number;
 	}
 
+	public String getStudent_accessRight() {
+		return student_accessRight;
+	}
+
+	public void setStudent_accessRight(String student_accessRight) {
+		this.student_accessRight = student_accessRight;
+	}
+	
 }
