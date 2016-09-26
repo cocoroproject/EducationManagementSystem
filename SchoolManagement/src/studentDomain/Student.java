@@ -9,6 +9,7 @@ public class Student {
 	private String student_address;
 	private String student_phoneNumber;
 	private String student_email;
+	private String student_accessRight;
 	private int college_number;
 	private int professor_number;
 	private int major_number;
@@ -17,6 +18,8 @@ public class Student {
 	public Student() {
 
 	}
+	
+	
 	
 	// getter, setter
 	public int getStudent_number() {
@@ -99,4 +102,14 @@ public class Student {
 		this.major_number = major_number;
 	}
 
+	public String getStudent_accessRight() {
+		return student_accessRight;
+	}
+
+	public void setStudent_accessRight(String student_accessRight) {
+		this.student_accessRight = student_accessRight;
+	}
+
+	
+	
 }
