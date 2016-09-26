@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/cocoroproject/EducationManagementSystem.git
 package adminDomain;
 
 public class Major {
