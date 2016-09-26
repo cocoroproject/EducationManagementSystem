@@ -1,7 +1,6 @@
 package adminControllers;
 
 import adminDAO.AdminLectureDAO;
-import adminView.AdminScoreInputSystemOnOffSetingView;
 
 public class AdminLectureController {
 
@@ -13,9 +12,6 @@ public class AdminLectureController {
 	}
 	
 	public void requestprofessorLectureScoreInput(){
-		
-		AdminScoreInputSystemOnOffSetingView adminScoreInputSystemOnOffSetingView = new AdminScoreInputSystemOnOffSetingView();
-		adminScoreInputSystemOnOffSetingView.adminScoreInputSystemOnOffSeting();
 		
 		//boolean success = adminLectureDAO.
 		

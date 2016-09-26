@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Repository.LoginRepository;
 import adminDomain.SchoolRegister;
 import adminDomain.SchoolRegisterDocument;
 import controllers.Controllers;
@@ -29,7 +28,6 @@ public class AdminMemberDAO {
 		try {
 		String sql = "select schoolRegister_number from SchoolRegisterDocument where student_number = ? and schoolRegister_number = ?";
 		pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-		pstmt.setInt(1, LoginRepository.getLogin().getLogin_id());
 		pstmt.setInt(2, schoolregister.getSchoolRegister_number());
 		rs = pstmt.executeQuery();
 		

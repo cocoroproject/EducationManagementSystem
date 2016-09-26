@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/cocoroproject/EducationManagementSystem.git
 package adminDomain;
 
 import java.sql.Date;

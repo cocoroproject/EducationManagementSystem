@@ -2,7 +2,6 @@ package controllers;
 
 import adminControllers.AdminLectureController;
 import adminControllers.AdminLoticeController;
-import adminControllers.AdminMainController;
 import adminControllers.AdminMemberController;
 import adminControllers.LoginController;
 import professorControllers.ProfessorCourseController;
@@ -19,7 +18,6 @@ public class Controllers {
 	private static ProfessorScoreController professorScoreController;	
 	private static AdminLectureController adminLectureController;
 	private static AdminLoticeController adminLoticeController;
-	private static AdminMainController adminMainController;
 	private static AdminMemberController adminMemberController;
 	private static LoginController loginController;
 	public Controllers() {
@@ -30,7 +28,6 @@ public class Controllers {
 		professorScoreController = new ProfessorScoreController();
 		adminLectureController = new AdminLectureController();
 		adminLoticeController = new AdminLoticeController();
-		adminMainController = new AdminMainController();
 		adminMemberController = new AdminMemberController();
 		loginController = new LoginController();
 	}
@@ -61,10 +58,6 @@ public class Controllers {
 
 	public static AdminLoticeController getAdminLoticeController() {
 		return adminLoticeController;
-	}
-
-	public static AdminMainController getAdminMainController() {
-		return adminMainController;
 	}
 
 	public static AdminMemberController getAdminMemberController() {
