@@ -1,4 +1,3 @@
-//[박성용] P1 교수 마이페이지(정보 확인 및 수정 컨트롤러 추가)
 package controllers;
 
 import adminControllers.AdminLectureController;
@@ -7,7 +6,6 @@ import adminControllers.AdminMemberController;
 import loginController.LoginController;
 import professorControllers.ProfessorCourseController;
 import professorControllers.ProfessorMainController;
-import professorControllers.ProfessorMyPageController;
 import professorControllers.ProfessorNoticeController;
 import professorControllers.ProfessorScoreController;
 
@@ -22,15 +20,12 @@ public class Controllers {
 	private static AdminLoticeController adminLoticeController;
 	private static AdminMemberController adminMemberController;
 	private static LoginController loginController;
-		private static ProfessorMyPageController professorMyPageController;
-	
 	public Controllers() {
 		
 		professorCourseController = new ProfessorCourseController();
 		professorMainController = new ProfessorMainController();
 		professorNoticeController = new ProfessorNoticeController();
 		professorScoreController = new ProfessorScoreController();
-		professorMyPageController = new ProfessorMyPageController();
 		adminLectureController = new AdminLectureController();
 		adminLoticeController = new AdminLoticeController();
 		adminMemberController = new AdminMemberController();
@@ -73,8 +68,5 @@ public class Controllers {
 		return loginController;
 	}
 	
-	public static ProfessorMyPageController getProfessorMyPageController() {
-		return professorMyPageController;
-	}
 	
 }
