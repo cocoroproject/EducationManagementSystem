@@ -24,7 +24,7 @@ public class ProfessorNoticeDAO {
 		try {
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			String sql = "SELECT * FROM notice ORDER BY notice_number desc";
-			//�ֽ� ���� �ֻ�ܿ� ��ġ;
+			//최신 글을 최상단에 배치;
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -40,7 +40,7 @@ public class ProfessorNoticeDAO {
 			
 			
 		} catch (SQLException e) {
-			System.out.println("���� ���������� �������� ��� ���⿡�� ���� �߻�");
+			System.out.println("교수 메인페이지 공지사항 목록 보기에서 예외 발생");
 			e.printStackTrace();
 		} finally {
 			if(rs != null) {

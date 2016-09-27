@@ -37,7 +37,7 @@ public class ProfessorMainDAO {
 				success = true;
 			}						
 		} catch (SQLException e) {
-			System.out.println("���� ���������� �����̸� ���⿡�� ���� �߻�");
+			System.out.println("교수 메인페이지 교수이름 보기에서 예외 발생");
 			e.printStackTrace();
 		} finally {
 			if(rs != null) {
@@ -61,19 +61,19 @@ public class ProfessorMainDAO {
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			String sql = "SELECT notice_number, notice_name, notice_date "	
 					+ "FROM (SELECT * FROM notice ORDER BY notice_number desc) "
-					+ "WHERE rownum < 6";	//�ֽ� ���� �ֻ�ܿ� 5�������� ��ġ.	
+					+ "WHERE rownum < 6";	//최신 글을 최상단에 5개까지만 배치.	
 			
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				Notice notice = new Notice();		//admin���� ����
+				Notice notice = new Notice();		//admin에서 제작
 				notice.setNotice_number(rs.getInt("notice_number"));
 				notice.setNotice_name(rs.getString("notice_name"));
 				notice.setNotice_date(rs.getDate("notice_date"));
 				noticeList.add(notice);	
 			}						
 		} catch (SQLException e) {
-			System.out.println("���� ���������� �������� ��� ���⿡�� ���� �߻�");
+			System.out.println("교수 메인페이지 공지사항 목록 보기에서 예외 발생");
 			e.printStackTrace();
 		} finally {
 			if(rs != null) {
