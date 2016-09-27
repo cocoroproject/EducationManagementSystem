@@ -1,3 +1,4 @@
+//[박성용] P1 현우형이랑 상의 후 수정했음.
 package adminDomain;
 
 import java.sql.Date;
@@ -15,21 +16,22 @@ public class Notice {
 	
 	}
 
-	public Notice(int notice_number, String notice_name, String notice_contents, int notice_type) {
-
+	//게시판 목록 생성자
+	public Notice(int notice_number, String notice_name, Date notice_date) {
 		this.notice_number = notice_number;
 		this.notice_name = notice_name;
-		this.notice_contents = notice_contents;
-		this.notice_type = notice_type;
-	
+		this.notice_date = notice_date;
 	}
-	
-	public Notice(String notice_name, String notice_contents, int notice_type) {
 
+	//게시판 조회 생성자
+	public Notice(int notice_number, String notice_name, Date notice_date, int notice_type, int admin_number,
+			String notice_contents) {
+		this.notice_number = notice_number;
 		this.notice_name = notice_name;
-		this.notice_contents = notice_contents;
+		this.notice_date = notice_date;
 		this.notice_type = notice_type;
-	
+		this.admin_number = admin_number;
+		this.notice_contents = notice_contents;
 	}
 
 	public int getNotice_number() {
