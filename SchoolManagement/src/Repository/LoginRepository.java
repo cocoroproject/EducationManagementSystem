@@ -1,6 +1,6 @@
 package Repository;
 
-import adminDomain.Login;
+import loginDomain.Login;
 
 public class LoginRepository {
 

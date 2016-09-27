@@ -3,7 +3,7 @@ package controllers;
 import adminControllers.AdminLectureController;
 import adminControllers.AdminLoticeController;
 import adminControllers.AdminMemberController;
-import adminControllers.LoginController;
+import loginController.LoginController;
 import professorControllers.ProfessorCourseController;
 import professorControllers.ProfessorMainController;
 import professorControllers.ProfessorNoticeController;
