@@ -3,19 +3,26 @@ package studentDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
+import Repository.LoginRepository;
 import controllers.Controllers;
 import studentDomain.Student;
 
 public class StudentMainDAO {
+	
+	public StudentMainDAO() {
+		
+		new LoginRepository();
+		
+	}
 
-	//학생정보조회
-	public ArrayList<Student> oneStudentList(int studentNumber) {
+	//학생 개인정보 조회 DAO
+	public Student oneStudentList() {
 
 		Statement stmt = null;
 		ResultSet rs = null;
-		ArrayList<Student> OntStudentList = new ArrayList<Student>();
+		Student OntStudentList = new Student();
+		int studentNumber = Integer.parseInt(LoginRepository.getLogin().getLoginId());
 
 		try {
 			stmt = Controllers.getProgramController().getConnection().createStatement();
@@ -33,7 +40,7 @@ public class StudentMainDAO {
 				student.setStudent_phoneNumber(rs.getString("student_phoneNumber"));	
 			}						
 		} catch (SQLException e) {
-			System.out.println("제품 목록 보기에서 예외 발생");
+			System.out.println("학생 개인 정보 조회에서 예외 발생");
 			e.printStackTrace();
 		} finally {
 			if(rs != null) {
@@ -47,4 +54,36 @@ public class StudentMainDAO {
 		return OntStudentList;
 
 	}
+
+	//학생 개인정보수정 DAO
+	public boolean studentUpdate(Student studentUpdateAllInfo){
+
+		boolean success = false;
+
+		Statement stmt= null;
+
+		try {
+
+			String sql = "update Student set student_password = '"+ studentUpdateAllInfo.getStudent_password() +
+					"', student_phoneNumber = '" + studentUpdateAllInfo.getStudent_phoneNumber() +
+					"', student_email = " + studentUpdateAllInfo.getStudent_email() +
+					", student_address = '" + studentUpdateAllInfo.getStudent_address() +
+					"' where student_number =" + studentUpdateAllInfo.getStudent_number();
+
+			stmt = Controllers.getProgramController().getConnection().createStatement();
+
+			int result = stmt.executeUpdate(sql);
+
+			if(result != 0){
+				success = true;
+			}
+
+
+		} catch (Exception e) {
+			e.printStackTrace();      
+		}
+
+		return success;
+	}
+
 }

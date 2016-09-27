@@ -1,5 +1,6 @@
 package loginController;
 
+import controllers.Controllers;
 import loginDao.LoginDao;
 import loginDomain.Login;
 import loginView.LoginMenuView;
@@ -82,6 +83,7 @@ public class LoginController {
 
 		//학생 컨트롤러에 관리자 메뉴보기 화면으로 이동
 		new AlertView().alert("학생 컨트롤러의 관리자 메뉴 보기를 요청함.");
+		Controllers.getStudentMainController().requestStudentMenuView();
 	}
 
 
