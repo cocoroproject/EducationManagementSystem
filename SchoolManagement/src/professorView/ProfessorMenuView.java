@@ -1,5 +1,4 @@
-//[박성용] P1
-package professorView;
+package professorView;//[박성용] P1
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -44,6 +43,7 @@ public class ProfessorMenuView {
 	}
 
 	public void menu(){
+		
 		while(true) {
 
 			System.out.println("[1]마이페이지\t[2]강의관리\t[3] 학생관리");
@@ -54,7 +54,7 @@ public class ProfessorMenuView {
 			switch (selectedMenu) {
 			case 1:
 				new AlertView().alert("마이페이지 요청");
-				Controllers.getProfessorMyPageController().requestMyPage();
+				//Controllers.getProfessorMyPageController().requestMyPage();
 				break;
 			case 2:
 				new AlertView().alert("강의관리 요청");
@@ -62,7 +62,7 @@ public class ProfessorMenuView {
 				break;
 			case 3:
 				new AlertView().alert("학생관리 요청");
-				Controllers.getAdminMemberController().requestProfessorStudentList();
+				//Controllers.getAdminMemberController().requestProfessorStudentList();
 				break;
 			case 9:
 				new AlertView().alert("공지사항확인 요청");
@@ -75,6 +75,7 @@ public class ProfessorMenuView {
 				new AlertView().alert("메뉴를 다시 선택해 주세요.");
 			}
 		}
+		
 	}
 
 }

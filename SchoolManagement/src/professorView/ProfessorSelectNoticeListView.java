@@ -1,5 +1,4 @@
-//[박성용]P1 작업중
-package professorView;
+package professorView; //[박성용]P1 작업중
 
 import java.util.Scanner;
 
@@ -13,6 +12,6 @@ public class ProfessorSelectNoticeListView {
 
 	}
 	
-	public void professorSelect
+	//public void professorSelect
 	
 }

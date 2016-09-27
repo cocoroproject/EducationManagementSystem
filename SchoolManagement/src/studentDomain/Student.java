@@ -1,7 +1,5 @@
 package studentDomain;
 
-import studentView.StudentMenuView;
-
 public class Student {
 	
 	private int student_number;

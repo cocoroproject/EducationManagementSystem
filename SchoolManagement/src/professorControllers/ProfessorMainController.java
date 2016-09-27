@@ -1,5 +1,4 @@
-//[박성용] P2
-package professorControllers;
+package professorControllers;//[박성용] P2
 
 import java.util.ArrayList;
 
@@ -20,11 +19,11 @@ public class ProfessorMainController {
 	
 	public void requestselectMainPageCurrentInfo() {
 		
-		String professorName = professorMainDAO.selectMainPageProfessorInfo();
-		String currentSemster = professorMainDAO.selectMainPageCurrentSemester();
+		//String professorName = professorMainDAO.selectMainPageProfessorInfo();
+		//String currentSemster = professorMainDAO.selectMainPageCurrentSemester();
 		
 		ProfessorMenuView professorMenuView = new ProfessorMenuView();
-		professorMenuView.mainPageProfessorInfoView(professorName,currentSemster);
+		//professorMenuView.mainPageProfessorInfoView(professorName,currentSemster);
 		
 		Controllers.getProfessorMainController().requestSelectNoticeList();
 		
@@ -32,10 +31,10 @@ public class ProfessorMainController {
 	
 	public void requestSelectNoticeList() {
 	
-		ArrayList<Notice> noticeList = professorMainDAO.selectNoticeListForMainPage();
+		//ArrayList<Notice> noticeList = professorMainDAO.selectNoticeListForMainPage();
 		
 		ProfessorMenuView professorSelectNoticeListView = new ProfessorMenuView();
-		professorSelectNoticeListView.mainPageNoticeListView(noticeList);
+		//professorSelectNoticeListView.mainPageNoticeListView(noticeList);
 		
 	}
 	

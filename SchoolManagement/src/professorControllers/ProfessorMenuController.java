@@ -1,5 +1,4 @@
-//[박성용] P1 메인메뉴
-package professorControllers;
+package professorControllers;//[박성용] P1 메인메뉴
 
 import professorDAO.ProfessorCourseDAO;
 import professorDAO.ProfessorMainDAO;
