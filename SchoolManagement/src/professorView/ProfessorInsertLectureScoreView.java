@@ -3,51 +3,107 @@ package professorView;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controllers.Controllers;
+import professorDomain.RegisterLectureStudent;
 import studentDomain.Score;
-import studentDomain.Student;
 
 public class ProfessorInsertLectureScoreView {
 	private Scanner keyboard;
-	
+
 	public ProfessorInsertLectureScoreView() {
-		
+
 		keyboard = new Scanner(System.in);
-		
+
 	}
-	
+
 	//점수 입력
-	public ArrayList<Score> insertStudentScore(int selectedScore, ArrayList<Student> studentList) {
+	public void insertStudentsScore(String selectedIndex, ArrayList<RegisterLectureStudent> studentList) {
+
+		Score insertScore = new Score();
 		
-		ArrayList<Score> scoreList = new ArrayList<Score>();
+		//수강생 목록 출력
+		System.out.println("학과\t학번\t이름\t출석점수\t중간고사 점수\t기말고사 점수\t" +selectedIndex+"\t점수입력");	
+
+		for(int i=0; i<studentList.size(); i++) {
+
+			System.out.print(studentList.get(i).getMajor().getMajor_name() +"\t");
+			System.out.print(studentList.get(i).getStudent().getStudent_number() +"\t");
+			System.out.print(studentList.get(i).getStudent().getStudent_name() +"\t");
+			System.out.print(studentList.get(i).getScore().getAttendance_score() +"\t");
+			System.out.print(studentList.get(i).getScore().getMidExam_score() +"\t");
+			System.out.print(studentList.get(i).getScore().getFinalExam_score() +"\t\t : ");
+
+			insertScore.setAttendance_score(studentList.get(i).getScore().getAttendance_score());
+			insertScore.setMidExam_score(studentList.get(i).getScore().getMidExam_score());
+			insertScore.setFinalExam_score(studentList.get(i).getScore().getFinalExam_score());
+
+			if(selectedIndex.equals("출석")) {
+
+				insertScore.setAttendance_score(keyboard.nextInt());
+				studentList.get(i).setScore(insertScore);
+
+			} else if(selectedIndex.equals("중간고사")) {
+
+				insertScore.setMidExam_score(keyboard.nextInt());
+				studentList.get(i).setScore(insertScore);
+
+			} else {
+
+				insertScore.setFinalExam_score(keyboard.nextInt());
+				studentList.get(i).setScore(insertScore);
+
+			}
+
+		}
 		
-		//입력하고자 하는 점수에 따라 출력
-		if(selectedScore == 1) {
+		Controllers.getProfessorScoreController().requestRegisterAllLectureScore(selectedIndex, studentList);
+
+	}
+
+	//점수 수정
+	public void updateStudentScore(String selectedIndex, ArrayList<RegisterLectureStudent> studentList) {
+
+		Score updateScore = new Score();
+		RegisterLectureStudent updateStudent = new RegisterLectureStudent();
+		int number = 0;
+		//수강생 목록 출력
+		System.out.println("번호\t학과\t학번\t이름\t출석점수\t중간고사 점수\t기말고사 점수");	
+
+		for(int i=0; i<studentList.size(); i++) {
+
+			System.out.print(number+=1);
+			System.out.print(studentList.get(i).getMajor().getMajor_name() +"\t");
+			System.out.print(studentList.get(i).getStudent().getStudent_number() +"\t");
+			System.out.print(studentList.get(i).getStudent().getStudent_name() +"\t");
+			System.out.print(studentList.get(i).getScore().getAttendance_score() +"\t");
+			System.out.print(studentList.get(i).getScore().getMidExam_score() +"\t");
+			System.out.print(studentList.get(i).getScore().getFinalExam_score() +"\t\t");
+
+		}
+		
+		System.out.print("수정할 학생의 번호를 입력 : ");	
+		updateStudent = studentList.get(keyboard.nextInt()-1);	
+		
+		System.out.print("수정할 " + selectedIndex + "점수를 입력 : " );
+		
+		if(selectedIndex.equals("출석")) {
 			
-			System.out.println("학과\t학번\t이름\t출석점수");
+			updateScore.setAttendance_score(keyboard.nextInt());
 			
-		} else if(selectedScore ==2) {
+		} else if(selectedIndex.equals("중간고사")) {
 			
-			System.out.println("학과\t학번\t이름\t중간고사 점수");
+			updateScore.setMidExam_score(keyboard.nextInt());
 			
 		} else {
 			
-			System.out.println("학과\t학번\t이름\t기말고사 점수");
-		}
-		
-		//수강 학생 목록 출력 및 점수 입력
-		for(int i=0; i<studentList.size(); i++) {
-			
-			System.out.print(studentList.get(i).getMajor_number() +"\t");
-			System.out.print(studentList.get(i).getStudent_number() +"\t");
-			System.out.print(studentList.get(i).getStudent_name() +"\t");
-			
-			int attendance_score = keyboard.nextInt();
-			scoreList.get(i).setAttendance_score(attendance_score);
+			updateScore.setFinalExam_score(keyboard.nextInt());
 			
 		}
 		
-		return scoreList;
+		updateStudent.setScore(updateScore);
+		
+		Controllers.getProfessorScoreController().requestRegisterOneLectureScore(selectedIndex, updateStudent);
 		
 	}
-
+	
 }

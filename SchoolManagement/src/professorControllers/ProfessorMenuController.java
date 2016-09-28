@@ -1,4 +1,4 @@
-package professorControllers;//[박성용] P1 메인메뉴
+package professorControllers;
 
 import professorDAO.ProfessorCourseDAO;
 import professorDAO.ProfessorMainDAO;
@@ -13,7 +13,9 @@ public class ProfessorMenuController {
 	private ProfessorScoreDAO professorScoreDAO;
 	
 	public ProfessorMenuController() {
+		
 		professorCourseDAO = new ProfessorCourseDAO();
+		
 	}
 
 }

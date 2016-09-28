@@ -12,6 +12,13 @@ public class RegisterLecture {
 	public RegisterLecture() {
 
 	}
+	
+	//교수 성적 입력,수정시 사용
+	public RegisterLecture(int registerLecture_number) {
+		
+		this.registerLecture_number = registerLecture_number;
+		
+	}
 
 	// getter, setter
 	public int getRegisterLecture_number() {

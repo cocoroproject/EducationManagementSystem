@@ -13,6 +13,15 @@ public class Score {
 
 	}
 
+	//교수 성적 입력,수정시 사용
+	public Score(int attendance_score, int midExam_score, int finalExam_score) {
+
+		this.attendance_score = attendance_score;
+		this.midExam_score = midExam_score;
+		this.finalExam_score = finalExam_score;
+
+	}
+
 	// getter, setter
 	public int getScore_number() {
 		return score_number;
@@ -53,5 +62,5 @@ public class Score {
 	public void setRegisterLecture_number(int registerLecture_number) {
 		this.registerLecture_number = registerLecture_number;
 	}
-	
+
 }

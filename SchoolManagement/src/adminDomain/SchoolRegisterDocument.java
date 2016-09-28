@@ -14,6 +14,7 @@ public class SchoolRegisterDocument {
 	
 	}
 	
+	
 	public SchoolRegisterDocument(int scholarship_check, int academicWarning_check){
 		
 		this.scholarship_check = academicWarning_check;

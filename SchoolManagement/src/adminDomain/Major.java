@@ -9,6 +9,7 @@ public class Major {
 	
 	}
 	
+	//교수 성적 입력,수정시 사용
 	public Major(String major_name) {
 	
 		this.major_name = major_name;

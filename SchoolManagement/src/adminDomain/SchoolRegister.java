@@ -5,7 +5,6 @@ public class SchoolRegister {
 	private int schoolRegister_number;
 	private String schoolRegister_status;
 	
-	
 	public SchoolRegister() {
 	
 	}

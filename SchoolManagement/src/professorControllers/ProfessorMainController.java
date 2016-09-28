@@ -1,8 +1,5 @@
 package professorControllers;//[박성용] P2
 
-import java.util.ArrayList;
-
-import adminDomain.Notice;
 import controllers.Controllers;
 import professorDAO.ProfessorMainDAO;
 import professorView.ProfessorMenuView;

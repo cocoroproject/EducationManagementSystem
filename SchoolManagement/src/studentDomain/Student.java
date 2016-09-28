@@ -19,6 +19,14 @@ public class Student {
 
 	}
 	
+	//교수 성적 입력,수정시 사용
+	public Student(int student_number, String student_name) {
+		
+		this.student_number = student_number;
+		this.student_name = student_name;
+		
+	}
+	
 	// getter, setter
 	public int getStudent_number() {
 		return student_number;

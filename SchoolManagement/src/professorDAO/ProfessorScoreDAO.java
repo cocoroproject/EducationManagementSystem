@@ -6,7 +6,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Repository.LoginRepository;
+import adminDomain.Major;
 import controllers.Controllers;
+import professorDomain.RegisterLectureStudent;
+import studentDomain.RegisterLecture;
 import studentDomain.Score;
 import studentDomain.Student;
 
@@ -24,9 +27,9 @@ public class ProfessorScoreDAO {
 			String sql = "select subject_number "
 					+ "from Lecture, professor "
 					+ "where lecture.professor_number = professor.professor_number "
-					+ "and subject_number =" + selectedLectureNumber
-					+ "and professor_number =" + LoginRepository.getLogin().getLoginId(); 
-			
+					+ " and subject_number =" + selectedLectureNumber
+					+ " and professor_number =" + LoginRepository.getLogin().getLoginId(); 
+
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
 
@@ -51,29 +54,34 @@ public class ProfessorScoreDAO {
 	}
 
 	//수강생 정보 호출
-	public ArrayList<Student> selectAllLectureStudent(int subject_number) {
+	public ArrayList<RegisterLectureStudent> selectAllLectureStudent(int subject_number) {
 
 		Statement stmt = null;
 		ResultSet rs = null;
-		ArrayList<Student> studentList = new ArrayList<Student>();
+		ArrayList<RegisterLectureStudent> studentList = new ArrayList<RegisterLectureStudent>();
 
 		try {
 			stmt = Controllers.getProgramController().getConnection().createStatement();
-			String sql = "select student_number, student_name, mayjor_number "
-					+ "from registerlecture, student "
+			String sql = "select student_number, student_name, major_name, attendance_score, midExam_score, finalExam_score, registerLecture_number "
+					+ "from registerlecture, student, score, major "
 					+ "where registerlecture.student_number = student.student_number "
-					+ "and subject_number =" + subject_number;
+					+ " and registerlecture.registerlecture_number = score.registerlecture_number "
+					+ " and major.major_number = student.major_number "
+					+ " and registerlecture.registerLecture_number = score.registerLecture_number "
+					+ " and registerlecture.subject_number =" + subject_number;
 			rs = stmt.executeQuery(sql);
 
 			while(rs.next()) {
 
-				Student student = new Student();
-				student.setStudent_number(rs.getInt("student_number"));
-				student.setStudent_name(rs.getString("student_name"));
-				student.setMajor_number(rs.getInt("mayjor_number"));
-				studentList.add(student);
+				Student student = new Student(rs.getInt("student_number"), rs.getString("student_name"));				
+				Major major = new Major(rs.getString("major_name"));				
+				Score score = new Score(rs.getInt("attendance_score"), rs.getInt("midExam_score"), rs.getInt("finalExam_score"));
+				RegisterLecture registerLecture = new RegisterLecture(rs.getInt("registerLecture_number"));				
+				RegisterLectureStudent registerLectureStudent = new RegisterLectureStudent(student, major, score, registerLecture);
 
-			}	
+				studentList.add(registerLectureStudent);
+
+			}
 
 		} catch (SQLException e) {
 			System.out.println("수강학생 보기에서 예외 발생");
@@ -102,11 +110,11 @@ public class ProfessorScoreDAO {
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 
 			for(int i=0; i<studentList.size(); i++) {
-				
+
 				String sql = "select registerLecture_number "
 						+ "from registerlecture "
 						+ "where student_number = " + studentList.get(i).getStudent_number()
-						+ "and subject_number =" + subject_number;
+						+ " and subject_number =" + subject_number;
 				rs = stmt.executeQuery(sql);
 
 				if(rs.next()) {
@@ -115,7 +123,7 @@ public class ProfessorScoreDAO {
 					score.setRegisterLecture_number(rs.getInt("registerLecture_number"));
 
 				}
-				
+
 			}
 
 		} catch (SQLException e) {
@@ -134,48 +142,121 @@ public class ProfessorScoreDAO {
 
 	}
 
-	//수강생 정보 DB에 등록
-	public boolean insertLectureScore(int selectedScore, ArrayList<Score> score) {
-		boolean success = false;
+	//입력된 수강생 점수를 DB에 등록
+	public boolean registerLectureScore(String selectedIndex, ArrayList<RegisterLectureStudent> studentList) {
 
+		boolean success = false;
 		Statement stmt = null;
-		String sql = null;
 		int result = 0;
-		
+		String sql = null;
+
 		try {
-			
-			for(int i=0; i<score.size(); i++) {
-				
-				if(selectedScore == 1) {
-					
-					sql = "insert attendance_score "
-							+ "into score "
-							+ "where registerLecture_number = " + score.get(i).getRegisterLecture_number()
-							+ "and values(" + score.get(i).getRegisterLecture_number() + ")"; 
-					
-				} else if(selectedScore ==2) {
-					
-					sql = "insert attendance_score "
-							+ "into score "
-							+ "where registerLecture_number = " + score.get(i).getRegisterLecture_number()
-							+ "and values(" + score.get(i).getMidExam_score() + ")"; 
-					
-				} else {
-					
-					sql = "insert attendance_score "
-							+ "into score "
-							+ "where registerLecture_number = " + score.get(i).getRegisterLecture_number()
-							+ "and values(" + score.get(i).getFinalExam_score() + ")"; 
-					
+			//수강생들의 출석 점수 입력
+			if(selectedIndex.equals("출석")) {
+
+				for(int i=0; i<studentList.size(); i++) {
+
+					sql = "insert attendance_score"
+							+ "into score, student "
+							+ "where score.registerLecture_number = " + studentList.get(i).getRegisterLecture().getRegisterLecture_number()
+							+ " and student.student_number = " + studentList.get(i).getStudent().getStudent_number()
+							+ " values(" +  studentList.get(i).getScore().getAttendance_score() + ")";
+
+					stmt = Controllers.getProgramController().getConnection().createStatement();
+					result = stmt.executeUpdate(sql);
+
 				}
-				
-				stmt = Controllers.getProgramController().getConnection().createStatement();
-				result = stmt.executeUpdate(sql);
-				
+
+			} else if(selectedIndex.equals("중간고사")) { //수강생들의 중간고사 점수 입력
+
+				for(int i=0; i<studentList.size(); i++) {
+
+					sql = "insert midExam_score"
+							+ "into score, student "
+							+ "where score.registerLecture_number = " + studentList.get(i).getRegisterLecture().getRegisterLecture_number()
+							+ " and student.student_number = " + studentList.get(i).getStudent().getStudent_number()
+							+ " values(" +  studentList.get(i).getScore().getMidExam_score() + ")";
+
+					stmt = Controllers.getProgramController().getConnection().createStatement();
+					result = stmt.executeUpdate(sql);
+
+				}
+
+
+			} else {
+
+				for(int i=0; i<studentList.size(); i++) { //수강생들의 기말고사 점수 입력
+
+					sql = "insert finalExam_score"
+							+ "into score, student "
+							+ "where score.registerLecture_number = " + studentList.get(i).getRegisterLecture().getRegisterLecture_number()
+							+ " and student.student_number = " + studentList.get(i).getStudent().getStudent_number()
+							+ " values(" +  studentList.get(i).getScore().getFinalExam_score() + ")";
+
+					stmt = Controllers.getProgramController().getConnection().createStatement();
+					result = stmt.executeUpdate(sql);
+
+				}
+
 			}
 
 			if(result != 0) {
+
 				success = true;
+
+			}
+
+		} catch (SQLException e) {
+			System.out.println("수강생들의 점수 등록 중 예외가 발생했습니다.");
+			e.printStackTrace();
+		} finally {
+			if(stmt != null) {
+				try { stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+			}
+		}
+
+		return success;
+
+	}
+
+	//수정된 수강생 점수를 DB에 등록
+	public boolean updateLectureScore(String selectedIndex, RegisterLectureStudent updateStudent) {
+
+		boolean success = false;
+		Statement stmt = null;
+		int result = 0;
+		String sql = null;
+
+		//수강생의 출석 점수 입력
+		if(selectedIndex.equals("출석")) {
+
+			sql = "update score set attendance_score = " + updateStudent.getScore().getAttendance_score() 
+					+ " where score.registerLecture_number = " +  updateStudent.getRegisterLecture().getRegisterLecture_number()
+					+ " and student.student_number = " +  updateStudent.getStudent().getStudent_number();
+
+		} else if(selectedIndex.equals("중간고사")) {
+
+			sql = "update score set midExam_score = " + updateStudent.getScore().getMidExam_score()
+					+ " where score.registerLecture_number = " +  updateStudent.getRegisterLecture().getRegisterLecture_number()
+					+ " and student.student_number = " +  updateStudent.getStudent().getStudent_number();
+
+		} else {
+
+			sql = "update score set finalExam_score = " + updateStudent.getScore().getFinalExam_score()
+					+ " where score.registerLecture_number = " +  updateStudent.getRegisterLecture().getRegisterLecture_number()
+					+ " and student.student_number = " +  updateStudent.getStudent().getStudent_number();
+
+		}
+
+		try {
+
+			stmt = Controllers.getProgramController().getConnection().createStatement();
+			result = stmt.executeUpdate(sql);
+
+			if(result != 0) {
+
+				success = true;
+
 			}
 
 		} catch (SQLException e) {
@@ -188,7 +269,6 @@ public class ProfessorScoreDAO {
 		}
 
 		return success;
-
 	}
-	
+
 }
