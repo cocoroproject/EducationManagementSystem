@@ -2,7 +2,7 @@
 package controllers;
 
 import adminControllers.AdminLectureController;
-import adminControllers.AdminLoticeController;
+import adminControllers.AdminNoticeController;
 import adminControllers.AdminMemberController;
 import loginController.LoginController;
 import professorControllers.ProfessorCourseController;
@@ -23,7 +23,7 @@ public class Controllers {
 	private static ProfessorNoticeController professorNoticeController;
 	private static ProfessorScoreController professorScoreController;	
 	private static AdminLectureController adminLectureController;
-	private static AdminLoticeController adminLoticeController;
+	private static AdminNoticeController adminNoticeController;
 	private static AdminMemberController adminMemberController;
 	private static StudentMainController studentMainController;
 	private static StudentCourseController studentCourseController;
@@ -41,7 +41,7 @@ public class Controllers {
 		professorScoreController = new ProfessorScoreController();
 		professorMyPageController = new ProfessorMyPageController();
 		adminLectureController = new AdminLectureController();
-		adminLoticeController = new AdminLoticeController();
+		adminNoticeController = new AdminNoticeController();
 		adminMemberController = new AdminMemberController();
 		studentMainController = new StudentMainController();
 		studentCourseController = new StudentCourseController();
@@ -74,8 +74,8 @@ public class Controllers {
 		return adminLectureController;
 	}
 
-	public static AdminLoticeController getAdminLoticeController() {
-		return adminLoticeController;
+	public static AdminNoticeController getAdminLoticeController() {
+		return adminNoticeController;
 	}
 
 	public static AdminMemberController getAdminMemberController() {
@@ -104,6 +104,10 @@ public class Controllers {
 
 	public static StudentNoticeController getStudentNoticeController() {
 		return studentNoticeController;
+	}
+	
+	public static AdminNoticeController getAdminNoticeController() {
+		return adminNoticeController;
 	}
 	
 }
