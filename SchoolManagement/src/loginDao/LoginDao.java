@@ -13,12 +13,12 @@ public class LoginDao {
 public LoginDao() {
 		
 		new LoginRepository();
-	}
+	}	
 	
-	public Login loginUserInfo() {
-		
-		return LoginRepository.getLogin();
-	}
+//	public Login loginUserInfo() {
+//		
+//		return LoginRepository.getLogin();
+//	}
 	
 	//관리자 로그인 요청을 처리하는 dao 메서드
 	public boolean  Adminlogin(Login newLogin) {
@@ -26,9 +26,9 @@ public LoginDao() {
 		boolean success = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
-			String sql = "select *from Admin where admin_iD = ? and admin_password = ?";
+			String sql = "select * from Admin where ADMIN_ID = ? and ADMIN_PASSWORD = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, newLogin.getLoginId());
 			pstmt.setString(2, newLogin.getLoginPassword());
@@ -54,9 +54,9 @@ public LoginDao() {
 			boolean success = false;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			
+
 			try {
-				String sql = "select *from Professor where professor_iD = ? and professor_password = ?";
+				String sql = "select * from Professor where professor_iD = ? and professor_password = ?";
 				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 				pstmt.setString(1, newLogin.getLoginId());
 				pstmt.setString(2, newLogin.getLoginPassword());
@@ -64,6 +64,7 @@ public LoginDao() {
 				
 				if(rs.next()) { //교수 테이블에 로그인 정보 있을경우
 					LoginRepository.setLogin(newLogin);
+					
 					success = true;
 				}
 				
@@ -81,14 +82,15 @@ public LoginDao() {
 					boolean success = false;
 					PreparedStatement pstmt = null;
 					ResultSet rs = null;
-					
+					System.out.println(newLogin.getLoginId());
+					System.out.println(newLogin.getLoginPassword());
 					try {
-						String sql = "select *from Student where student_number = ? and student_socialNumber = ?";
+						String sql = "select * from Student where student_number = ? and student_password = ?";
 						pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 						pstmt.setString(1, newLogin.getLoginId());
 						pstmt.setString(2, newLogin.getLoginPassword());
 						rs = pstmt.executeQuery();
-						
+					
 						if(rs.next()) { //학생 테이블에 로그인 정보 있을경우
 							LoginRepository.setLogin(newLogin);
 							success = true;

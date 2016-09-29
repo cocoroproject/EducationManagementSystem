@@ -30,10 +30,11 @@ public class Controllers {
 	private static StudentGradeController studentGradeController;
 	private static StudentNoticeController studentNoticeController;
 	private static LoginController loginController;
-		private static ProfessorMyPageController professorMyPageController;
+	private static ProfessorMyPageController professorMyPageController;
 	
 	public Controllers() {
-		
+		loginController = new LoginController();
+		programController = new ProgramController();
 		professorCourseController = new ProfessorCourseController();
 		professorMainController = new ProfessorMainController();
 		professorNoticeController = new ProfessorNoticeController();
@@ -46,7 +47,7 @@ public class Controllers {
 		studentCourseController = new StudentCourseController();
 		studentGradeController = new StudentGradeController();
 		studentNoticeController = new StudentNoticeController();
-		loginController = new LoginController();
+		
 	}
 
 	public static ProgramController getProgramController() {
