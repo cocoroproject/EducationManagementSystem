@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import controllers.Controllers;
 import professorDomain.Lecture;
 import professorDomain.LecturePlan;
-import professorView.AlertView;
+import studentView.AlertView;
 
 public class ProfessorCourseDAO {
 
@@ -87,7 +87,7 @@ public class ProfessorCourseDAO {
 			while(rs.next()) {
 				Lecture lecture = new Lecture();
 				lecture.setProfessor_number(rs.getInt("professor_number"));
-				lecture.setSubject_number(rs.getInt("subject_number"));
+				lecture.setSubject_number(rs.getString("subject_number"));
 				lecture.setSemester_number(rs.getInt("semester_number"));
 				lecture.setLecture_time(rs.getString("lecture_time"));
 				lecture.setLecture_name(rs.getString("lecture_name"));

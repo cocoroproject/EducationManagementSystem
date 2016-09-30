@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import professorDAO.ProfessorCourseDAO;
 import professorDomain.Lecture;
 import professorDomain.LecturePlan;
-import professorView.AlertView;
 import professorView.ProfessorLectureListView;
 import professorView.ProfessorLecturePlanRegisterView;
 

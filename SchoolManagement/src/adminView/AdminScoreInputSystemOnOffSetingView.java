@@ -2,8 +2,8 @@ package adminView;
 
 import java.util.Scanner;
 
+import studentView.AlertView;
 
-import professorView.AlertView;
 
 public class AdminScoreInputSystemOnOffSetingView {
 
