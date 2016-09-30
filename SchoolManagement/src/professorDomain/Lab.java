@@ -1,4 +1,3 @@
-//[박성용] P1 (교수 정보)
 package professorDomain;
 
 public class Lab {
@@ -7,13 +6,12 @@ public class Lab {
 	private String lab_phoneNumber;
 	private String lab_address;
 	
-	private void Lab() {
-		// TODO Auto-generated method stub
+	public Lab() {
 
 	}
 	
-	public Lab(int lab_number, String lab_phoneNumber, String lab_address) {
-		super();
+	public Lab(int lab_number, String lab_phoneNumber, String lab_address) {	//교수정보 출력시 사용
+		
 		this.lab_number = lab_number;
 		this.lab_phoneNumber = lab_phoneNumber;
 		this.lab_address = lab_address;

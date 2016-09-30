@@ -19,7 +19,7 @@ public class StudentRegisterLectureMenuView {
 		while(true) {
 			
 			System.out.println("\n[ 수강 정보 메뉴 ]");
-			System.out.println("[1]시간표조회 [2]수강신청 [3]개설교과목조회 [0]이전메뉴");
+			System.out.println("[1]시간표조회 [2]수강신청 [3]개설강의목록 [0]이전메뉴");
 			System.out.print("메뉴를 선택해주세요 : ");
 			int selectedMenu = keyboard.nextInt();
 			
@@ -35,8 +35,8 @@ public class StudentRegisterLectureMenuView {
 				
 			} else if(selectedMenu == 3) {
 				
-				System.out.println("개설교과목조회");
-				Controllers.getStudentMainController().requestStudentMenu();
+				System.out.println("개설강의조회");
+				Controllers.getStudentCourseController().requestMyStudentLectureList();
 				
 			} else if(selectedMenu == 0) {
 				

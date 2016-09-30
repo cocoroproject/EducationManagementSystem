@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import studentView.AlertView;
 import studentDAO.StudentGradeDAO;
-import studentDomain.CurrentRegistLecture;
+import studentDomain.CurrentRegisterLecture;
 import studentView.StudentCurrentLectureListView;
 import studentView.StudentEvalLectureView;
 import studentView.StudentGradeMenuView;
@@ -28,7 +28,7 @@ public class StudentGradeController {
 	// 전체 성적조회 뷰 호출을 요청받는 메서드
 	public void requestSelectListTotalGradeView() {
 
-
+		
 
 	}
 	// 선택 성적조회 뷰 호출을 요청받는 메서드
@@ -39,21 +39,21 @@ public class StudentGradeController {
 	// 강의평가를 요청받는 메서드
 	public void requestRegisterEvalLecture() {
 
-		ArrayList<CurrentRegistLecture> lectureList = studentGradeDAO.selectListCurrentLecture();
+		ArrayList<CurrentRegisterLecture> lectureList = studentGradeDAO.selectListCurrentLecture();
 		this.requestSelectListCurrentLectureView(lectureList);
 
 	}
 	// 현재 수강중인 강의 리스트 뷰 호출을 요청받는 메서드
-	public void requestSelectListCurrentLectureView(ArrayList<CurrentRegistLecture> lectureList) {
+	public void requestSelectListCurrentLectureView(ArrayList<CurrentRegisterLecture> lectureList) {
 
 		StudentCurrentLectureListView currentLectureListView = new StudentCurrentLectureListView();
 		currentLectureListView.currentLectureList(lectureList);
 
 	}
 	// 강의평가 뷰 호출을 요청받는 메서드
-	public void requestRegisterEvalLectureView(String selectedSubjectNumber, ArrayList<CurrentRegistLecture> lectureList) {
+	public void requestRegisterEvalLectureView(String selectedSubjectNumber, ArrayList<CurrentRegisterLecture> lectureList) {
 
-		CurrentRegistLecture selectedSubject = new CurrentRegistLecture();
+		CurrentRegisterLecture selectedSubject = new CurrentRegisterLecture();
 
 		for(int i = 0; i < lectureList.size(); i++) {
 			
@@ -71,7 +71,7 @@ public class StudentGradeController {
 
 	}
 	// 강의 평가 등록을 요청받는 메서드
-	public void requestRegisterEvalLecture(CurrentRegistLecture selectedSubject, int lectureEvalGrade, ArrayList<CurrentRegistLecture> lectureList) {
+	public void requestRegisterEvalLecture(CurrentRegisterLecture selectedSubject, int lectureEvalGrade, ArrayList<CurrentRegisterLecture> lectureList) {
 
 		boolean success = false;
 

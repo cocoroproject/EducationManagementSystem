@@ -7,22 +7,22 @@ import controllers.Controllers;
 import professorDomain.RegisterLectureStudent;
 import studentDomain.Score;
 
-public class ProfessorInsertLectureScoreView {
+public class ProfessorRegistertLectureScoreView {
+	
 	private Scanner keyboard;
 
-	public ProfessorInsertLectureScoreView() {
+	public ProfessorRegistertLectureScoreView() {
 
 		keyboard = new Scanner(System.in);
 
 	}
 
 	//점수 입력
-	public void insertStudentsScore(String selectedIndex, ArrayList<RegisterLectureStudent> studentList) {
+	public void inputRegisterStudentsScore(String selectedIndex, ArrayList<RegisterLectureStudent> studentList) {
 
 		Score insertScore = new Score();
-		
-		//수강생 목록 출력
-		System.out.println("학과\t학번\t이름\t출석점수\t중간고사 점수\t기말고사 점수\t" +selectedIndex+"\t점수입력");	
+			
+		System.out.println("학과\t학번\t이름\t출석점수\t중간고사 점수\t기말고사 점수\t" +selectedIndex+"\t점수입력");	//수강생 목록 출력
 
 		for(int i=0; i<studentList.size(); i++) {
 
@@ -56,22 +56,21 @@ public class ProfessorInsertLectureScoreView {
 
 		}
 		
-		Controllers.getProfessorScoreController().requestRegisterAllLectureScore(selectedIndex, studentList);
+		Controllers.getProfessorScoreController().requestRegisterLectureScore(selectedIndex, studentList);
 
 	}
 
 	//점수 수정
-	public void updateStudentScore(String selectedIndex, ArrayList<RegisterLectureStudent> studentList) {
+	public void inputUpdateStudentScore(String selectedIndex, ArrayList<RegisterLectureStudent> studentList) {
 
 		Score updateScore = new Score();
 		RegisterLectureStudent updateStudent = new RegisterLectureStudent();
-		int number = 0;
-		//수강생 목록 출력
-		System.out.println("번호\t학과\t학번\t이름\t출석점수\t중간고사 점수\t기말고사 점수");	
+		
+		System.out.println("No.\t학과\t학번\t이름\t출석점수\t중간고사 점수\t기말고사 점수");	 //수강생 목록 출력
 
 		for(int i=0; i<studentList.size(); i++) {
 
-			System.out.print(number+=1);
+			System.out.print(i+1);
 			System.out.print(studentList.get(i).getMajor().getMajor_name() +"\t");
 			System.out.print(studentList.get(i).getStudent().getStudent_number() +"\t");
 			System.out.print(studentList.get(i).getStudent().getStudent_name() +"\t");
@@ -102,7 +101,7 @@ public class ProfessorInsertLectureScoreView {
 		
 		updateStudent.setScore(updateScore);
 		
-		Controllers.getProfessorScoreController().requestRegisterOneLectureScore(selectedIndex, updateStudent);
+		Controllers.getProfessorScoreController().requestRegisterUpdateLectureScore(selectedIndex, updateStudent);
 		
 	}
 	

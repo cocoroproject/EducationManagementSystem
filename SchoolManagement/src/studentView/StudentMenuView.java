@@ -21,7 +21,7 @@ public class StudentMenuView {
 			
 			System.out.println("\n[ 학생 메뉴 ]");
 			System.out.println("[1]개인정보 [2]신청정보 [3]수강정보 [4]성적정보");
-			System.out.println("[5]학사공지 [6]로그아웃]");
+			System.out.println("[5]학사공지 [6]로그아웃");
 			System.out.print("메뉴를 선택해주세요 : ");
 			int selectedMenu = keyboard.nextInt();
 

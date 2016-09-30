@@ -1,5 +1,3 @@
-//[박성용] P1
-//로그인 이후 메인화면에서 교수의 정보와 공지 사항을 볼 수 있다.
 package professorDAO;
 
 import java.sql.ResultSet;
@@ -15,10 +13,10 @@ import professorDomain.Professor;
 public class ProfessorMainDAO {
 
 	public ProfessorMainDAO() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
-	// 
+	//
 	public boolean selectMainPageProfessorInfo() {
 		
 		Statement stmt = null;
@@ -51,6 +49,7 @@ public class ProfessorMainDAO {
 		return success;
 	}
 	
+	//
 	public ArrayList<Notice> selectMainPageNoticeList() {
 		
 		Statement stmt = null;

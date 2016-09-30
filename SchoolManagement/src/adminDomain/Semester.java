@@ -6,7 +6,7 @@ public class Semester {
 
 	private int semester_number;
 	private String semester;
-	private Date year;
+	private int year;
 	private Date semester_startDay;
 	private Date semester_endDay;
 	
@@ -16,6 +16,13 @@ public class Semester {
 
 	public Semester(String semester) {
 		this.semester = semester;
+	}
+	
+	public Semester(int year, String semester) {
+		
+		this.year = year;
+		this.semester = semester;
+		
 	}
 	
 	public int getSemester_number() {
@@ -42,13 +49,13 @@ public class Semester {
 	
 	}
 
-	public Date getYear() {
+	public int getYear() {
 	
 		return year;
 	
 	}
 
-	public void setYear(Date year) {
+	public void setYear(int year) {
 	
 		this.year = year;
 	

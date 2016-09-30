@@ -5,7 +5,7 @@ import loginDao.LoginDao;
 import loginDomain.Login;
 import loginView.AdminLoginView;
 import loginView.LoginMenuView;
-import loginView.ProfssorLoginView;
+import loginView.ProfessorLoginView;
 import loginView.StudentLoginView;
 import studentView.AlertView;
 
