@@ -37,14 +37,17 @@ public class StudentMenuView {
 			} else if(selectedMenu == 3) {
 				
 				System.out.println("수강정보메뉴로 이동합니다.");
+				Controllers.getStudentCourseController().requestStudentRegisterLectureMenu();
 			
 			} else if(selectedMenu == 4) {
 				
 				System.out.println("성적정보메뉴로 이동합니다.");
+				Controllers.getStudentGradeController().requestStudentGradeMenuView();
 			
 			} else if(selectedMenu == 5) {
 				
 				System.out.println("학사공지메뉴로 이동합니다.");
+				Controllers.getStudentNoticeController().requestStudentNoticeMenu();
 		
 			} else if(selectedMenu == 6) {
 				
