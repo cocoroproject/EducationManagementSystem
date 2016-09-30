@@ -1,13 +1,13 @@
 package studentDomain;
 
-public class CurrentRegistLecture {
+public class CurrentRegisterLecture {
 	
 	private String subject_number;
 	private String subject_name;
 	private int subject_grade;
 	private String professor_name;
 	
-	public CurrentRegistLecture() {
+	public CurrentRegisterLecture() {
 
 	}
 

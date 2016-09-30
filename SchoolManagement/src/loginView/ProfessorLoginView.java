@@ -5,11 +5,11 @@ import java.util.Scanner;
 import controllers.Controllers;
 import loginDomain.Login;
 
-public class ProfssorLoginView {
+public class ProfessorLoginView {
 	
 	private Scanner keyboard;
 	
-	public ProfssorLoginView() {
+	public ProfessorLoginView() {
 		
 		keyboard = new Scanner(System.in);
 		

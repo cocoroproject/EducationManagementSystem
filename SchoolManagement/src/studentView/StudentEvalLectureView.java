@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import controllers.Controllers;
-import studentDomain.CurrentRegistLecture;
+import studentDomain.CurrentRegisterLecture;
 
 public class StudentEvalLectureView {
 	
@@ -16,7 +16,7 @@ public class StudentEvalLectureView {
 	
 	}
 	
-	public void inputEvalLecture(CurrentRegistLecture selectedSubject, ArrayList<CurrentRegistLecture> lectureList) {
+	public void inputEvalLecture(CurrentRegisterLecture selectedSubject, ArrayList<CurrentRegisterLecture> lectureList) {
 		
 		System.out.println("");
 		System.out.println("과목번호\t과목명\t\t\t학점단위\t교수명");
@@ -35,7 +35,7 @@ public class StudentEvalLectureView {
 		
 	}
 	
-	public void inputAskEvalContinue(ArrayList<CurrentRegistLecture> lectureList) {
+	public void inputAskEvalContinue(ArrayList<CurrentRegisterLecture> lectureList) {
 		
 		while(true) {
 			
