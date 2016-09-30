@@ -5,7 +5,7 @@ import loginDao.LoginDao;
 import loginDomain.Login;
 import loginView.AdminLoginView;
 import loginView.LoginMenuView;
-import loginView.ProfssorLoginView;
+import loginView.ProfessorLoginView;
 import loginView.StudentLoginView;
 import studentView.AlertView;
 
@@ -45,7 +45,7 @@ public class LoginController {
 	//교수 로그인 요청을  처리하는 메서드
 	public void requestProfessorLoginViewPrint(){
 		
-		ProfssorLoginView profssorLoginView = new ProfssorLoginView();
+		ProfessorLoginView profssorLoginView = new ProfessorLoginView();
 		profssorLoginView.inputLogin();
 		
 	}

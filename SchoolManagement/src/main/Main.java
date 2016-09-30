@@ -8,7 +8,7 @@ public class Main {
 		
 		new Controllers();
 		Controllers.getLoginController().requestLoginMenu();
-		
+
 	}
 
 }

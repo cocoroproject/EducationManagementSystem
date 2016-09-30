@@ -154,7 +154,7 @@ public class ProfessorLectureDAO {
 
 				Lecture lecture = new Lecture(rs.getInt("lecture_number"), rs.getString("lecture_time"), rs.getString("lecture_name"), rs.getInt("lecture_capacity"), rs.getInt("lectureRoom_number"));			
 				LectureRoom lectureRoom = new LectureRoom(rs.getString("lectureRoom_name"), rs.getString("lectureRoom_address"));
-				Semester semester = new Semester(rs.getDate("year"), rs.getString("semester"));
+				Semester semester = new Semester(rs.getInt("year"), rs.getString("semester"));
 
 				LectureInfo lectureInfo = new LectureInfo(lecture, lectureRoom, semester);
 				lectureList.add(lectureInfo);

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import Repository.LoginRepository;
 import controllers.Controllers;
-import studentDomain.CurrentRegistLecture;
+import studentDomain.CurrentRegisterLecture;
 
 public class StudentGradeDAO {
 
@@ -19,12 +19,12 @@ public class StudentGradeDAO {
 	}
 
 	// 현재 수강중인 과목 리스트 리턴하는 메서드
-	public ArrayList<CurrentRegistLecture> selectListCurrentLecture() {
+	public ArrayList<CurrentRegisterLecture> selectListCurrentLecture() {
 
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		ArrayList<CurrentRegistLecture> lectureList = new ArrayList<CurrentRegistLecture>();
+		ArrayList<CurrentRegisterLecture> lectureList = new ArrayList<CurrentRegisterLecture>();
 
 		try {
 
@@ -41,7 +41,7 @@ public class StudentGradeDAO {
 		
 			
 			while(rs.next()) {
-				CurrentRegistLecture currentRegistLecture = new CurrentRegistLecture();
+				CurrentRegisterLecture currentRegistLecture = new CurrentRegisterLecture();
 				currentRegistLecture.setSubject_number(rs.getString("subject_number"));
 				currentRegistLecture.setSubject_name(rs.getString("subject_name"));
 				currentRegistLecture.setSubject_grade(rs.getInt("subject_grade"));
@@ -63,7 +63,7 @@ public class StudentGradeDAO {
 	}
 
 	// 강의 평가를 DB에 등록
-	public boolean registerEvalLecture(CurrentRegistLecture selectedSubject, int lectureEvalGrade) {
+	public boolean registerEvalLecture(CurrentRegisterLecture selectedSubject, int lectureEvalGrade) {
 		
 		Statement stmt = null;
 		PreparedStatement pstmt = null;

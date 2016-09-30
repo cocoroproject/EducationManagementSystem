@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import controllers.Controllers;
-import studentDomain.CurrentRegistLecture;
+import studentDomain.CurrentRegisterLecture;
 
 public class StudentCurrentLectureListView {
 	
@@ -16,7 +16,7 @@ public class StudentCurrentLectureListView {
 	
 	}
 	
-	public void currentLectureList(ArrayList<CurrentRegistLecture> lectureList) {
+	public void currentLectureList(ArrayList<CurrentRegisterLecture> lectureList) {
 		
 		System.out.println("[ 수강중인 과목 ]");
 		// 과목번호, 과목명, 학점, 담당교수
