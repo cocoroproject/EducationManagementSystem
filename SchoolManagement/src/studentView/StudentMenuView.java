@@ -33,7 +33,7 @@ public class StudentMenuView {
 			
 			} else if(selectedMenu == 4) {
 				System.out.println("성적정보메뉴로 이동합니다.");
-			
+				Controllers.getStudentGradeController().requestStudentGradeMenuView();
 			} else if(selectedMenu == 5) {
 				System.out.println("학사공지메뉴로 이동합니다.");
 		
