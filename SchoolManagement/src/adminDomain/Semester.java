@@ -18,6 +18,13 @@ public class Semester {
 		this.semester = semester;
 	}
 	
+	public Semester(Date year, String semester) {
+		
+		this.year = year;
+		this.semester = semester;
+		
+	}
+	
 	public int getSemester_number() {
 	
 		return semester_number;

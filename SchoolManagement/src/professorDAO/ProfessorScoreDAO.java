@@ -15,26 +15,26 @@ import studentDomain.Student;
 
 public class ProfessorScoreDAO {
 
-	//강의 번호 존재 체크
+	//강의 번호 체크
 	public boolean checkLectureNumber(int selectedLectureNumber) {
 
 		boolean success = false;
-
 		Statement stmt = null;
 		ResultSet rs = null;
 
 		try {
-			String sql = "select subject_number "
-					+ "from Lecture, professor "
-					+ "where lecture.professor_number = professor.professor_number "
-					+ " and subject_number =" + selectedLectureNumber
-					+ " and professor_number =" + LoginRepository.getLogin().getLoginId(); 
+			
+			String sql = "select * from lecture "
+					+ "where lecture.professor_number = " + LoginRepository.getProfessor_number()
+					+ "and  lecture_number = " + selectedLectureNumber; 
 
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
 
 			if(rs.next()) { 
+				
 				success = true;
+				
 			}
 
 		} catch (SQLException e) {
@@ -54,21 +54,20 @@ public class ProfessorScoreDAO {
 	}
 
 	//수강생 정보 호출
-	public ArrayList<RegisterLectureStudent> selectAllLectureStudent(int subject_number) {
+	public ArrayList<RegisterLectureStudent> selectAllLectureStudent(int lectureNumber) {
 
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<RegisterLectureStudent> studentList = new ArrayList<RegisterLectureStudent>();
 
-		try {
+		try {//select 수정
 			stmt = Controllers.getProgramController().getConnection().createStatement();
-			String sql = "select student_number, student_name, major_name, attendance_score, midExam_score, finalExam_score, registerLecture_number "
-					+ "from registerlecture, student, score, major "
-					+ "where registerlecture.student_number = student.student_number "
-					+ " and registerlecture.registerlecture_number = score.registerlecture_number "
-					+ " and major.major_number = student.major_number "
-					+ " and registerlecture.registerLecture_number = score.registerLecture_number "
-					+ " and registerlecture.subject_number =" + subject_number;
+			String sql = "select student.student_number, student_name, major_name, attendance_score, midExam_score, finalExam_score, registerlecture.registerLecture_number "
+					+ "from registerlecture, student, score, major, professor, lecture "
+					+ "where registerlecture.lecture_number = " + lectureNumber
+					+ " and student.student_number = registerlecture.student_number"
+					+ " and score.registerLecture_number = registerlecture.registerLecture_number"
+					+ " and major.major_number = student.major_number ";
 			rs = stmt.executeQuery(sql);
 
 			while(rs.next()) {
@@ -143,7 +142,7 @@ public class ProfessorScoreDAO {
 	}
 
 	//입력된 수강생 점수를 DB에 등록
-	public boolean registerLectureScore(String selectedIndex, ArrayList<RegisterLectureStudent> studentList) {
+	public boolean register(String selectedIndex, ArrayList<RegisterLectureStudent> studentList) {
 
 		boolean success = false;
 		Statement stmt = null;
@@ -220,7 +219,7 @@ public class ProfessorScoreDAO {
 	}
 
 	//수정된 수강생 점수를 DB에 등록
-	public boolean updateLectureScore(String selectedIndex, RegisterLectureStudent updateStudent) {
+	public boolean update(String selectedIndex, RegisterLectureStudent updateStudent) {
 
 		boolean success = false;
 		Statement stmt = null;

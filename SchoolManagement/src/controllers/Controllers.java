@@ -1,12 +1,11 @@
-//[박성용] P1 교수 마이페이지(정보 확인 및 수정 컨트롤러 추가)
 package controllers;
 
 import adminControllers.AdminLectureController;
-import adminControllers.AdminNoticeController;
 import adminControllers.AdminMemberController;
+import adminControllers.AdminNoticeController;
 import loginController.LoginController;
-import professorControllers.ProfessorCourseController;
-import professorControllers.ProfessorMainController;
+import professorControllers.ProfessorLectureController;
+import professorControllers.ProfessorMenuController;
 import professorControllers.ProfessorMyPageController;
 import professorControllers.ProfessorNoticeController;
 import professorControllers.ProfessorScoreController;
@@ -18,8 +17,8 @@ import studentControllers.StudentNoticeController;
 public class Controllers {
 	
 	private static ProgramController programController;
-	private static ProfessorCourseController professorCourseController;
-	private static ProfessorMainController professorMainController;
+	private static ProfessorLectureController professorLectureController;
+	private static ProfessorMenuController professorMenuController;
 	private static ProfessorNoticeController professorNoticeController;
 	private static ProfessorScoreController professorScoreController;	
 	private static AdminLectureController adminLectureController;
@@ -33,10 +32,11 @@ public class Controllers {
 	private static ProfessorMyPageController professorMyPageController;
 	
 	public Controllers() {
+		
 		loginController = new LoginController();
 		programController = new ProgramController();
-		professorCourseController = new ProfessorCourseController();
-		professorMainController = new ProfessorMainController();
+		professorLectureController = new ProfessorLectureController();
+		professorMenuController = new ProfessorMenuController();
 		professorNoticeController = new ProfessorNoticeController();
 		professorScoreController = new ProfessorScoreController();
 		professorMyPageController = new ProfessorMyPageController();
@@ -54,12 +54,12 @@ public class Controllers {
 		return programController;
 	}
 
-	public static ProfessorCourseController getProfessorCourseController() {
-		return professorCourseController;
+	public static ProfessorLectureController getProfessorLectureController() {
+		return professorLectureController;
 	}
 
-	public static ProfessorMainController getProfessorMainController() {
-		return professorMainController;
+	public static ProfessorMenuController getProfessorMenuController() {
+		return professorMenuController;
 	}
 
 	public static ProfessorNoticeController getProfessorNoticeController() {

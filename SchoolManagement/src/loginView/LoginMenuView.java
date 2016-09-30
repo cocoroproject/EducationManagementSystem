@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controllers.Controllers;
-import professorView.AlertView;
+import studentView.AlertView;
 
 public class LoginMenuView {
 

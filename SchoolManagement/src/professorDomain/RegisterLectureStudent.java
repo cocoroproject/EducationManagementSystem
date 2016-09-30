@@ -5,7 +5,8 @@ import studentDomain.RegisterLecture;
 import studentDomain.Score;
 import studentDomain.Student;
 
-public class RegisterLectureStudent {
+public class RegisterLectureStudent { //수강생 정보 조회시 사용
+	
 	private Student student;
 	private Major major;
 	private Score score;

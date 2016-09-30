@@ -3,11 +3,11 @@ package loginController;
 import controllers.Controllers;
 import loginDao.LoginDao;
 import loginDomain.Login;
+import loginView.AdminLoginView;
 import loginView.LoginMenuView;
 import loginView.ProfssorLoginView;
 import loginView.StudentLoginView;
-import loginView.AdminLoginView;
-import professorView.AlertView;
+import studentView.AlertView;
 
 public class LoginController {
 	
@@ -18,6 +18,7 @@ public class LoginController {
 		loginDao = new LoginDao();
 
 	}
+	
 	//관리자 로그인 요청을  처리하는 메서드
 	public void requestAdminLoginViewPrint(){
 		
@@ -25,6 +26,8 @@ public class LoginController {
 		adminLoginView.inputLogin();
 		
 	}
+	
+	//
 	public void requestAdminLogin(Login newLogin) {
 		//아이디와 패스워드를 입력하는 화면에서 로그인 정보 획득
 		//획득한 로그인 정보를 통해 관리자 테이블에서 로그인 정보에 해당하는 관리자가 있는지를 판별하는 dao 호출

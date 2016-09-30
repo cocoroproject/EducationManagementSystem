@@ -2,8 +2,7 @@ package adminView;
 
 import java.util.Scanner;
 
-
-import professorView.AlertView;
+import studentView.AlertView;
 
 public class AdminLectureSystemOnOffSetingView {
 

@@ -2,7 +2,7 @@ package studentControllers;
 
 import java.util.ArrayList;
 
-import professorView.AlertView;
+import studentView.AlertView;
 import studentDAO.StudentGradeDAO;
 import studentDomain.CurrentRegistLecture;
 import studentView.StudentCurrentLectureListView;

@@ -15,8 +15,7 @@ public class StudentLoginView {
 		
 	}
 	
-	//로그인 정보를 입력하는 화면
-	
+	//로그인 정보를 입력하는 화면	
 	public void inputLogin() {
 		
 		String loginId = null;
@@ -30,8 +29,8 @@ public class StudentLoginView {
 		
 		Login newLogin = new Login(loginId, loginPassword);
 		
-//		return newLogin;	
 		Controllers.getLoginController().requestStudentLogin(newLogin);
+		
 	}
 
 }

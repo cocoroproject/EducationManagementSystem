@@ -11,7 +11,7 @@ import professorDomain.Professor;
 public class professorMyPageDAO {
 
 	public professorMyPageDAO() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public boolean selectMainPageProfessorInfo() {
@@ -36,7 +36,6 @@ public class professorMyPageDAO {
 			sql = "SELECT major_number, major__name "
 					+ "FROM major, professor "
 					+ "where major.major = major.major_number ";
-			
 			
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			sql = "SELECT professor_number, professor_name, professor_address, professor_phoneNumber, "
