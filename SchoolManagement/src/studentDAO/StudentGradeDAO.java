@@ -19,7 +19,7 @@ public class StudentGradeDAO {
 	}
 
 	// 현재 수강중인 과목 리스트 리턴하는 메서드
-	public ArrayList<CurrentRegistLecture> requestCurrentLectureList() {
+	public ArrayList<CurrentRegistLecture> selectListCurrentLecture() {
 
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -63,7 +63,7 @@ public class StudentGradeDAO {
 	}
 
 	// 강의 평가를 DB에 등록
-	public boolean insertEvalLecture(CurrentRegistLecture selectedSubject, int lectureEvalGrade) {
+	public boolean registerEvalLecture(CurrentRegistLecture selectedSubject, int lectureEvalGrade) {
 		
 		Statement stmt = null;
 		PreparedStatement pstmt = null;
@@ -104,6 +104,9 @@ public class StudentGradeDAO {
 		} finally {
 			if(pstmt != null) {
 				try { pstmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+			}
+			if(stmt != null) {
+				try { stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
 			}
 		}
 		return success;

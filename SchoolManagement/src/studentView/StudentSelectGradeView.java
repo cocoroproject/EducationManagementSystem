@@ -15,7 +15,7 @@ public class StudentSelectGradeView {
 		
 	}
 	
-	public void selectGrade() {
+	public void inputSelectOneSemester() {
 		
 		System.out.println("성적조회하실 연도와 학기를 선택해 주세요.");
 		System.out.println("연도: ");
@@ -23,7 +23,7 @@ public class StudentSelectGradeView {
 		System.out.println("학기: ");
 		int selectedSemester = keyboard.nextInt();
 		
-		Controllers.getStudentGradeController().requestShowSelectedGrade(selectedYear, selectedSemester);
+		Controllers.getStudentGradeController().requestSelectOneSemesterGrade(selectedYear, selectedSemester);
 	}
 
 }

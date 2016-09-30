@@ -16,7 +16,7 @@ public class StudentCurrentLectureListView {
 	
 	}
 	
-	public void currentLectureList(ArrayList<CurrentRegistLecture> lectureList) {
+	public void outputCurrentLectureList(ArrayList<CurrentRegistLecture> lectureList) {
 		
 		System.out.println("[수강중인 과목]");
 		// 과목번호, 과목명, 학점, 담당교수
@@ -32,7 +32,7 @@ public class StudentCurrentLectureListView {
 		System.out.println("강의평가할 과목번호를 입력하세요: ");
 		String selectedSubjectNumber = keyboard.next();
 		
-		Controllers.getStudentGradeController().requestEvalLectureView(selectedSubjectNumber, lectureList);
+		Controllers.getStudentGradeController().requestRegisterEvalLectureView(selectedSubjectNumber, lectureList);
 		
 	}
 	

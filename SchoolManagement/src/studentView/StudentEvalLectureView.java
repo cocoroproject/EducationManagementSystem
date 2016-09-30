@@ -16,7 +16,7 @@ public class StudentEvalLectureView {
 	
 	}
 	
-	public void evalLecture(CurrentRegistLecture selectedSubject, ArrayList<CurrentRegistLecture> lectureList) {
+	public void inputEvalLecture(CurrentRegistLecture selectedSubject, ArrayList<CurrentRegistLecture> lectureList) {
 		
 		System.out.println("");
 		System.out.println("과목번호\t과목명\t\t\t학점단위\t교수명");
@@ -30,17 +30,17 @@ public class StudentEvalLectureView {
 		System.out.println("입력: ");
 		int lectureEvalGrade = keyboard.nextInt();
 		
-		Controllers.getStudentGradeController().requestInsertEvalLecture(selectedSubject, lectureEvalGrade, lectureList);
+		Controllers.getStudentGradeController().requestRegisterEvalLecture(selectedSubject, lectureEvalGrade, lectureList);
 	}
 	
-	public void askEvalContinue(ArrayList<CurrentRegistLecture> lectureList) {
+	public void inputAskEvalContinue(ArrayList<CurrentRegistLecture> lectureList) {
 		
 		while(true) {
 			System.out.println("계속하시겠습니까?");
 			System.out.println("[1] 계속 등록   [2] 이전 메뉴");
 			int selectedMenu = keyboard.nextInt();
 			if(selectedMenu == 1) {
-				Controllers.getStudentGradeController().requestStudentCurrentLectureListView(lectureList);
+				Controllers.getStudentGradeController().requestSelectListCurrentLectureView(lectureList);
 			} else if (selectedMenu == 2) {
 				Controllers.getStudentGradeController().requestStudentGradeMenuView();
 			} else {

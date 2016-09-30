@@ -29,37 +29,37 @@ public class StudentGradeController {
 	}
 
 	// 전체 성적조회 뷰 호출을 요청받는 메서드
-	public void requestShowTotalGradeView() {
+	public void requestSelectListTotalGradeView() {
 
 		
 
 	}
 
 	// 선택 성적조회 뷰 호출을 요청받는 메서드
-	public void requestShowSelectGradeView() {
+	public void requestSelectOneSemesterGradeView() {
 		
 		
 	}
 	
 	// 강의평가를 요청받는 메서드
-	public void requestEvalLecture() {
+	public void requestRegisterEvalLecture() {
 		
-		ArrayList<CurrentRegistLecture> lectureList = studentGradeDAO.requestCurrentLectureList();
-		this.requestStudentCurrentLectureListView(lectureList);
+		ArrayList<CurrentRegistLecture> lectureList = studentGradeDAO.selectListCurrentLecture();
+		this.requestSelectListCurrentLectureView(lectureList);
 
 	}
 	
 	// 현재 수강중인 강의 리스트 뷰 호출을 요청받는 메서드
-	public void requestStudentCurrentLectureListView(ArrayList<CurrentRegistLecture> lectureList) {
+	public void requestSelectListCurrentLectureView(ArrayList<CurrentRegistLecture> lectureList) {
 		
 		StudentCurrentLectureListView currentLectureListView = new StudentCurrentLectureListView();
-		currentLectureListView.currentLectureList(lectureList);
+		currentLectureListView.outputCurrentLectureList(lectureList);
 		
 	}
 
 	
 	// 강의평가 뷰 호출을 요청받는 메서드
-	public void requestEvalLectureView(String selectedSubjectNumber, ArrayList<CurrentRegistLecture> lectureList) {
+	public void requestRegisterEvalLectureView(String selectedSubjectNumber, ArrayList<CurrentRegistLecture> lectureList) {
 
 		CurrentRegistLecture selectedSubject = new CurrentRegistLecture();
 		
@@ -71,16 +71,16 @@ public class StudentGradeController {
 		
 		StudentEvalLectureView studentEvalLectureView = new StudentEvalLectureView();
 		
-		studentEvalLectureView.evalLecture(selectedSubject, lectureList);
+		studentEvalLectureView.inputEvalLecture(selectedSubject, lectureList);
 
 	}
 	
 	// 강의 평가 등록을 요청받는 메서드
-	public void requestInsertEvalLecture(CurrentRegistLecture selectedSubject, int lectureEvalGrade, ArrayList<CurrentRegistLecture> lectureList) {
+	public void requestRegisterEvalLecture(CurrentRegistLecture selectedSubject, int lectureEvalGrade, ArrayList<CurrentRegistLecture> lectureList) {
 		
 		boolean success = false;
 		
-		success = studentGradeDAO.insertEvalLecture(selectedSubject, lectureEvalGrade);
+		success = studentGradeDAO.registerEvalLecture(selectedSubject, lectureEvalGrade);
 		
 		if(success) {
 			for(int i = 0; i < lectureList.size(); i++) {
@@ -90,7 +90,7 @@ public class StudentGradeController {
 			}
 			new AlertView().alert("강의평가가 등록되었습니다.");
 			StudentEvalLectureView studentEvalLectureView = new StudentEvalLectureView();
-			studentEvalLectureView.askEvalContinue(lectureList);
+			studentEvalLectureView.inputAskEvalContinue(lectureList);
 		} else {
 			new AlertView().alert("강의평가가 등록되지 않았습니다.");
 		}
@@ -99,7 +99,7 @@ public class StudentGradeController {
 	}
 	
 	// 선택된 연도와 학기 성적 조회를 요청받는 메서드
-	public void requestShowSelectedGrade(int selectedYear, int selectedSemester) {
+	public void requestSelectOneSemesterGrade(int selectedYear, int selectedSemester) {
 		
 		
 	}
