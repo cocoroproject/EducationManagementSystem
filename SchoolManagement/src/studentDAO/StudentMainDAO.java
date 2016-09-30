@@ -21,7 +21,6 @@ public class StudentMainDAO {
 		new LoginRepository();
 
 	}
-
 	//학생 개인정보 조회 요청 처리 DAO 메서드
 	public StudentInfo oneStudentList() {
 
@@ -33,7 +32,13 @@ public class StudentMainDAO {
 		try {
 
 			stmt = Controllers.getProgramController().getConnection().createStatement();
-			String sql = "select from where student_number = " + studentNumber;
+			String sql = "select college.college_name, major.major_name, professor.professor_name, student.student_number " 
+			        + ", student.student_name, student.student_phoneNumber, student.student_email, student.student_address " 
+					+ "from Student, College, Professor, major "
+			        + "where student.college_number = college.college_number "
+					+ " and student.major_number = major.major_number " 
+			        + " and student.professor_number = professor.professor_number " 
+					+ " and student.student_number =" + studentNumber;
 			rs = stmt.executeQuery(sql);
 
 			while(rs.next()) { 
@@ -42,15 +47,15 @@ public class StudentMainDAO {
 				Major major_information = new Major(rs.getString("major_name"));
 				Professor professor_information = new Professor(rs.getString("professor_name"));
 				Student student_information = new Student(rs.getInt("student_number"), 
-						rs.getString("student_name"), rs.getString("student_phoneNumber"),
-						rs.getString("student_email"), rs.getString("student_address"));
+						rs.getString("student_name"), rs.getString("student_address"),
+						rs.getString("student_phoneNumber"), rs.getString("student_email"));
 				OneStudentList = new StudentInfo(college_information, professor_information, 
 						major_information, student_information);
 
 			}						
 
 		} catch (SQLException e) {
-			System.out.println("학생 개인 정보 조회에서 예외 발생");
+			System.out.println("학생 개인 정보 조회에서 예외가 발생했어요.");
 			e.printStackTrace();
 		} finally {
 			if(rs != null) {
@@ -64,7 +69,6 @@ public class StudentMainDAO {
 		return OneStudentList;
 
 	}
-
 	//학생 개인정보수정 요청 처리 DAO 메서드(휴대폰번호, 이메일주소, 학생주소)
 	public boolean studentUpdate(StudentInfo studentUpdateInfo){
 
@@ -82,7 +86,7 @@ public class StudentMainDAO {
 			pstmt.setString(1, studentPhoneNumber);
 			pstmt.setInt(2, studentUpdateInfo.getStudent_information().getStudent_number());
 			rs1 = pstmt.executeQuery();
-
+			//학생중에 이메일번호가 같은 학생이 있는지??
 			String studentEmail = studentUpdateInfo.getStudent_information().getStudent_email();
 			sql = "select * from Student where student_email = ? and student_number not in(?)";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
@@ -91,22 +95,28 @@ public class StudentMainDAO {
 			rs2 = pstmt.executeQuery();
 
 			if(rs1.next()) { //학생 중 현재 수정하고자 하는 핸드폰번호를 가지고 있는 경우
+				
 				new AlertView().alert("중복되는 핸드폰번호가 존재합니다.");
+				
 			} else if(rs2.next()) {
+				
 				new AlertView().alert("중복되는 이메일주소가 존재합니다.");
+				
 			}
 
 			sql = "update Student set student_phoneNumber = '" + studentUpdateInfo.getStudent_information().getStudent_phoneNumber()+
 					"', student_email = '" + studentUpdateInfo.getStudent_information().getStudent_email()+
 					"', student_address = '" + studentUpdateInfo.getStudent_information().getStudent_address()+
-					"' where studentNumber =" + studentUpdateInfo.getStudent_information().getStudent_number();
+					"' where student_Number =" + studentUpdateInfo.getStudent_information().getStudent_number();
 			
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 
 			int result = stmt.executeUpdate(sql);
 
 			if(result != 0){
+				
 				success = true;
+				
 			}
 
 		} catch (Exception e) {
@@ -115,7 +125,6 @@ public class StudentMainDAO {
 
 		return success;
 	}
-
 	//로그아웃 요청 처리 DAO 메서드
 	public static void logout() {
 

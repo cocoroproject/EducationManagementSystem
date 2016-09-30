@@ -4,32 +4,39 @@ import java.util.Scanner;
 
 import controllers.Controllers;
 
-public class StudentInformationMenuView {
+public class StudentRegisterLectureMenuView {
 	
 	private Scanner keyboard;
 
-	public StudentInformationMenuView() {
+	public StudentRegisterLectureMenuView() {
 
 		keyboard = new Scanner(System.in);
 
 	}
 
-	public void informationMenu() {
+	public void registerLectureMenu() {
 
 		while(true) {
 			
-			System.out.println("\n[ 개인 정보 메뉴 ]");
-			System.out.println("[1]개인정보조회 [2]개인정보수정 [0]이전메뉴");
+			System.out.println("\n[ 수강 정보 메뉴 ]");
+			System.out.println("[1]시간표조회 [2]수강신청 [3]개설교과목조회 [0]이전메뉴");
 			System.out.print("메뉴를 선택해주세요 : ");
 			int selectedMenu = keyboard.nextInt();
 			
 			if(selectedMenu == 1) {
 				
-				Controllers.getStudentMainController().requestStudentInformation();
+				System.out.println("시간표출력");
+				Controllers.getStudentMainController().requestStudentMenu();
 				
 			} else if(selectedMenu == 2) {
 				
-				Controllers.getStudentMainController().requestStudentUpdateInfo();
+				System.out.println("수강신청");
+				Controllers.getStudentMainController().requestStudentMenu();
+				
+			} else if(selectedMenu == 3) {
+				
+				System.out.println("개설교과목조회");
+				Controllers.getStudentMainController().requestStudentMenu();
 				
 			} else if(selectedMenu == 0) {
 				
@@ -45,5 +52,5 @@ public class StudentInformationMenuView {
 		}
 
 	}
-	
+
 }

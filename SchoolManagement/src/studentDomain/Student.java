@@ -14,8 +14,7 @@ public class Student {
 	private int major_number;
 	private String student_accessRight;
 	
-	// 디폴트 생성자
-	public Student() {
+	public Student() { // 디폴트 생성자
 
 	}
 	
@@ -29,7 +28,6 @@ public class Student {
 		this.student_email = student_email;
 		
 	}
-
 	//교수 성적 입력,수정시 사용
 	public Student(int student_number, String student_name) {
 		
@@ -37,8 +35,7 @@ public class Student {
 		this.student_name = student_name;
 		
 	}
-	
-	// getter, setter
+
 	public int getStudent_number() {
 		return student_number;
 	}
@@ -98,7 +95,7 @@ public class Student {
 	public int getCollege_number() {
 		return college_number;
 	}
-	
+
 	public void setCollege_number(int college_number) {
 		this.college_number = college_number;
 	}
@@ -126,6 +123,5 @@ public class Student {
 	public void setStudent_accessRight(String student_accessRight) {
 		this.student_accessRight = student_accessRight;
 	}
-
 	
 }

@@ -6,18 +6,15 @@ public class RegisterLecture {
 	private int student_number;
 	private int Lecture_number;
 	
-	// 디폴트 생성자
-	public RegisterLecture() {
+	public RegisterLecture() { // 디폴트 생성자
 
 	}
-	
 	//교수 성적 입력,수정시 사용
 	public RegisterLecture(int registerLecture_number) {
 		
 		this.registerLecture_number = registerLecture_number;
 		
 	}
-
 	// getter, setter
 	public int getRegisterLecture_number() {
 		return registerLecture_number;

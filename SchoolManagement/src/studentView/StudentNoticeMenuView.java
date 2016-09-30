@@ -4,32 +4,29 @@ import java.util.Scanner;
 
 import controllers.Controllers;
 
-public class StudentInformationMenuView {
+public class StudentNoticeMenuView {
 	
 	private Scanner keyboard;
 
-	public StudentInformationMenuView() {
+	public StudentNoticeMenuView() {
 
 		keyboard = new Scanner(System.in);
 
 	}
 
-	public void informationMenu() {
+	public void noticeMenu() {
 
 		while(true) {
 			
-			System.out.println("\n[ 개인 정보 메뉴 ]");
-			System.out.println("[1]개인정보조회 [2]개인정보수정 [0]이전메뉴");
+			System.out.println("\n[ 학사 공지 메뉴 ]");
+			System.out.println("[1]글조회 [0]이전메뉴 ");
 			System.out.print("메뉴를 선택해주세요 : ");
 			int selectedMenu = keyboard.nextInt();
 			
 			if(selectedMenu == 1) {
 				
-				Controllers.getStudentMainController().requestStudentInformation();
-				
-			} else if(selectedMenu == 2) {
-				
-				Controllers.getStudentMainController().requestStudentUpdateInfo();
+				System.out.println("글조회");
+				Controllers.getStudentMainController().requestStudentMenu();
 				
 			} else if(selectedMenu == 0) {
 				
@@ -45,5 +42,5 @@ public class StudentInformationMenuView {
 		}
 
 	}
-	
+
 }

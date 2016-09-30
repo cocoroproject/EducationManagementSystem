@@ -26,26 +26,38 @@ public class StudentEvalLectureView {
 		System.out.println(selectedSubject.getProfessor_name()+"\t\t");		
 		System.out.println("");
 		
+		System.out.println("1~5번까지 알맞게 선택하여주세요.");
 		System.out.println("강의 평가 : [1] 형편없었다  [2] 별로 도움이 되지 않았다  [3] 그저 그랬다  [4] 많은 도움이 되었다  [5] 최고의 명강의였다");
-		System.out.println("입력: ");
+		System.out.print("입력: ");
 		int lectureEvalGrade = keyboard.nextInt();
 		
 		Controllers.getStudentGradeController().requestRegisterEvalLecture(selectedSubject, lectureEvalGrade, lectureList);
+		
 	}
 	
 	public void inputAskEvalContinue(ArrayList<CurrentRegistLecture> lectureList) {
 		
 		while(true) {
+			
 			System.out.println("계속하시겠습니까?");
-			System.out.println("[1] 계속 등록   [2] 이전 메뉴");
+			System.out.println("[1]계속등록 [0]이전메뉴");
+			System.out.println("입력 : ");
 			int selectedMenu = keyboard.nextInt();
+			
 			if(selectedMenu == 1) {
+				
 				Controllers.getStudentGradeController().requestSelectListCurrentLectureView(lectureList);
-			} else if (selectedMenu == 2) {
+				
+			} else if (selectedMenu == 0) {
+				
 				Controllers.getStudentGradeController().requestStudentGradeMenuView();
+				
 			} else {
+				
 				System.out.println("잘못 입력하였습니다.");
+				
 			}
+			
 		}
 		
 	}

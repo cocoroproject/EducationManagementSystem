@@ -5,11 +5,9 @@ public class ApplyLeaveAbsence {
 	private int apply_number;
 	private int student_number;
 	
-	// 디폴트 생성자
-	public ApplyLeaveAbsence() {
+	public ApplyLeaveAbsence() { // 디폴트 생성자
 
 	}
-	
 	// getter, setter
 	public int getApply_number() {
 		return apply_number;
@@ -27,6 +25,4 @@ public class ApplyLeaveAbsence {
 		this.student_number = student_number;
 	}
 	
-	
-
 }
