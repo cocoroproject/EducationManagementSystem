@@ -16,10 +16,10 @@ public class StudentMyLectureView {
 
 	}
 
-	public void myLectureList(ArrayList<Lecture> lectureList) {
+	public void myLectureList(ArrayList<Lecture> lectureList ) {
 
 		System.out.println("\n[ 개설강의목록 ]");
-		System.out.println("강의번호\t강의명\t\t강의요일\t강의정원\t강의실번호");
+		System.out.println("강의계획서번호\t강의명\t\t강의요일\t강의정원\t강의실번호");
 
 		if(lectureList.size() == 0) {
 
@@ -29,7 +29,7 @@ public class StudentMyLectureView {
 
 			for(int i = 0 ; i < lectureList.size() ; i++) {
 
-				System.out.print(lectureList.get(i) + "\t");
+				System.out.print(lectureList.get(i).getLecturePlan_number() + "\t");
 				System.out.print(lectureList.get(i).getLecture_name() + "\t\t");
 				System.out.print(lectureList.get(i).getLecture_time() + "\t");
 				System.out.print(lectureList.get(i).getLecture_capacity() + "\t");
