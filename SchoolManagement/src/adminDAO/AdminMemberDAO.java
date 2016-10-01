@@ -3,7 +3,9 @@ package adminDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
+import Repository.LoginRepository;
 import adminDomain.SchoolRegister;
 import adminDomain.SchoolRegisterDocument;
 import controllers.Controllers;
@@ -12,18 +14,14 @@ import controllers.Controllers;
 public class AdminMemberDAO {
 
 	private SchoolRegister schoolregister;
-	
-	//[이성주]2016.9.29
-		private PreparedStatement ps = null;
-		private ResultSet rs = null;
-		private boolean success = false;
-		String sql;
-	//	
+	private PreparedStatement ps = null;
+	private ResultSet rs = null;
+	private String sql;
+	private SchoolRegisterDocument schoolRegisterDocument;
+
 		
 	public AdminMemberDAO() {
 	
-	
-		
 	}
 	
 	public boolean registerLectureSystemControllCheck(){
@@ -178,5 +176,83 @@ public class AdminMemberDAO {
 		}
 
 		return exist;
+	}
+	//휴학생인지 체크
+	public boolean registerLectureStudentStatusCheck() {
+
+		boolean success = false;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+
+			String sql = "select srd.student_number, srd.schoolRegister_number from schoolRegisterDocument srd, schoolRegister sr where student_number = '" + LoginRepository.getLogin().getLoginId() +"' "
+					+ "and srd.schoolRegister_number = sr.schoolregister_number";
+			stmt = Controllers.getProgramController().getConnection().createStatement();
+
+			rs = stmt.executeQuery(sql);
+
+			if (rs.next()) {
+
+				schoolRegisterDocument = new SchoolRegisterDocument();
+				schoolRegisterDocument.setStudent_number(rs.getInt("Student_number"));
+				schoolRegisterDocument.setSchoolRegister_number(rs.getInt("SchoolRegister_number"));
+				success = true;
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) {
+				try { rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+			}
+			if(stmt != null) {
+				try { stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+			}
+			
+		}
+
+		return success;
+
+	}
+	//수강신청할때 학적 번호를 받아올수있도록 하는메서드
+	public int registerLectureRegiditStudentStatus() {
+
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		int schoolRegister_number = 0;
+		
+		try {
+
+			stmt = Controllers.getProgramController().getConnection().createStatement();
+
+			String sql = "select schoolRegister_number from SchoolRegisterDocument where schoolRegister_number =" + schoolRegisterDocument.getSchoolRegister_number();
+
+			rs = stmt.executeQuery(sql);
+
+			if (rs.next()) { 
+
+				schoolRegister_number = rs.getInt("schoolRegister_number");
+
+			}			
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+			if(rs != null) {
+				try { rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+			}
+			if(stmt != null) {
+				try { stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+			}
+			
+		}
+
+		return schoolRegister_number;
+
 	}
 }

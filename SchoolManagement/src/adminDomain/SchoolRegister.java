@@ -17,29 +17,19 @@ public class SchoolRegister {
 	}
 
 	public int getSchoolRegister_number() {
-	
 		return schoolRegister_number;
-	
 	}
 
 	public void setSchoolRegister_number(int schoolRegister_number) {
-	
 		this.schoolRegister_number = schoolRegister_number;
-	
 	}
 
 	public String getSchoolRegister_status() {
-	
 		return schoolRegister_status;
-	
 	}
 
 	public void setSchoolRegister_status(String schoolRegister_status) {
-	
 		this.schoolRegister_status = schoolRegister_status;
-	
 	}
-	
-	
 	
 }

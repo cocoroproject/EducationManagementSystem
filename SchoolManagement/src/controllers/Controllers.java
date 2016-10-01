@@ -2,6 +2,7 @@ package controllers;
 
 import adminControllers.AdminLeaveAbsenceController;
 import adminControllers.AdminLectureController;
+import adminControllers.AdminMainController;
 import adminControllers.AdminMemberController;
 import adminControllers.AdminNoticeController;
 import adminControllers.AdminSubjectController;
@@ -34,6 +35,7 @@ public class Controllers {
 	private static ProfessorMyPageController professorMyPageController;
 	private static AdminSubjectController adminSubjectController;
 	private static AdminLeaveAbsenceController adminLeaveAbsenceController;
+	private static AdminMainController adminMainController;
 	
 	public Controllers() {
 		
@@ -53,6 +55,7 @@ public class Controllers {
 		studentNoticeController = new StudentNoticeController();
 		adminSubjectController = new AdminSubjectController();
 		adminLeaveAbsenceController = new AdminLeaveAbsenceController();
+		adminMainController = new AdminMainController();
 		
 	}
 
@@ -130,5 +133,10 @@ public class Controllers {
 	public static void setAdminSubjectController(AdminSubjectController adminSubjectController) {
 		Controllers.adminSubjectController = adminSubjectController;
 	}
+
+	public static AdminMainController getAdminMainController() {
+		return adminMainController;
+	}
+	
 	
 }

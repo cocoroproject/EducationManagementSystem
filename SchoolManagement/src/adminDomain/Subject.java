@@ -10,7 +10,12 @@ public class Subject {
 	public Subject() {
 		
 	}
-
+	//관리자 강의 전체목록에 사용되는 생성자
+	public Subject(String subject_name) {
+		
+		this.subject_name = subject_name;
+		
+	}
 	//과목 수정에 필요한 생성자
 	public Subject(String subject_name, int subject_year, int subject_grade) {
 	

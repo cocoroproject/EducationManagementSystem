@@ -35,7 +35,7 @@ public class LoginController {
 		if(success) {
 			
 			new AlertView().alert("로그인에 성공했습니다.");
-			
+			Controllers.getAdminMainController().requestadminMainMenu();
 		} else {
 			
 			new AlertView().alert("아이디 또는 비밀번호가 일치하지 않습니다.");
@@ -97,6 +97,13 @@ public class LoginController {
 		
 		LoginMenuView loginMenuView = new LoginMenuView();
 		loginMenuView.loginMenu();
+		
+	}
+	
+	public void requestLogOut(){
+		
+		LoginDao.logout();
+		requestLoginMenu();
 		
 	}
 

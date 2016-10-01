@@ -13,7 +13,7 @@ public class Semester {
 	public Semester() {
 	
 	}
-
+	
 	public Semester(String semester) {
 		this.semester = semester;
 	}
