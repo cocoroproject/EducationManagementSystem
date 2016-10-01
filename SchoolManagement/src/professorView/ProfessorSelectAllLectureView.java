@@ -41,7 +41,7 @@ public class ProfessorSelectAllLectureView {
 
 		}
 		
-		System.out.println("[1] 강의계획서관리 [2] 성적관리 [3] 강의평가 열람 [0] 목록으로 돌아가기");
+		System.out.println("[1] 강의계획서관리 [2] 성적관리 [3] 강의평가 열람 [4] 이전학기강의 조회 [0] 목록으로 돌아가기");
 		
 		System.out.print("메뉴를 선택해주세요 : ");
 		int selectedMenu = keyboard.nextInt();
@@ -59,6 +59,10 @@ public class ProfessorSelectAllLectureView {
 			Controllers.getProfessorScoreController().requestCheckLectureNumber(lectureNumber);
 			
 		} else if(selectedMenu==3) {
+			
+			//Controllers.getProfessorLectureController().requestLecturePlan(lectureNumber);
+			
+		} else if(selectedMenu==4) {
 			
 			//Controllers.getProfessorLectureController().requestLecturePlan(lectureNumber);
 			

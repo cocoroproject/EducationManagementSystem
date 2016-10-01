@@ -34,11 +34,11 @@ public class LoginController {
 
 		if(success) {
 			
-			new AlertView().alert("[알림] 로그인 성공");
+			new AlertView().alert("로그인에 성공했습니다.");
 			
 		} else {
 			
-			new AlertView().alert("[알림] 아이디 또는 비밀번호가 일치하지 않습니다.");
+			new AlertView().alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 			requestLoginMenu();
 			
 		}
@@ -58,10 +58,15 @@ public class LoginController {
 		boolean success = loginDao.professorLogin(newLogin);
 
 		if(success) {
-			new AlertView().alert("[알림] 로그인 성공");
+			
+			new AlertView().alert("로그인에 성공했습니다.");
+			Controllers.getProfessorMenuController().requestMainPage();
+			
 		} else {
-			new AlertView().alert("[알림] 아이디 또는 비밀번호가 일치하지 않습니다.");
+			
+			new AlertView().alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 			requestLoginMenu();
+			
 		}
 
 	}
@@ -78,9 +83,9 @@ public class LoginController {
 		boolean success = loginDao.studentLogin(newLogin);
 
 		if(success) {
-			new AlertView().alert("[알림] 로그인 성공");
+			new AlertView().alert("로그인에 성공했습니다.");
 		} else {
-			new AlertView().alert("[알림] 아이디 또는 비밀번호가 일치하지 않습니다.");
+			new AlertView().alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 			requestLoginMenu();
 		}
 

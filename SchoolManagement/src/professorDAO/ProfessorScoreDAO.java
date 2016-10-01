@@ -62,14 +62,14 @@ public class ProfessorScoreDAO {
 
 		try {//select 수정
 			stmt = Controllers.getProgramController().getConnection().createStatement();
-			String sql = "select student.student_number, student_name, major_name, attendance_score, midExam_score, finalExam_score, registerlecture.registerLecture_number "
+			String sql = "select distinct student.student_number, student_name, major_name, attendance_score, midExam_score, finalExam_score, registerlecture.registerLecture_number "
 					+ "from registerlecture, student, score, major, professor, lecture "
-					+ "where registerlecture.lecture_number = " + lectureNumber
-					+ " and student.student_number = registerlecture.student_number"
+					+ "where student.student_number = registerlecture.student_number"
 					+ " and score.registerLecture_number = registerlecture.registerLecture_number"
-					+ " and major.major_number = student.major_number ";
+					+ " and major.major_number = student.major_number"
+					+ " and registerlecture.lecture_number = " + lectureNumber;
 			rs = stmt.executeQuery(sql);
-
+			
 			while(rs.next()) {
 
 				Student student = new Student(rs.getInt("student_number"), rs.getString("student_name"));				
@@ -155,7 +155,7 @@ public class ProfessorScoreDAO {
 
 				for(int i=0; i<studentList.size(); i++) {
 
-					sql = "insert attendance_score"
+					sql = "insert attendance_score "
 							+ "into score, student "
 							+ "where score.registerLecture_number = " + studentList.get(i).getRegisterLecture().getRegisterLecture_number()
 							+ " and student.student_number = " + studentList.get(i).getStudent().getStudent_number()
@@ -170,7 +170,7 @@ public class ProfessorScoreDAO {
 
 				for(int i=0; i<studentList.size(); i++) {
 
-					sql = "insert midExam_score"
+					sql = "insert midExam_score "
 							+ "into score, student "
 							+ "where score.registerLecture_number = " + studentList.get(i).getRegisterLecture().getRegisterLecture_number()
 							+ " and student.student_number = " + studentList.get(i).getStudent().getStudent_number()
@@ -186,7 +186,7 @@ public class ProfessorScoreDAO {
 
 				for(int i=0; i<studentList.size(); i++) { //수강생들의 기말고사 점수 입력
 
-					sql = "insert finalExam_score"
+					sql = "insert finalExam_score "
 							+ "into score, student "
 							+ "where score.registerLecture_number = " + studentList.get(i).getRegisterLecture().getRegisterLecture_number()
 							+ " and student.student_number = " + studentList.get(i).getStudent().getStudent_number()
@@ -223,27 +223,26 @@ public class ProfessorScoreDAO {
 
 		boolean success = false;
 		Statement stmt = null;
-		int result = 0;
 		String sql = null;
+		int result = 0;
+		
+		if(selectedIndex.equals("출석")) { //수강생의 출석 점수 입력
 
-		//수강생의 출석 점수 입력
-		if(selectedIndex.equals("출석")) {
-
-			sql = "update score set attendance_score = " + updateStudent.getScore().getAttendance_score() 
-					+ " where score.registerLecture_number = " +  updateStudent.getRegisterLecture().getRegisterLecture_number()
-					+ " and student.student_number = " +  updateStudent.getStudent().getStudent_number();
+			sql = "update score set attendance_score = (select " + updateStudent.getScore().getAttendance_score() 
+					+ " from student where student_number = " +  updateStudent.getStudent().getStudent_number()
+					+ " ) where score.registerLecture_number = " +  updateStudent.getRegisterLecture().getRegisterLecture_number();
 
 		} else if(selectedIndex.equals("중간고사")) {
 
-			sql = "update score set midExam_score = " + updateStudent.getScore().getMidExam_score()
-					+ " where score.registerLecture_number = " +  updateStudent.getRegisterLecture().getRegisterLecture_number()
-					+ " and student.student_number = " +  updateStudent.getStudent().getStudent_number();
+			sql = "update score set midExam_score = (select " + updateStudent.getScore().getMidExam_score() 
+					+ " from student where student_number = " +  updateStudent.getStudent().getStudent_number()
+					+ " ) where score.registerLecture_number = " +  updateStudent.getRegisterLecture().getRegisterLecture_number();
 
 		} else {
 
-			sql = "update score set finalExam_score = " + updateStudent.getScore().getFinalExam_score()
-					+ " where score.registerLecture_number = " +  updateStudent.getRegisterLecture().getRegisterLecture_number()
-					+ " and student.student_number = " +  updateStudent.getStudent().getStudent_number();
+			sql = "update score set finalExam_score = (select " + updateStudent.getScore().getFinalExam_score()
+					+ " from student where student_number = " +  updateStudent.getStudent().getStudent_number()
+					+ " ) where score.registerLecture_number = " +  updateStudent.getRegisterLecture().getRegisterLecture_number();
 
 		}
 
@@ -252,7 +251,7 @@ public class ProfessorScoreDAO {
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			result = stmt.executeUpdate(sql);
 
-			if(result != 0) {
+			if(result==0) {
 
 				success = true;
 
