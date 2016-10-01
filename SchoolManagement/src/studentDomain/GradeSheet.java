@@ -7,6 +7,8 @@ public class GradeSheet {
 	private int totalScore;
 	private String grade;
 	private double convertScore;
+	private int year;
+	private String semester;
 	
 	public GradeSheet() {
 
@@ -52,4 +54,20 @@ public class GradeSheet {
 		this.convertScore = convertScore;
 	}
 
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public String getSemester() {
+		return semester;
+	}
+
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
+	
 }
