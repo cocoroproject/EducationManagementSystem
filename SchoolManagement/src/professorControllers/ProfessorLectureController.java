@@ -7,6 +7,7 @@ import professorDAO.ProfessorLectureDAO;
 import professorDomain.LectureInfo;
 import professorDomain.LecturePlan;
 import professorView.ProfessorRegisterLecturePlanView;
+import professorView.ProfessorSelectAllLastLectureView;
 import professorView.ProfessorSelectAllLectureView;
 import professorView.ProfessorSelectLecturePlanView;
 import studentView.AlertView;
@@ -19,6 +20,17 @@ public class ProfessorLectureController {
 
 		professorLectureDAO = new ProfessorLectureDAO();
 
+	}
+	
+	//지난학기 강의 목록 요청
+	public void requestLastLectureList() {
+		
+		int thisSemesterNumber = professorLectureDAO.thisSemesterNumber(); //이번학기번호 조회
+		ArrayList<LectureInfo> lastLectureList = professorLectureDAO.selectLastLectureList(thisSemesterNumber);
+		
+		ProfessorSelectAllLastLectureView professorSelectAllLastLectureView = new ProfessorSelectAllLastLectureView();
+		professorSelectAllLastLectureView.outputAllLastLectureList(lastLectureList);
+		
 	}
 
 	//강의계획서 입력,수정 요청
@@ -83,10 +95,11 @@ public class ProfessorLectureController {
 
 	}
 
-	//강의목록 요청
+	//이번 학기 강의목록 요청
 	public void requestLectureList() {
 
-		ArrayList<LectureInfo> lectureList = professorLectureDAO.selectLectureList();
+		 int thisSemesterNumber = professorLectureDAO.thisSemesterNumber(); //이번학기번호 조회
+		 ArrayList<LectureInfo> lectureList = professorLectureDAO.selectLectureList(thisSemesterNumber);
 
 		ProfessorSelectAllLectureView professorLecutreListView = new ProfessorSelectAllLectureView();
 		professorLecutreListView.outputAllLectureList(lectureList);

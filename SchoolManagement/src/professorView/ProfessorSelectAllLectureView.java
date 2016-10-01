@@ -46,6 +46,12 @@ public class ProfessorSelectAllLectureView {
 		System.out.print("메뉴를 선택해주세요 : ");
 		int selectedMenu = keyboard.nextInt();
 		
+		if(selectedMenu==4) {
+			
+			Controllers.getProfessorLectureController().requestLastLectureList();
+			
+		}
+		
 		System.out.print("강의번호를 선택해주세요 : ");
 		int lectureNumber = keyboard.nextInt()-1;
 		lectureNumber = lectureList.get(lectureNumber).getLecture().getLecture_number();
@@ -62,11 +68,7 @@ public class ProfessorSelectAllLectureView {
 			
 			//Controllers.getProfessorLectureController().requestLecturePlan(lectureNumber);
 			
-		} else if(selectedMenu==4) {
-			
-			//Controllers.getProfessorLectureController().requestLecturePlan(lectureNumber);
-			
-		} else if(selectedMenu==0) {
+		}  else if(selectedMenu==0) {
 			
 			Controllers.getProfessorLectureController().requestLectureList();
 		
