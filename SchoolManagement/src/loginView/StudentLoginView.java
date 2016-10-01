@@ -20,7 +20,7 @@ public class StudentLoginView {
 	public void inputLogin() {
 		
 		System.out.println("\n[학생 로그인 화면]");
-		System.out.print("[1] 로그인  [0] 메인메뉴로 돌아가기 : ");
+		System.out.println("[1] 로그인  [0] 메인메뉴로 돌아가기");
 		System.out.print("메뉴를 선택해주세요 : ");		
 		int selectedMenu = keyboard.nextInt();
 		String loginId = null;
@@ -36,6 +36,7 @@ public class StudentLoginView {
 		
 		} else if(selectedMenu == 0) {
 			
+			System.out.println("메인메뉴로 돌아갑니다.");
 			Controllers.getLoginController().requestLoginMenu();
 			
 		} else {

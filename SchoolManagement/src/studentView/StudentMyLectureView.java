@@ -19,7 +19,7 @@ public class StudentMyLectureView {
 	public void myLectureList(ArrayList<Lecture> lectureList ) {
 
 		System.out.println("\n[ 개설강의목록 ]");
-		System.out.println("강의계획서번호\t강의명\t\t강의요일\t강의정원\t강의실번호");
+		System.out.println("과목번호\t강의명\t\t강의요일\t강의정원\t강의실번호");
 
 		if(lectureList.size() == 0) {
 
@@ -29,7 +29,7 @@ public class StudentMyLectureView {
 
 			for(int i = 0 ; i < lectureList.size() ; i++) {
 
-				System.out.print(lectureList.get(i).getLecture_number() + "\t");
+				System.out.print(lectureList.get(i).getSubject_number() + "\t");
 				System.out.print(lectureList.get(i).getLecture_name() + "\t\t");
 				System.out.print(lectureList.get(i).getLecture_time() + "\t");
 				System.out.print(lectureList.get(i).getLecture_capacity() + "\t");
@@ -49,12 +49,12 @@ public class StudentMyLectureView {
 			
 		} else if(selectedMenu == 0) {
 			
-			new AlertView().alert("이전 메뉴로 이동합니다.");
+			System.out.println("이전 메뉴로 이동합니다.");
 			Controllers.getStudentMainController().requestStudentMenu();
 			
 		}else {
 			
-			new AlertView().alert("메뉴를 다시 선택해 주세요.");
+			System.out.println("메뉴를 다시 선택해 주세요.");
 			Controllers.getStudentGradeController().requestStudentGradeMenuView();
 			
 		}

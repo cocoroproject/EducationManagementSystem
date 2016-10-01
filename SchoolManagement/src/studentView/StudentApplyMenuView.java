@@ -18,8 +18,8 @@ public class StudentApplyMenuView {
 
 		while(true) {
 			
-			System.out.println("\n[ 신청 정보 메뉴 ]");
-			System.out.println("[1]복학신청 [2]휴학신청 [0]이전메뉴");
+			System.out.println("\n[신청 정보 메뉴]");
+			System.out.println("[1] 복학신청 [2] 휴학신청 [0] 이전메뉴");
 			System.out.print("메뉴를 선택해주세요 : ");
 			int selectedMenu = keyboard.nextInt();
 			

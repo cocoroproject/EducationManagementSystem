@@ -23,7 +23,7 @@ public class LoginMenuView {
 			while(true) {
 				
 				System.out.println("\n[학사 시스템 로그인 메뉴]");
-				System.out.println("\n[1]학생로그인 [2]교수로그인 [3]관리자로그인");
+				System.out.println("\n[1] 학생로그인 [2] 교수로그인 [3] 관리자로그인");
 				System.out.print("메뉴를 선택해주세요 : ");
 				int selectedMenu = keyboard.nextInt();
 

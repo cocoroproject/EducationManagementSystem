@@ -18,8 +18,8 @@ public class StudentInformationMenuView {
 
 		while(true) {
 			
-			System.out.println("\n[ 개인 정보 메뉴 ]");
-			System.out.println("[1]개인정보조회 [2]개인정보수정 [0]이전메뉴");
+			System.out.println("\n[개인 정보 메뉴]");
+			System.out.println("[1] 개인정보조회 [2] 개인정보수정 [0] 이전메뉴");
 			System.out.print("메뉴를 선택해주세요 : ");
 			int selectedMenu = keyboard.nextInt();
 			

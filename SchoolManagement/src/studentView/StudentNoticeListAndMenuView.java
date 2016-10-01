@@ -18,7 +18,7 @@ public class StudentNoticeListAndMenuView {
 
 	public void noticeListAndMenu(ArrayList<Notice> studentNoticeList) {
 		
-		System.out.println("\n[ 학사 공지 목록 ]");
+		System.out.println("\n[학사 공지 목록]");
 		System.out.println("No.\t제목\t\t\t작성일");
 
 		if(studentNoticeList.size() == 0) {
@@ -30,8 +30,8 @@ public class StudentNoticeListAndMenuView {
 			for(int i = 0 ; i < studentNoticeList.size() ; i++) {
 
 				System.out.print(studentNoticeList.get(i).getNotice_number() + "\t");	//글번호
-				System.out.print(studentNoticeList.get(i).getNotice_name() + "\t");	//글제목
-				System.out.println(studentNoticeList.get(i).getNotice_date() + "\t");	//글 작성일
+				System.out.print(studentNoticeList.get(i).getNotice_name() + "\t\t\t");	//글제목
+				System.out.println(studentNoticeList.get(i).getNotice_date());	//글 작성일
 
 			}
 

@@ -16,8 +16,8 @@ public class StudentGradeMenuView {
 
 	public void gradeMenu() {
 		
-		System.out.println("\n[ 성적 조회 메뉴 ]");
-		System.out.println("[1]전체성적조회 [2]선택성적조회 [3]강의평가 [0]이전메뉴");
+		System.out.println("\n[성적 조회 메뉴]");
+		System.out.println("[1] 전체성적조회 [2] 선택성적조회 [3] 강의평가 [0] 이전메뉴");
 		System.out.print("메뉴를 선택해주세요 : ");
 		int selectedMenu = keyboard.nextInt();
 

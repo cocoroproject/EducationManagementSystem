@@ -20,8 +20,8 @@ public class StudentMenuView {
 		while(true) {
 			
 			System.out.println("\n[ 학생 메뉴 ]");
-			System.out.println("[1]개인정보 [2]신청정보 [3]수강정보 [4]성적정보");
-			System.out.println("[5]학사공지 [6]로그아웃");
+			System.out.println("[1] 개인정보 [2] 신청정보 [3] 수강정보 [4] 성적정보");
+			System.out.println("[5] 학사공지 [6] 로그아웃");
 			System.out.print("메뉴를 선택해주세요 : ");
 			int selectedMenu = keyboard.nextInt();
 
@@ -41,12 +41,10 @@ public class StudentMenuView {
 			
 			} else if(selectedMenu == 4) {
 				
-				System.out.println("성적정보메뉴로 이동합니다.");
 				Controllers.getStudentGradeController().requestStudentGradeMenuView();
 			
 			} else if(selectedMenu == 5) {
 				
-				System.out.println("학사공지메뉴로 이동합니다.");
 				Controllers.getStudentNoticeController().requestStudentNoticeMenu();
 		
 			} else if(selectedMenu == 6) {
