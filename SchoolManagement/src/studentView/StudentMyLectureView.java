@@ -29,7 +29,7 @@ public class StudentMyLectureView {
 
 			for(int i = 0 ; i < lectureList.size() ; i++) {
 
-				System.out.print(lectureList.get(i).getLecturePlan_number() + "\t");
+				System.out.print(lectureList.get(i).getLecture_number() + "\t");
 				System.out.print(lectureList.get(i).getLecture_name() + "\t\t");
 				System.out.print(lectureList.get(i).getLecture_time() + "\t");
 				System.out.print(lectureList.get(i).getLecture_capacity() + "\t");

@@ -8,7 +8,7 @@ import studentView.StudentGradeMenuView;
 import studentView.StudentInformationMenuView;
 import studentView.StudentMenuView;
 import studentView.StudentMyPageView;
-import studentView.StudentNoticeMenuView;
+import studentView.StudentNoticeListAndMenuView;
 import studentView.StudentRegisterLectureMenuView;
 import studentView.StudentUpdateView;
 
@@ -21,6 +21,7 @@ public class StudentMainController {
 		studentMainDAO = new StudentMainDAO();
 		
 	}	
+	
 	//학생 메뉴 뷰 호출 요청처리 메서드
 	public void requestStudentMenu() {
 
@@ -28,6 +29,7 @@ public class StudentMainController {
 		studentMenuView.studentMenu();
 
 	}
+	
 	//학생 개인정보메뉴 호출 요청처리 메서드
 	public void requestStudentInformationMenu() {
 
@@ -35,6 +37,7 @@ public class StudentMainController {
 		studentInformationMenuView.informationMenu();
 
 	}
+	
 	//학생 신청정보메뉴 호출 요청처리 메서드
 	public void requestStudentApplyMenu() {
 
@@ -42,13 +45,7 @@ public class StudentMainController {
 		studentApplyMenuView.applyMenu();
 
 	}
-	//학생 성적정보메뉴 호출 요청처리 메서드
-	public void requestStudentNoticeMenu() {
-
-		StudentNoticeMenuView studentNoticeMenuView = new StudentNoticeMenuView();
-		studentNoticeMenuView.noticeMenu();
-
-	}
+	
 	//학생 개인정보조회 뷰 호출 요청처리 메서드
 	public void requestStudentInformation() {
 
@@ -58,6 +55,7 @@ public class StudentMainController {
 		studentMyPageView.outPutMyInfo(myInfo);
 
 	}
+	
 	//학생 개인정보수정 요청처리 메서드
 	public void requestStudentUpdateInfo() {
 
@@ -67,6 +65,7 @@ public class StudentMainController {
 		studentUpdateView.studentUpdateInfo(studentUpdateInfo);
 
 	}
+	
 	//학생 개인정보수정 요청처리 메서드
 	public void requestStudentUpdate(StudentInfo studentUpdate) {
 
@@ -83,6 +82,7 @@ public class StudentMainController {
 		}
 
 	}
+	
 	//로그아웃 요청 처리 메서드
 	public void requestLogout() {
 

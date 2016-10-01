@@ -84,6 +84,7 @@ public class LoginController {
 
 		if(success) {
 			new AlertView().alert("로그인에 성공했습니다.");
+			Controllers.getStudentMainController().requestStudentMenu();
 		} else {
 			new AlertView().alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 			requestLoginMenu();

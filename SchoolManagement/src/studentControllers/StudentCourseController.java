@@ -17,6 +17,7 @@ public class StudentCourseController {
 		studentCourseDAO = new StudentCourseDAO();
 
 	}	
+	
 	//학생 수강정보메뉴 호출 요청처리 메서드
 	public void requestStudentRegisterLectureMenu() {
 
@@ -24,6 +25,7 @@ public class StudentCourseController {
 		studentRegisterLectureMenuView.registerLectureMenu();
 
 	}
+	
 	//학생 개설강의조회 호출 요청처리 메서드
 	public void requestMyStudentLectureList() {
 
@@ -41,7 +43,5 @@ public class StudentCourseController {
 		studentSelectOneLecturePlanView.SelectOneLecturePlan();
 		
 	}
-	
-	
 
 }

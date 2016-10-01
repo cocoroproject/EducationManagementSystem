@@ -9,13 +9,14 @@ public class Lecture {
 	private String lecture_name;
 	private int lecture_capacity;
 	private int lectureRoom_number;
+	private int lectureplan_number;
 	
 	public Lecture() {
 		
 	}
 	
 	public Lecture(int lecture_number, int professor_number, String subject_number, int semester_number, String lecture_time,
-			String lecture_name, int lecture_capacity, int lectureRoom_number) {
+			String lecture_name, int lecture_capacity, int lectureRoom_number, int lectureplan_number) {
 		
 		this.lecture_number = lecture_number;
 		this.professor_number = professor_number;
@@ -25,6 +26,7 @@ public class Lecture {
 		this.lecture_name = lecture_name;
 		this.lecture_capacity = lecture_capacity;
 		this.lectureRoom_number = lectureRoom_number;
+		this.lectureplan_number = lectureplan_number;
 		
 	}
 	
@@ -40,6 +42,14 @@ public class Lecture {
 		
 	}
 	
+	public int getLectureplan_number() {
+		return lectureplan_number;
+	}
+
+	public void setLectureplan_number(int lectureplan_number) {
+		this.lectureplan_number = lectureplan_number;
+	}
+
 	public int getLecture_number() {
 		return lecture_number;
 	}
