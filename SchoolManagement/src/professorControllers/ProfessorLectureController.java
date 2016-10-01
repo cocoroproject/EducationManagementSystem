@@ -22,17 +22,17 @@ public class ProfessorLectureController {
 	}
 
 	//강의계획서 입력,수정 요청
-	public void requestRegisterLecturePlan(int selectedMenu, int lectureNumber) {
+	public void requestRegisterLecturePlan(int selectedMenu, int lecturePlanNumber) {
 
 		ProfessorRegisterLecturePlanView professorRegisterLecturePlanView = new ProfessorRegisterLecturePlanView();
 
 		if(selectedMenu==1) {
 
-			professorRegisterLecturePlanView.inputRegisterLecturePlan(lectureNumber);
+			professorRegisterLecturePlanView.inputRegisterLecturePlan(lecturePlanNumber);
 
 		} else {
 
-			professorRegisterLecturePlanView.inputUpdateLecturePlan(lectureNumber);
+			professorRegisterLecturePlanView.inputUpdateLecturePlan(lecturePlanNumber);
 
 		}
 
@@ -43,7 +43,7 @@ public class ProfessorLectureController {
 
 		LecturePlan lecturePlan = professorLectureDAO.selectOne(lectureNumber);
 		ProfessorSelectLecturePlanView professorSelectLecturePlanView = new ProfessorSelectLecturePlanView();
-		professorSelectLecturePlanView.outputLecturePlan(lecturePlan, lectureNumber);
+		professorSelectLecturePlanView.outputLecturePlan(lecturePlan);
 
 	}
 

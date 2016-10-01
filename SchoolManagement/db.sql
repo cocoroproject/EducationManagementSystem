@@ -1,3 +1,4 @@
+
 drop table LectureEvalGrade cascade CONSTRAINTS;
 -- 강의평가등급 테이블 제거
 drop table LectureEval cascade CONSTRAINTS;
@@ -71,6 +72,7 @@ admin_number number NOT NULL,
 CONSTRAINT notice_number_pk PRIMARY KEY(notice_number),
 CONSTRAINT admin_number_fk FOREIGN KEY(admin_number) REFERENCES Admin(admin_number)
 );
+ALTER session set nls_date_format='YYYY-MM-DD';
 
 --강의실 테이블>
 create table LectureRoom
@@ -103,11 +105,14 @@ create table Semester
 (
 semester_number number,
 semester varchar2(10) NOT NULL,
-year date NOT NULL,
+year number NOT NULL,
 semester_startDay date NOT NULL,
 semester_endDay date NOT NULL,
+
 CONSTRAINT semester_number_pk PRIMARY KEY(semester_number)
 );
+
+
 --전공 테이블>
 create table Major
 (
@@ -281,10 +286,19 @@ insert into LecturePlan values (8, '회계학 원론',  '회계학 원론 ');
 
 --관리자 더미
 insert into Admin values (1, 'admin', 1234);
---공지사항 더미 (전체, 학생, 교수 순)
-insert into Notice values (1, '공지사항', '전체 공지사항 입니다.',  to_date ('2016-09-27', 'yyyy-mm-dd'), 1, 1);
-insert into Notice values (2, '공지사항', '‘학생 공지사항 입니다.',  to_date ('2016-09-27', 'yyyy-mm-dd'), 2, 1);
-insert into Notice values (3, '공지사항', '교수 공지사항 입니다.',  to_date ('2016-09-27', 'yyyy-mm-dd'), 3, 1);
+
+--공지사항 더미 (교수, 학생, 전체 순)
+
+insert into Notice values (1, '공지사항', '교수 공지사항 입니다.', to_date ('2016-09-27', 'yyyy-mm-dd'), 0, 1);
+insert into Notice values (2, '공지사항', '‘학생 공지사항 입니다.', to_date ('2016-09-27', 'yyyy-mm-dd'), 1, 1);
+insert into Notice values (3, '공지사항', '전체 공지사항 입니다.', to_date ('2016-09-27', 'yyyy-mm-dd'), 2, 1);
+insert into Notice values (4, '공지사항', '교수 공지사항 입니다.',SYSDATE, 0, 1);
+insert into Notice values (5, '공지사항', '학생 공지사항 입니다.', SYSDATE, 1, 1);
+insert into Notice values (6, '공지사항', '전체 공지사항 입니다.', SYSDATE, 2, 1);
+insert into Notice values (7, '공지사항', '전체 공지사항 입니다.', SYSDATE, 2, 1);
+insert into Notice values (8, '공지사항', '교수 공지사항 입니다.', SYSDATE, 0, 1);
+insert into Notice values (9, '공지사항', '학생 공지사항 입니다.', SYSDATE, 1, 1);
+
 --강의실 더미
 insert into LectureRoom values (1, '마리아', 40, '마리아관');
 insert into LectureRoom values (2,'니콜스', 50, '니콜스관');
@@ -301,11 +315,15 @@ insert into SchoolRegister values (1, '휴학');
 insert into SchoolRegister values (2, '재학');
 insert into SchoolRegister values (3, '자퇴');
 insert into SchoolRegister values (4, '퇴학');
+
 --학기 더미
-insert into Semester values (1, '1학기',  to_date ('2015', 'yyyy'), to_date ('2015-03-01', 'yyyy-mm-dd'), to_date('2015-06-25'));
-insert into Semester values (2, '2학기',  to_date ('2015', 'yyyy'), to_date ('2015-09-01', 'yyyy-mm-dd'), to_date('2015-12-25'));
-insert into Semester values (3, '1학기',  to_date ('2016', 'yyyy'), to_date ('2016-03-01', 'yyyy-mm-dd'), to_date('2016-06-25'));
-insert into Semester values (4, '2학기',  to_date ('2016', 'yyyy'), to_date ('2016-09-01', 'yyyy-mm-dd'), to_date('2016-12-25'));
+insert into Semester values (1, '1학기', 2015, to_date ('2015-03-01', 'YYYY-MM-DD'), to_date('2015-06-25', 'YYYY-MM-DD'));
+insert into Semester values (2, '2학기', 2015, to_date ('2015-09-01', 'YYYY-MM-DD'), to_date('2015-12-25', 'YYYY-MM-DD'));
+insert into Semester values (3, '1학기', 2016, to_date ('2016-03-01', 'YYYY-MM-DD'), to_date('2016-06-25', 'YYYY-MM-DD'));
+insert into Semester values (4, '2학기', 2016, to_date ('2016-09-01', 'YYYY-MM-DD'), to_date('2016-12-25', 'YYYY-MM-DD'));
+
+
+
 --전공 더미
 insert into Major values (1, '컴퓨터공학');
 insert into Major values (2, '정보통신공학');
@@ -360,13 +378,12 @@ insert into SchoolRegisterDocument values(3, 20161001, 18, 18, 1, 0, 2);
 
 --강의 더미
 insert into Lecture values(1, 4, 'C01', 4, '월요일', '초급 자바', 30, 3, 1);
-insert into Lecture values(2, 4, 'C02', 4,'화요일', 'DB 입문', 30, 3, 1);
-insert into Lecture values(3, 3, 'I01', 4, '월요일', '컴퓨터의 이해', 30, 3, 1);
-insert into Lecture values(4, 3, 'I02', 4, '화요일', '회로 설계', 30, 3, 1);
-insert into Lecture values(5, 1, 'L01', 4, '월요일', '형법 총론', 45, 3, 1);
+insert into Lecture values(2, 4, 'C02', 4,'화요일', 'DB 입문', 30, 3, 2);
+insert into Lecture values(3, 3, 'I01', 4, '월요일', '컴퓨터의 이해', 30, 3, 3);
+insert into Lecture values(4, 3, 'I02', 4, '화요일', '회로 설계', 30, 3, 4);
+insert into Lecture values(5, 1, 'L01', 4, '월요일', '형법 총론', 45, 3, 5);
 
-
--- 수강 더미
+--수강 더미
 insert into RegisterLecture values(1, 20161001, 1);
 insert into RegisterLecture values(2, 20161001, 2);
 insert into RegisterLecture values(3, 20152001, 4);
@@ -395,31 +412,5 @@ insert into LectureEvalGrade values (2, 2, 2);
 insert into LectureEvalGrade values (3, 3, 3);
 insert into LectureEvalGrade values (4, 3, 4);
 
-select student.student_number, student_name, major_name, attendance_score, midExam_score, finalExam_score, registerlecture.registerLecture_number
-from registerlecture, student, score, major, professor, lecture
-where registerlecture.lecture_number =  1
-and student.student_number = registerlecture.student_number
-and score.registerLecture_number = registerlecture.registerLecture_number
-and major.major_number = student.major_number
-
-
-
-select distinct student.student_number, student.student_name, major.major_name
-from registerlecture, student, score, major, professor
-where student.student_number = registerlecture.student_number
-and score.registerLecture_number = registerlecture.registerLecture_number
-and major.major_number = student.major_number
-and lecture_number =  1
-
-
-
-
-select student.student_number, student_name, major_name, attendance_score, midExam_score, finalExam_score, registerlecture.registerLecture_number
-from registerlecture, student, score, major, professor, lecture
-where student.student_number = registerlecture.student_number
-and score.registerLecture_number = registerlecture.registerLecture_number
-and major.major_number = student.major_number
-and registerlecture.lecture_number =  1
 
 commit;
-

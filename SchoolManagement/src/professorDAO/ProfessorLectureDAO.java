@@ -21,7 +21,7 @@ public class ProfessorLectureDAO {
 	}
 
 	//강의계획서 조회
-	public LecturePlan selectOne(int lectureNumber) {
+	public LecturePlan selectOne(int lecturePlanNumber) {
 
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -29,7 +29,10 @@ public class ProfessorLectureDAO {
 
 		try {
 
-			String sql = "select * from lectureplan where lectureplan_number = " + lectureNumber; 
+			String sql = "select lectureplan.lectureplan_number, curriculum, textbook "
+					+ "from lectureplan, lecture "
+					+ "where lecture.lectureplan_number = lectureplan.lectureplan_number "
+					+ "and lecture.lectureplan_number = " + lecturePlanNumber; 
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			rs = stmt.executeQuery(sql); //1 : 강의 계획서 테이블에 insert 성공, 0 : 실패
 
