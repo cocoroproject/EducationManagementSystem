@@ -8,7 +8,8 @@ import studentView.StudentCurrentLectureListView;
 import studentView.StudentEvalLectureView;
 import studentView.StudentGradeMenuView;
 import studentView.StudentSelectGradeView;
-import studentView.StudentTotalGradeView;
+import studentView.StudentTotalGradeListView;
+
 
 public class StudentGradeController {
 
@@ -31,7 +32,7 @@ public class StudentGradeController {
 	//전체 성적조회 뷰 호출을 요청받는 메서드
 	public void requestSelectListTotalGradeView(ArrayList<ArrayList<GradeSheet>> totalGradeList) {
 
-		StudentTotalGradeView studentTotalGradeView = new StudentTotalGradeView();
+		StudentTotalGradeListView studentTotalGradeView = new StudentTotalGradeListView();
 		studentTotalGradeView.outputTotalGrade(totalGradeList);
 
 	}
