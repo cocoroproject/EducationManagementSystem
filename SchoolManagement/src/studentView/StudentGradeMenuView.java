@@ -24,7 +24,7 @@ public class StudentGradeMenuView {
 		if(selectedMenu == 1) {
 			
 			new AlertView().alert("전체 성적 조회 페이지로 이동합니다.");
-			Controllers.getStudentGradeController().requestSelectListTotalGradeView();
+			Controllers.getStudentGradeController().requestSelectListTotalGrade();
 			
 		} else if(selectedMenu == 2) {
 			
@@ -41,13 +41,12 @@ public class StudentGradeMenuView {
 			new AlertView().alert("이전 메뉴로 이동합니다.");
 			Controllers.getStudentMainController().requestStudentMenu();
 			
-		}else {
+		} else {
 			
 			new AlertView().alert("메뉴를 다시 선택해 주세요.");
 			Controllers.getStudentGradeController().requestStudentGradeMenuView();
 			
 		}
-		
 	}
 
 }

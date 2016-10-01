@@ -1,8 +1,10 @@
 package controllers;
 
+import adminControllers.AdminLeaveAbsenceController;
 import adminControllers.AdminLectureController;
 import adminControllers.AdminMemberController;
 import adminControllers.AdminNoticeController;
+import adminControllers.AdminSubjectController;
 import loginController.LoginController;
 import professorControllers.ProfessorLectureController;
 import professorControllers.ProfessorMenuController;
@@ -30,6 +32,8 @@ public class Controllers {
 	private static StudentNoticeController studentNoticeController;
 	private static LoginController loginController;
 	private static ProfessorMyPageController professorMyPageController;
+	private static AdminSubjectController adminSubjectController;
+	private static AdminLeaveAbsenceController adminLeaveAbsenceController;
 	
 	public Controllers() {
 		
@@ -47,6 +51,8 @@ public class Controllers {
 		studentCourseController = new StudentCourseController();
 		studentGradeController = new StudentGradeController();
 		studentNoticeController = new StudentNoticeController();
+		adminSubjectController = new AdminSubjectController();
+		adminLeaveAbsenceController = new AdminLeaveAbsenceController();
 		
 	}
 
@@ -108,6 +114,21 @@ public class Controllers {
 	
 	public static AdminNoticeController getAdminNoticeController() {
 		return adminNoticeController;
+	}
+	public static AdminLeaveAbsenceController getAdminLeaveAbsenceController() {
+		return adminLeaveAbsenceController;
+	}
+
+	public static void setAdminLeaveAbsenceController(AdminLeaveAbsenceController adminLeaveAbsenceController) {
+		Controllers.adminLeaveAbsenceController = adminLeaveAbsenceController;
+	}
+
+	public static AdminSubjectController getAdminSubjectController() {
+		return adminSubjectController;
+	}
+
+	public static void setAdminSubjectController(AdminSubjectController adminSubjectController) {
+		Controllers.adminSubjectController = adminSubjectController;
 	}
 	
 }

@@ -15,6 +15,7 @@ public class StudentUpdateView {
 		keyboard = new Scanner(System.in);
 
 	}
+	
 	//개인정보 수정메뉴뷰
 	public void studentUpdateInfo(StudentInfo studentUpdate) {
 
