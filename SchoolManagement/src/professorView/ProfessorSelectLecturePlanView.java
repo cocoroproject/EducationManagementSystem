@@ -36,18 +36,35 @@ public class ProfessorSelectLecturePlanView {
 		while(true) {
 
 			System.out.println("[1] 강의계획서 입력 [2] 강의계획서 수정 [0] 강의목록으로 돌아가기");
-			System.out.println("메뉴를 선택해주세요 : ");
+
+			System.out.print("메뉴를 선택해주세요 : ");
 			int selectedMenu = keyboard.nextInt();
 
-			if(selectedMenu==1) {
+			if(selectedMenu==1) { //강의계획서 입력
 
-				Controllers.getProfessorLectureController().requestRegisterLecturePlan(selectedMenu, lectureNumber);
+				if(lecturePlan!=null) { //강의계획서가 이미 등록되어있었을 때
+					
+					System.out.println("강의계획서가 이미 등록되어있습니다.");
+				
+				} else {
+					
+					Controllers.getProfessorLectureController().requestRegisterLecturePlan(selectedMenu, lectureNumber);
+				
+				}
 
-			} else if(selectedMenu==2){
+			} else if(selectedMenu==2){ //강의계획서 수정
+				
+				if(lecturePlan==null) { //강의계획서가 등록되지 않았을 때
+					
+					System.out.println("강의계획서를 먼저 입력해주세요.");
+					
+				} else { //강의계획서가 등록되었을 때
 
-				Controllers.getProfessorLectureController().requestRegisterLecturePlan(selectedMenu, lectureNumber);
+					Controllers.getProfessorLectureController().requestRegisterLecturePlan(selectedMenu, lectureNumber);
+				
+				}
 
-			} else if(selectedMenu==0){
+			} else if(selectedMenu==0){ //강의 목록으로 돌아가기
 
 				Controllers.getProfessorLectureController().requestLectureList();
 
@@ -60,5 +77,5 @@ public class ProfessorSelectLecturePlanView {
 		}
 
 	}
-	
+
 }

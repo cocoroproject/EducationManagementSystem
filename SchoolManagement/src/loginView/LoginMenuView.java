@@ -41,7 +41,7 @@ public class LoginMenuView {
 					
 				} else {
 					
-					new AlertView().alert("메뉴를 다시 선택 하세요");
+					new AlertView().alert("메뉴를 다시 선택 하세요.");
 					
 				}
 

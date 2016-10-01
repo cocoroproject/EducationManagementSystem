@@ -141,6 +141,7 @@ public class ProfessorLectureDAO {
 		ArrayList<LectureInfo> lectureList = new ArrayList<LectureInfo>();
 
 		try {
+			
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			String sql = "select lecture_number, lecture_time, lecture_name, lecture_capacity, lecture.lectureRoom_number, lectureRoom_name, lectureRoom_address, year, semester "
 					+ "from lecture, lectureroom, professor, semester "

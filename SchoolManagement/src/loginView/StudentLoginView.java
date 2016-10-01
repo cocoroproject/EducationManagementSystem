@@ -19,8 +19,9 @@ public class StudentLoginView {
 	//로그인 정보를 입력하는 화면
 	public void inputLogin() {
 		
-		System.out.println("\n[학생 전용 로그인 화면 입니다. 목록을 선택해 주세요]");
-		System.out.print("[1] 로그인  [0] 돌아가기 : ");
+		System.out.println("\n[학생 로그인 화면]");
+		System.out.print("[1] 로그인  [0] 메인메뉴로 돌아가기 : ");
+		System.out.print("메뉴를 선택해주세요 : ");		
 		int selectedMenu = keyboard.nextInt();
 		String loginId = null;
 		String loginPassword = null;
@@ -39,7 +40,7 @@ public class StudentLoginView {
 			
 		} else {
 			
-			new AlertView().alert("[알림] 메뉴를 다시 선택 하세요");
+			new AlertView().alert("잘못 입력하셨습니다. 다시 입력해주세요.");
 		}
 
 		

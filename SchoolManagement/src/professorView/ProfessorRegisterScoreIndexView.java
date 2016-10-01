@@ -28,8 +28,8 @@ public class ProfessorRegisterScoreIndexView {
 		//점수 항목 입력
 		while(!exit) {
 
-			System.out.print("[1] 출석점수 [2] 중간고사점수 [3] 기말고사점수 [0] 돌아가기 : ");
-			System.out.print("점수를 입력 : ");
+			System.out.println("[1] 출석점수 [2] 중간고사점수 [3] 기말고사점수 [0] 목록으로 돌아가기");
+			System.out.print("메뉴를 선택해주세요 : ");
 			selectedScore = keyboard.nextInt();
 
 			if((selectedScore>=1 && selectedScore<=3)) {
@@ -65,7 +65,8 @@ public class ProfessorRegisterScoreIndexView {
 		
 		while(!exit) {
 
-			System.out.print("[1] 성적입력 [2] 성적수정 : ");
+			System.out.println("\n[1] 성적입력 [2] 성적수정 [0] 수강생 목록으로 돌아가기");
+			System.out.print("메뉴를 선택해주세요 : ");
 			selectedNumber = keyboard.nextInt();
 
 			if(selectedNumber==1) {
@@ -77,6 +78,10 @@ public class ProfessorRegisterScoreIndexView {
 
 				selectedMenu = "수정";
 				exit = true;
+
+			}  else if(selectedNumber==0) {
+
+				Controllers.getProfessorScoreController().requestStudentList(lectureNumber);
 
 			} else {
 

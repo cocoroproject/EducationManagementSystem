@@ -6,7 +6,7 @@ import controllers.Controllers;
 import professorDAO.ProfessorScoreDAO;
 import professorDomain.RegisterLectureStudent;
 import professorView.ProfessorRegisterScoreIndexView;
-import professorView.ProfessorRegistertLectureScoreView;
+import professorView.ProfessorRegisterLectureScoreView;
 import professorView.ProfessorSelectAllStudentView;
 import studentView.AlertView;
 
@@ -43,6 +43,7 @@ public class ProfessorScoreController {
 
 	}
 
+	//수강생 목록 요청
 	public void requestStudentList(int lectureNumber) {
 
 		ArrayList<RegisterLectureStudent> studentList = professorScoreDAO.selectAllLectureStudent(lectureNumber);
@@ -53,21 +54,27 @@ public class ProfessorScoreController {
 
 	//수강생 점수 입력
 	public void requestRegisterStudentScore(String selectedMenu, String selectedIndex, int lectureNumber) {
-
-		//수강생 정보 호출
-		ArrayList<RegisterLectureStudent> studentList = professorScoreDAO.selectAllLectureStudent(lectureNumber);			
-
-		//수강생 점수 입력,수정
-		ProfessorRegistertLectureScoreView professorRegistertLectureScoreView = new ProfessorRegistertLectureScoreView();
+			
+		ArrayList<RegisterLectureStudent> studentList = professorScoreDAO.selectAllLectureStudent(lectureNumber); //수강생 정보 호출		 
+		
+		ProfessorRegisterLectureScoreView professorRegistertLectureScoreView = new ProfessorRegisterLectureScoreView(); //수강생 점수 입력,수정
 
 		if(selectedMenu.equals("입력")) {
 
 			professorRegistertLectureScoreView.inputRegisterStudentsScore(selectedIndex, studentList);
 
 		} else {
-
-			professorRegistertLectureScoreView.inputUpdateStudentScore(selectedIndex, studentList);
-
+			
+			if(selectedIndex.equals("출석")) {
+				
+				professorRegistertLectureScoreView.inputUpdateAttendanceScore(selectedIndex, studentList);
+			
+			} else {
+				
+				professorRegistertLectureScoreView.inputUpdateMidAndFinalExamScore(selectedIndex, studentList);
+			
+			}
+ 
 		}
 
 	}
@@ -87,6 +94,8 @@ public class ProfessorScoreController {
 			new AlertView().alert("수강생들의 점수 입력에 실패했습니다.");
 
 		}
+		
+		Controllers.getProfessorMenuController().requestMainPage();
 
 	}
 
@@ -104,6 +113,8 @@ public class ProfessorScoreController {
 			new AlertView().alert("수강생의 점수 수정에 실패했습니다.");
 
 		}
+		
+		Controllers.getProfessorMenuController().requestMainPage();
 
 	}
 

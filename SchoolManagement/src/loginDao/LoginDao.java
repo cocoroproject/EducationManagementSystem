@@ -30,12 +30,14 @@ public class LoginDao {
 			rs = pstmt.executeQuery();
 			//관리자 테이블에 로그인 정보 있을경우
 			if(rs.next()) { 
+				
 				LoginRepository.setLogin(newLogin);
 				success = true;
+				
 			}
 
 		} catch (SQLException e) {
-			System.out.println("[알림] 로그인 중 예외가 발생했습니다.");
+			System.out.println("로그인 중 예외가 발생했습니다.");
 			e.printStackTrace();
 		}
 
@@ -51,20 +53,22 @@ public class LoginDao {
 
 		try {
 
-			String sql = "select * from Professor where professor_iD = ? and professor_password = ?";
+			String sql = "select professor_number from Professor where professor_iD = ? and professor_password = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, newLogin.getLoginId());
 			pstmt.setString(2, newLogin.getLoginPassword());
 			rs = pstmt.executeQuery();
 			//교수 테이블에 로그인 정보 있을경우
 			if(rs.next()) { 
+				
 				LoginRepository.setLogin(newLogin);
-
+				LoginRepository.setProfessor_number(rs.getInt("professor_number"));
 				success = true;
+				
 			}
 
 		} catch (SQLException e) {
-			System.out.println("[알림] 로그인 중 예외가 발생했습니다.");
+			System.out.println("로그인 중 예외가 발생했습니다.");
 			e.printStackTrace();
 		}
 
@@ -87,12 +91,14 @@ public class LoginDao {
 			rs = pstmt.executeQuery();
 
 			if(rs.next()) { //학생 테이블에 로그인 정보 있을경우
+				
 				LoginRepository.setLogin(newLogin);
 				success = true;
+				
 			}
 
 		} catch (SQLException e) {
-			System.out.println("[알림] 로그인 중 예외가 발생했습니다.");
+			System.out.println("로그인 중 예외가 발생했습니다.");
 			e.printStackTrace();
 		}
 
