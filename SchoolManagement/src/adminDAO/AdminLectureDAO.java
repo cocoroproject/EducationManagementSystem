@@ -92,7 +92,7 @@ public class AdminLectureDAO {
 				pstmt.setInt(4, newLecture.getSemester_number());
 				pstmt.setString(5, newLecture.getLecture_time());
 				pstmt.setString(6, newLecture.getLecture_name());
-				pstmt.setInt(7, newLecture.getLecture_capacity_number());
+				pstmt.setInt(7, newLecture.getLecture_capacity());
 				pstmt.setInt(8, newLecture.getLectureRoom_number());
 				pstmt.setInt(9, newLecture.getLecturePlan_number());
 
@@ -145,7 +145,7 @@ public class AdminLectureDAO {
 
 				String sql = "update Lecture set lecture_capacity = ? where lecture_number = " + searchedNumber; 
 				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-				pstmt.setInt(1, updateLecture.getLecture_capacity_number());
+				pstmt.setInt(1, updateLecture.getLecture_capacity());
 				pstmt.executeUpdate();
 				success = true;
 				

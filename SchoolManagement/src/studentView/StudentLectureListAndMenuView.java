@@ -6,20 +6,20 @@ import java.util.Scanner;
 import controllers.Controllers;
 import professorDomain.Lecture;
 
-public class StudentMyLectureView {
+public class StudentLectureListAndMenuView {
 
 	private Scanner keyboard;
 
-	public StudentMyLectureView() {
+	public StudentLectureListAndMenuView() {
 
 		keyboard = new Scanner(System.in);
 
 	}
 
-	public void myLectureList(ArrayList<Lecture> lectureList ) {
+	public void LectureList(ArrayList<Lecture> lectureList ) {
 
 		System.out.println("\n[ 개설강의목록 ]");
-		System.out.println("과목번호\t강의명\t\t강의요일\t강의정원\t강의실번호");
+		System.out.println("강의번호\t강의명\t\t강의요일\t강의정원\t강의실번호");
 
 		if(lectureList.size() == 0) {
 
@@ -29,7 +29,7 @@ public class StudentMyLectureView {
 
 			for(int i = 0 ; i < lectureList.size() ; i++) {
 
-				System.out.print(lectureList.get(i).getSubject_number() + "\t");
+				System.out.print(lectureList.get(i).getLecture_number() + "\t");
 				System.out.print(lectureList.get(i).getLecture_name() + "\t\t");
 				System.out.print(lectureList.get(i).getLecture_time() + "\t");
 				System.out.print(lectureList.get(i).getLecture_capacity() + "\t");
@@ -39,7 +39,7 @@ public class StudentMyLectureView {
 
 		}
 		
-		System.out.println("\n[1]강의계획조회 [0]이전메뉴");
+		System.out.println("\n[1] 강의계획조회 [0] 이전메뉴");
 		System.out.print("메뉴를 선택해주세요 : ");
 		int selectedMenu = keyboard.nextInt();
 

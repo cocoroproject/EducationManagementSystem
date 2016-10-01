@@ -31,7 +31,7 @@ public class AdminselectAllLectureView {
 				System.out.print(lectureList.get(i).getProfessor().getProfessor_name() + "\t");
 				System.out.print(lectureList.get(i).getSubject().getSubject_name() + "\t");
 				System.out.print(lectureList.get(i).getLecture().getLecture_time() + "\t");
-				System.out.print(lectureList.get(i).getLecture().getLecture_capacity_number() + "\t");
+				System.out.print(lectureList.get(i).getLecture().getLecture_capacity() + "\t");
 				System.out.print(lectureList.get(i).getLecture().getLectureRoom_number() + "\t");
 				System.out.print(lectureList.get(i).getLectureRoom().getLectureRoom_name()+ "\t");
 				System.out.print(lectureList.get(i).getSemester().getYear());

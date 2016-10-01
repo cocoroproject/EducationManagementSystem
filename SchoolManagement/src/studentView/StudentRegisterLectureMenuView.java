@@ -35,7 +35,7 @@ public class StudentRegisterLectureMenuView {
 				
 			} else if(selectedMenu == 3) {
 				
-				Controllers.getStudentCourseController().requestMyStudentLectureList();
+				Controllers.getStudentCourseController().requestStudentLectureList();
 				
 			} else if(selectedMenu == 0) {
 				

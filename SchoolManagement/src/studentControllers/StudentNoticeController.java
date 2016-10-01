@@ -23,9 +23,7 @@ public class StudentNoticeController {
 	//학생 학사공지목록 호출 요청처리 메서드
 	public void requestStudentNoticeMenu() {
 		
-		ArrayList<Notice> studentNoticeList = new ArrayList<Notice>();
-		
-		studentNoticeList = studentNoticeDAO.selectNoticeList();
+		ArrayList<Notice> studentNoticeList = studentNoticeDAO.selectNoticeList();
 		
 		StudentNoticeListAndMenuView studentNoticeMenuView = new StudentNoticeListAndMenuView();
 		studentNoticeMenuView.noticeListAndMenu(studentNoticeList);
@@ -49,7 +47,7 @@ public class StudentNoticeController {
 		if(selectedNotice == null) {
 			
 			new AlertView().alert("선택하신 글번호가 존재하지 않습니다. 다시 입력해주세요.");
-			Controllers.getProfessorNoticeController().requestNoticeList();
+			Controllers.getStudentNoticeController().requestStudentNoticeMenu();
 			
 		}
 

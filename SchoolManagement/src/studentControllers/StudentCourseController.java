@@ -2,11 +2,15 @@ package studentControllers;
 
 import java.util.ArrayList;
 
+import controllers.Controllers;
 import professorDomain.Lecture;
+import professorDomain.LecturePlan;
 import studentDAO.StudentCourseDAO;
-import studentView.StudentMyLectureView;
+import studentView.AlertView;
+import studentView.StudentLectureListAndMenuView;
+import studentView.StudentLecturePlanListSelectView;
+import studentView.StudentLecturePlanSelectOneView;
 import studentView.StudentRegisterLectureMenuView;
-import studentView.StudentSelectOneLecturePlanView;
 
 public class StudentCourseController {
 
@@ -17,7 +21,7 @@ public class StudentCourseController {
 		studentCourseDAO = new StudentCourseDAO();
 
 	}	
-	
+
 	//학생 수강정보메뉴 호출 요청처리 메서드
 	public void requestStudentRegisterLectureMenu() {
 
@@ -25,23 +29,39 @@ public class StudentCourseController {
 		studentRegisterLectureMenuView.registerLectureMenu();
 
 	}
-	
+
 	//학생 개설강의조회 호출 요청처리 메서드
-	public void requestMyStudentLectureList() {
+	public void requestStudentLectureList() {
 
 		ArrayList<Lecture> lectureList = studentCourseDAO.lectureList();
 
-		StudentMyLectureView studentMyLectureView = new StudentMyLectureView();
-		studentMyLectureView.myLectureList(lectureList);
+		StudentLectureListAndMenuView studentMyLectureView = new StudentLectureListAndMenuView();
+		studentMyLectureView.LectureList(lectureList);
 
 	}
-	
-	//학생 강의계획조회 호출 요청처리 메서드
+
+	//학생 강의번호 선택 뷰 호출
 	public void requestSelectOneLecturePlan() {
-		
-		StudentSelectOneLecturePlanView studentSelectOneLecturePlanView = new StudentSelectOneLecturePlanView();
-		studentSelectOneLecturePlanView.SelectOneLecturePlan();
-		
+
+		StudentLecturePlanListSelectView studentLecturePlanSelectView = new StudentLecturePlanListSelectView();
+		studentLecturePlanSelectView.LecturePlanSelect();
+
+	}
+
+	//선택한 강의번호의 계획목록 호출 요청처리 메서드 
+	public void requestStudentLectureSelectOne(int selectedLectureNumber) {
+
+		LecturePlan selectedLecture = studentCourseDAO.selectLecturePlanOne(selectedLectureNumber);
+
+		if(selectedLecture == null) {
+
+			new AlertView().alert("선택하신 강의가 존재하지 않습니다. 다시 입력해주세요.");
+			Controllers.getStudentCourseController().requestStudentLectureList();
+
+		}
+
+		StudentLecturePlanSelectOneView studentLecturePlanSelectOneView = new StudentLecturePlanSelectOneView();
+		studentLecturePlanSelectOneView.outputLectureSelecetOne(selectedLecture);
 	}
 
 }
