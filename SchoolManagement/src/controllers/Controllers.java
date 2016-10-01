@@ -12,6 +12,7 @@ import professorControllers.ProfessorMenuController;
 import professorControllers.ProfessorMyPageController;
 import professorControllers.ProfessorNoticeController;
 import professorControllers.ProfessorScoreController;
+import studentControllers.StudentApplyController;
 import studentControllers.StudentCourseController;
 import studentControllers.StudentGradeController;
 import studentControllers.StudentMainController;
@@ -31,6 +32,7 @@ public class Controllers {
 	private static StudentCourseController studentCourseController;
 	private static StudentGradeController studentGradeController;
 	private static StudentNoticeController studentNoticeController;
+	private static StudentApplyController studentApplyController;
 	private static LoginController loginController;
 	private static ProfessorMyPageController professorMyPageController;
 	private static AdminSubjectController adminSubjectController;
@@ -53,6 +55,7 @@ public class Controllers {
 		studentCourseController = new StudentCourseController();
 		studentGradeController = new StudentGradeController();
 		studentNoticeController = new StudentNoticeController();
+		studentApplyController = new StudentApplyController();
 		adminSubjectController = new AdminSubjectController();
 		adminLeaveAbsenceController = new AdminLeaveAbsenceController();
 		adminMainController = new AdminMainController();
@@ -115,6 +118,10 @@ public class Controllers {
 		return studentNoticeController;
 	}
 	
+	public static StudentApplyController getStudentApplyController() {
+		return studentApplyController;
+	}
+
 	public static AdminNoticeController getAdminNoticeController() {
 		return adminNoticeController;
 	}

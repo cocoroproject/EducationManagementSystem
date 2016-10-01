@@ -26,12 +26,12 @@ public class StudentApplyMenuView {
 			if(selectedMenu == 1) {
 				
 				System.out.println("복학신청 완료");
-				Controllers.getStudentMainController().requestStudentMenu();
+				Controllers.getStudentApplyController().requestUpdateApplyComeBack();
 				
 			} else if(selectedMenu == 2) {
 				
 				System.out.println("휴학신청 완료");
-				Controllers.getStudentMainController().requestStudentMenu();
+				Controllers.getStudentApplyController().requestUpdateApplyBreakTime();
 				
 			} else if(selectedMenu == 0) {
 				
