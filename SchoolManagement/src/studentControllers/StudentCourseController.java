@@ -3,9 +3,12 @@ package studentControllers;
 import java.util.ArrayList;
 
 import controllers.Controllers;
+import professorDAO.ProfessorLectureDAO;
 import professorDomain.Lecture;
 import professorDomain.LecturePlan;
 import studentDAO.StudentCourseDAO;
+import studentDAO.StudentSelectMyTimeTableView;
+import studentDomain.TimeTable;
 import studentView.AlertView;
 import studentView.StudentLectureListAndMenuView;
 import studentView.StudentLecturePlanListSelectView;
@@ -20,7 +23,17 @@ public class StudentCourseController {
 
 		studentCourseDAO = new StudentCourseDAO();
 
-	}	
+	}
+	
+	//학생 시간표조회 호출 요청처리 메서드 지은
+	public void requestStudentTimeTable() {
+		
+		int thisSemesterNumber = new ProfessorLectureDAO().thisSemesterNumber(); //이번학기 번호 조회
+		ArrayList<TimeTable> timeTable = studentCourseDAO.timeTable(thisSemesterNumber);
+		StudentSelectMyTimeTableView studentSelectMyTimeTableView = new StudentSelectMyTimeTableView();
+		studentSelectMyTimeTableView.outputTimeTable(timeTable);
+		
+	}
 
 	//학생 수강정보메뉴 호출 요청처리 메서드
 	public void requestStudentRegisterLectureMenu() {

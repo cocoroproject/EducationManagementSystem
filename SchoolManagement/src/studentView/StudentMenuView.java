@@ -27,7 +27,7 @@ public class StudentMenuView {
 
 			if(selectedMenu == 1) {
 				
-				Controllers.getStudentMainController().requestStudentInformationMenu();
+				Controllers.getStudentMainController().requestStudentInformationMenu(); //지은
 				
 			} else if(selectedMenu == 2) {
 				

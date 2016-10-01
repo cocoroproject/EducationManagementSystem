@@ -26,7 +26,7 @@ public class StudentRegisterLectureMenuView {
 			if(selectedMenu == 1) {
 				
 				System.out.println("시간표출력");
-				Controllers.getStudentMainController().requestStudentMenu();
+				Controllers.getStudentCourseController().requestStudentTimeTable(); //지은
 				
 			} else if(selectedMenu == 2) {
 				
