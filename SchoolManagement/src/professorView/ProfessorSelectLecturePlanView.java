@@ -16,7 +16,7 @@ public class ProfessorSelectLecturePlanView {
 	}
 
 	//강의계획서 입력, 수정
-	public void outputLecturePlan(LecturePlan lecturePlan, int lectureNumber) {
+	public void outputLecturePlan(LecturePlan lecturePlan) {
 
 		System.out.println("\n[강의계획서 조회]");
 
@@ -33,6 +33,8 @@ public class ProfessorSelectLecturePlanView {
 
 		}
 
+		int lecturePlanNumber = lecturePlan.getLecturePlan_number();
+		
 		while(true) {
 
 			System.out.println("[1] 강의계획서 입력 [2] 강의계획서 수정 [0] 강의목록으로 돌아가기");
@@ -48,7 +50,7 @@ public class ProfessorSelectLecturePlanView {
 				
 				} else {
 					
-					Controllers.getProfessorLectureController().requestRegisterLecturePlan(selectedMenu, lectureNumber);
+					Controllers.getProfessorLectureController().requestRegisterLecturePlan(selectedMenu, lecturePlanNumber);
 				
 				}
 
@@ -60,7 +62,7 @@ public class ProfessorSelectLecturePlanView {
 					
 				} else { //강의계획서가 등록되었을 때
 
-					Controllers.getProfessorLectureController().requestRegisterLecturePlan(selectedMenu, lectureNumber);
+					Controllers.getProfessorLectureController().requestRegisterLecturePlan(selectedMenu, lecturePlanNumber);
 				
 				}
 
