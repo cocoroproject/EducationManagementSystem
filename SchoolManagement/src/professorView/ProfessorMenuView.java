@@ -19,15 +19,16 @@ public class ProfessorMenuView {
 	//메인페이지 상단에 교수이름 출력 뷰
 	public void outputMainPageProfessorName(String professorName) {
 		
+		System.out.println();
 		System.out.println("[교수 메인메뉴]");
-		System.out.println(professorName + " 교수님 안녕하세요");
+		System.out.println(professorName + " 교수님 안녕하세요!!!");
 		
 	}
 	
 	//메인페이지 중간에 공지사항 출력 뷰
 	public void outputMainPageNoticeList(ArrayList<Notice> noticeList) {
 
-		System.out.println("\n[교수 공지사항 목록]");
+		System.out.println("[최근 공지사항]");
 
 		System.out.println("No\t제목\t\t작성일");
 
@@ -40,7 +41,7 @@ public class ProfessorMenuView {
 			for(int i = 0 ; i < noticeList.size() ; i++) {
 				
 				System.out.print(noticeList.get(i).getNotice_number() + "\t");	//글번호
-				System.out.print(noticeList.get(i).getNotice_name() + "\t");	//글제목
+				System.out.print(noticeList.get(i).getNotice_name() + "\t\t");	//글제목
 				System.out.println(noticeList.get(i).getNotice_date() + "\t");	//글 작성일
 				
 			}
@@ -54,7 +55,7 @@ public class ProfessorMenuView {
 		
 		while(true) {
 
-			System.out.println("[1]마이페이지 [2]강의관리 [3]공지사항확인 [0]로그오프");
+			System.out.println("[1] 마이페이지 [2] 강의관리 [3] 공지사항확인 [0] 로그오프");
 			System.out.print("메뉴를 선택해주세요 : ");
 			
 			int selectedMenu = keyboard.nextInt();

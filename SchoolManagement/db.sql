@@ -40,6 +40,7 @@ drop table Admin cascade CONSTRAINTS;
 drop table LecturePlan cascade CONSTRAINTS;
 -- 강의계획 테이블 제거
 
+
 --강의계획 테이블>
 create table LecturePlan
 (
@@ -269,6 +270,7 @@ create table LectureEvalGrade
 lectureEvalGrade_number number,
 lectureEvalGrade number NOT NULL,
 lectureEval_number number NOT NULL,
+lectureEval_questionNumber number NOT NULL,
 CONSTRAINT pk_lectureEvalGrade_number PRIMARY KEY(lectureEvalGrade_number),
 CONSTRAINT fk_lectureEval_number FOREIGN KEY(lectureEval_number) REFERENCES LectureEval(lectureEval_number)
 );
@@ -377,18 +379,23 @@ insert into SchoolRegisterDocument values(3, 20151001, 15, 15, 1, 0, 2);
 insert into SchoolRegisterDocument values(3, 20161001, 18, 18, 1, 0, 2);
 
 --강의 더미
-insert into Lecture values(1, 4, 'C01', 4, '월요일', '초급 자바', 30, 3, 1);
-insert into Lecture values(2, 4, 'C02', 4,'화요일', 'DB 입문', 30, 3, 2);
+insert into Lecture values(1, 4, 'C01', 4, '월요일', '초급 자바', 30, 3, 1);		--교수id 0120004
+insert into Lecture values(2, 4, 'C02', 4,'화요일', 'DB 입문', 30, 3, 2);		--교수id 0120004
 insert into Lecture values(3, 3, 'I01', 4, '월요일', '컴퓨터의 이해', 30, 3, 3);
 insert into Lecture values(4, 3, 'I02', 4, '화요일', '회로 설계', 30, 3, 4);
 insert into Lecture values(5, 1, 'L01', 4, '월요일', '형법 총론', 45, 3, 5);
+insert into Lecture values(6, 4, 'M01', 3, '월요일', '재밌는 경영학', 45, 3, 5);
 
 --수강 더미
 insert into RegisterLecture values(1, 20161001, 1);
 insert into RegisterLecture values(2, 20161001, 2);
 insert into RegisterLecture values(3, 20152001, 4);
 insert into RegisterLecture values(4, 20162002, 3);
-
+insert into RegisterLecture values(5, 20152001, 3);
+insert into RegisterLecture values(6, 20152001, 4);
+insert into RegisterLecture values(7, 20154001, 1);
+insert into RegisterLecture values(8, 20154001, 3);
+insert into RegisterLecture values(9, 20154001, 6); 
 
 
 --성적 더미
@@ -406,11 +413,61 @@ insert into LectureEval values (1, 1);
 insert into LectureEval values (2, 2);
 insert into LectureEval values (3, 3);
 insert into LectureEval values (4, 4);
+insert into LectureEval values (5, 6);
 --강의 평가 등급 더미
-insert into LectureEvalGrade values (1, 5, 1);
-insert into LectureEvalGrade values (2, 2, 2);
-insert into LectureEvalGrade values (3, 3, 3);
-insert into LectureEvalGrade values (4, 3, 4);
+--lectureEvalGrade_number number, 강의평가등급번호
+--lectureEvalGrade number NOT NULL, 강의평가점수
+--lectureEval_number number NOT NULL, 강의평가 번호
+--lectureEval_questionNumber number NOT NULL 강의평가 문항번호
+--교수 id 0120004는 lectureEval_number 1,2를 맡음.
+insert into LectureEvalGrade values (1, 5, 1, 1);
+insert into LectureEvalGrade values (2, 4, 1, 2);
+insert into LectureEvalGrade values (3, 3, 1, 3);
+insert into LectureEvalGrade values (4, 4, 1, 4);
+insert into LectureEvalGrade values (5, 5, 1, 5);
+insert into LectureEvalGrade values (6, 5, 2, 1);
+insert into LectureEvalGrade values (7, 2, 2, 2);
+insert into LectureEvalGrade values (8, 3, 2, 3);
+insert into LectureEvalGrade values (9, 1, 2, 4);
+insert into LectureEvalGrade values (10, 5, 2, 5);
+insert into LectureEvalGrade values (11, 3, 3, 1);
+insert into LectureEvalGrade values (12, 3, 3, 2);
+insert into LectureEvalGrade values (13, 3, 3, 3);
+insert into LectureEvalGrade values (14, 3, 3, 4);
+insert into LectureEvalGrade values (15, 3, 3, 5);
+insert into LectureEvalGrade values (16, 3, 4, 1);
+insert into LectureEvalGrade values (17, 3, 4, 2);
+insert into LectureEvalGrade values (18, 3, 4, 3);
+insert into LectureEvalGrade values (19, 3, 4, 4);
+insert into LectureEvalGrade values (20, 3, 4, 5);
+insert into LectureEvalGrade values (21, 3, 1, 1);
+insert into LectureEvalGrade values (22, 4, 1, 2);
+insert into LectureEvalGrade values (23, 5, 1, 3);
+insert into LectureEvalGrade values (24, 1, 1, 4);
+insert into LectureEvalGrade values (25, 2, 1, 5);
+insert into LectureEvalGrade values (26, 5, 2, 1);
+insert into LectureEvalGrade values (27, 5, 2, 2);
+insert into LectureEvalGrade values (28, 3, 2, 3);
+insert into LectureEvalGrade values (29, 2, 2, 4);
+insert into LectureEvalGrade values (30, 1, 2, 5);
+insert into LectureEvalGrade values (31, 2, 3, 1);
+insert into LectureEvalGrade values (32, 2, 3, 2);
+insert into LectureEvalGrade values (33, 2, 3, 3);
+insert into LectureEvalGrade values (34, 2, 3, 4);
+insert into LectureEvalGrade values (35, 2, 3, 5);
+insert into LectureEvalGrade values (36, 2, 4, 1);
+insert into LectureEvalGrade values (37, 2, 4, 2);
+insert into LectureEvalGrade values (38, 2, 4, 3);
+insert into LectureEvalGrade values (39, 2, 4, 4);
+insert into LectureEvalGrade values (40, 2, 4, 5);
+insert into LectureEvalGrade values (41, 2, 5, 1);
+insert into LectureEvalGrade values (42, 2, 5, 2);
+insert into LectureEvalGrade values (43, 2, 5, 3);
+insert into LectureEvalGrade values (44, 2, 5, 4);
+insert into LectureEvalGrade values (45, 2, 5, 5);
+ 
 
 
 commit;
+
+

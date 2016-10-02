@@ -8,6 +8,7 @@ import adminControllers.AdminNoticeController;
 import adminControllers.AdminSubjectController;
 import loginController.LoginController;
 import professorControllers.ProfessorLectureController;
+import professorControllers.ProfessorLectureEvalController;
 import professorControllers.ProfessorMenuController;
 import professorControllers.ProfessorMyPageController;
 import professorControllers.ProfessorNoticeController;
@@ -25,6 +26,7 @@ public class Controllers {
 	private static ProfessorMenuController professorMenuController;
 	private static ProfessorNoticeController professorNoticeController;
 	private static ProfessorScoreController professorScoreController;	
+	private static ProfessorLectureEvalController professorLectureEvalController;
 	private static AdminLectureController adminLectureController;
 	private static AdminNoticeController adminNoticeController;
 	private static AdminMemberController adminMemberController;
@@ -48,6 +50,7 @@ public class Controllers {
 		professorNoticeController = new ProfessorNoticeController();
 		professorScoreController = new ProfessorScoreController();
 		professorMyPageController = new ProfessorMyPageController();
+		professorLectureEvalController = new ProfessorLectureEvalController();
 		adminLectureController = new AdminLectureController();
 		adminNoticeController = new AdminNoticeController();
 		adminMemberController = new AdminMemberController();
@@ -61,6 +64,7 @@ public class Controllers {
 		adminMainController = new AdminMainController();
 		
 	}
+
 
 	public static ProgramController getProgramController() {
 		return programController;
@@ -80,6 +84,10 @@ public class Controllers {
 
 	public static ProfessorScoreController getProfessorScoreController() {
 		return professorScoreController;
+	}
+
+	public static ProfessorLectureEvalController getProfessorLectureEvalController() {
+		return professorLectureEvalController;
 	}
 
 	public static AdminLectureController getAdminLectureController() {

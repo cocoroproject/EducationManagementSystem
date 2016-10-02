@@ -170,56 +170,6 @@ public class AdminMemberController {
 		}
 
 	}
-	//학적상태 체크 
-	public boolean requestSchoolRegisterStatusCheck() {
-
-		boolean success = false;
-
-		success = adminMemberDAO.registerLectureStudentStatusCheck();
-		
-		return success;
-
-	}
-	//수강신청을 학적상태에 따라 들어갈수있도록하는메서드
-	public void requestRegisterLectureRegidit() {
-
-		boolean isfind = false;
-		
-		isfind = requestSchoolRegisterStatusCheck();
-		
-		if (isfind) {
-
-			int schoolRegister_number = adminMemberDAO.registerLectureRegiditStudentStatus();
-
-			if (schoolRegister_number == 1) {
-				
-				new AlertView().alert("해당권한이없습니다.");
-
-			} else if (schoolRegister_number == 2) {
-
-				new AlertView().alert("수강신청 화면으로 이동합니다.");
-				//컨트롤러에 학생 메인 뷰 호출 컨트롤러를 호출
-			} else if (schoolRegister_number == 3) {
-
-				new AlertView().alert("해당권한이없습니다.");
-				//컨트롤러에 학생 메인 뷰 호출 컨트롤러를 호출
-			} else if (schoolRegister_number == 4) {
-
-				new AlertView().alert("해당권한이없습니다.");
-				//컨트롤러에 학생 메인 뷰 호출 컨트롤러를 호출
-			} else {
-
-				new AlertView().alert("해당 학정 상태를 찾을 수 없습니다.");
-				//컨트롤러에 학생 메인 뷰 호출 컨트롤러를 호출
-			}
-
-		} else {
-
-			new AlertView().alert("수강신청이 되지않았습니다.");
-			//컨트롤러에 학생 메인 뷰 호출 컨트롤러를 호출
-		}
-
-	}
 
 	
 }
