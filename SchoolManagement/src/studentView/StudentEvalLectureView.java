@@ -15,8 +15,10 @@ public class StudentEvalLectureView {
 	}
 	
 	//강의평가입력
-	public void inputEvalLecture(CurrentRegisterLecture selectedSubject, ArrayList<CurrentRegisterLecture> lectureList) {
+	public void inputEvalLecture(CurrentRegisterLecture selectedSubject, ArrayList<CurrentRegisterLecture> lectureList, ArrayList<String> questions) {
 
+		int lectureEvalGrade = 0;
+		ArrayList<Integer> lectureEvalGrades = new ArrayList<Integer>();
 		System.out.println("");
 		System.out.println("과목번호\t과목명\t\t\t학점단위\t교수명");
 		System.out.print(selectedSubject.getSubject_number()+"\t\t");
@@ -25,11 +27,17 @@ public class StudentEvalLectureView {
 		System.out.println(selectedSubject.getProfessor_name()+"\t\t");                   
 		System.out.println("");
 
-		System.out.println("강의 평가 : [1] 형편없었다  [2] 별로 도움이 되지 않았다  [3] 그저 그랬다  [4] 많은 도움이 되었다  [5] 최고의 명강의였다");
-		System.out.println("입력: ");
-		int lectureEvalGrade = keyboard.nextInt();
+		for(int i = 0; i < questions.size(); i++) {
+			
+			System.out.println(i+1+". " + questions.get(i));
+			System.out.println("강의 평가 : [1] 전혀 그렇지 않다  [2] 그렇지 않다  [3] 보통   [4] 그렇다  [5] 매우 그렇다");
+			System.out.println("입력: ");
+			lectureEvalGrade = keyboard.nextInt();
+			lectureEvalGrades.add(lectureEvalGrade);
+			
+		}
 		
-		Controllers.getStudentGradeController().requestRegisterEvalLecture(selectedSubject, lectureEvalGrade, lectureList);
+		Controllers.getStudentGradeController().requestRegisterEvalLecture(selectedSubject, lectureEvalGrades, lectureList);
 		
 	}
 

@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import studentDAO.StudentGradeDAO;
 import studentDomain.CurrentRegisterLecture;
 import studentDomain.GradeSheet;
+import studentDomain.LectureEvalQuestions;
 import studentView.AlertView;
 import studentView.StudentCurrentLectureListView;
 import studentView.StudentEvalLectureView;
@@ -117,18 +118,26 @@ public class StudentGradeController {
 			
 		}
 
+		LectureEvalQuestions lectureEvalQuestions = new LectureEvalQuestions();
+		
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add(lectureEvalQuestions.getQuestion1());
+		questions.add(lectureEvalQuestions.getQuestion2());
+		questions.add(lectureEvalQuestions.getQuestion3());
+		questions.add(lectureEvalQuestions.getQuestion4());
+		questions.add(lectureEvalQuestions.getQuestion5());
+		
 		StudentEvalLectureView studentEvalLectureView = new StudentEvalLectureView();
-
-		studentEvalLectureView.inputEvalLecture(selectedSubject, lectureList);
+		studentEvalLectureView.inputEvalLecture(selectedSubject, lectureList, questions);
 		
 	}
 
 	//강의 평가 등록을 요청받는 메서드
-	public void requestRegisterEvalLecture(CurrentRegisterLecture selectedSubject, int lectureEvalGrade, ArrayList<CurrentRegisterLecture> lectureList) {
+	public void requestRegisterEvalLecture(CurrentRegisterLecture selectedSubject, ArrayList<Integer> lectureEvalGrades, ArrayList<CurrentRegisterLecture> lectureList) {
 
 		boolean success = false;
 
-		success = studentGradeDAO.registerEvalLecture(selectedSubject, lectureEvalGrade);
+		success = studentGradeDAO.registerEvalLecture(selectedSubject, lectureEvalGrades);
 
 		if(success) {
 			

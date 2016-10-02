@@ -59,7 +59,7 @@ public class StudentGradeDAO {
 	}
 
 	//강의 평가를 DB에 등록
-	public boolean registerEvalLecture(CurrentRegisterLecture selectedSubject, int lectureEvalGrade) {
+	public boolean registerEvalLecture(CurrentRegisterLecture selectedSubject, ArrayList<Integer> lectureEvalGrades) {
 
 		Statement stmt = null;
 		PreparedStatement pstmt = null;
@@ -76,15 +76,24 @@ public class StudentGradeDAO {
 					+ "from registerlecture, lecture "
 					+ "where registerlecture.lecture_number = lecture.lecture_number "
 					+ "and lecture.subject_number = ?))";
+			
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			stmt = Controllers.getProgramController().getConnection().createStatement();
 			pstmt.setString(1, selectedSubject.getSubject_number());
 			result1 = pstmt.executeUpdate();
-			sql = "insert into LectureEvalGrade values("
-					+ "(select nvl(max(lectureEvalGrade_number),0) from LectureEvalGrade)+1, "
-					+ lectureEvalGrade
-					+ ", (select max(lectureEval_number) from LectureEval))";
-			stmt = Controllers.getProgramController().getConnection().createStatement();
-			result2 = stmt.executeUpdate(sql);
+		
+			
+			
+			for(int i = 0; i < lectureEvalGrades.size(); i++) {
+				
+				sql = "insert into LectureEvalGrade values("
+						+ "(select nvl(max(lectureEvalGrade_number),0) from LectureEvalGrade)+1, " 
+						+ lectureEvalGrades.get(i) + ", "
+						+ "(select max(lectureEval_number) from LectureEval), " 
+						+ (i+1) + " )";
+				result2 += stmt.executeUpdate(sql);
+				
+			}
 
 			if(result1 != 0 && result2 != 0) {
 
@@ -96,11 +105,11 @@ public class StudentGradeDAO {
 			System.out.println("강의 평가 등록 중 예외 발생");
 			e.printStackTrace();
 		} finally {
-			if(pstmt != null) {
+			if(stmt != null) {
 				try { pstmt.close(); } catch (SQLException e) { e.printStackTrace(); }
 			}
-			if(stmt != null) {
-				try { stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+			if(pstmt != null) {
+				try { pstmt.close(); } catch (SQLException e) { e.printStackTrace(); }
 			}
 		}
 		return success;
