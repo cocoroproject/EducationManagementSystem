@@ -38,20 +38,28 @@ public class AdminStudentByCollegeNumberMenuView{
 					}
 					
 					break;
+					
 				case 2:
+					
 					Controllers.getAdminMemberController().requestSelectOneProfessor(exist, college_number);
 					break;
+					
 				case 0:
+					
 					Controllers.getAdminMainController().requestadminMainMenu();
 					break;
+					
 				default:
+					
 					System.out.println("[알림]잘못된 입력입니다.");
 					break;
 					
 				}
 				
-			}catch(NumberFormatException nfe){
+			} catch(NumberFormatException nfe) {
+				
 				System.out.println("[알림]잘못된 입력입니다.");
+				
 			}
 			
 		}

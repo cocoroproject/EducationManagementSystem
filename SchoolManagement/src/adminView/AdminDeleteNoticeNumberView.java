@@ -1,6 +1,7 @@
 ﻿package adminView;
 import java.util.Scanner;
 import controllers.Controllers;
+import studentView.AlertView;
 
 public class AdminDeleteNoticeNumberView{
 
@@ -25,8 +26,7 @@ public class AdminDeleteNoticeNumberView{
 				break;
 
 			}catch(NumberFormatException nfe){
-				AdminNoticeAlertView nav = new AdminNoticeAlertView();
-				nav.outputNoticeAlert("잘못된 입력입니다");
+				new AlertView().alert("잘못된 입력입니다");
 			}
 
 		}

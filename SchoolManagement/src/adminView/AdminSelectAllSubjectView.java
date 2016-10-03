@@ -71,7 +71,7 @@ public class AdminSelectAllSubjectView {
 
 				case 0:
 
-					Controllers.getAdminSubjectController().requestSelectList();
+					Controllers.getAdminMainController().requestadminMainMenu();
 					break;
 
 				default :

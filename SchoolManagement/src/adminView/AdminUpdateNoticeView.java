@@ -2,6 +2,7 @@
 import java.util.Scanner;
 import adminDomain.Notice;
 import controllers.Controllers;
+import studentView.AlertView;
 
 public class AdminUpdateNoticeView{
 
@@ -21,7 +22,7 @@ public class AdminUpdateNoticeView{
 		System.out.print("새로운 글내용을 입력해주세요 : ");
 		String notice_contents = sc.nextLine();
 
-		while(true){
+		while(true) {
 			
 			try{
 				
@@ -32,16 +33,16 @@ public class AdminUpdateNoticeView{
 
 					break;
 
-				}else{
+				} else {
 					
-					AdminNoticeAlertView anav = new AdminNoticeAlertView();
-					anav.outputNoticeAlert("잘못된 입력입니다");
+					new AlertView().alert("잘못된 입력입니다");
 					
 				}
 				
-			}catch(NumberFormatException nfe){
-				AdminNoticeAlertView anav = new AdminNoticeAlertView();
-				anav.outputNoticeAlert("잘못된 입력입니다");
+			} catch (NumberFormatException nfe) {
+				
+				new AlertView().alert("잘못된 입력입니다");
+				
 			}
 
 		}

@@ -1,8 +1,10 @@
 package adminView;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controllers.Controllers;
+import studentView.AlertView;
 
 
 public class AdminManagementLectureMenuView {
@@ -17,39 +19,49 @@ public class AdminManagementLectureMenuView {
 
 	public void LectureManagementMenu() {
 
-		while (true) {
-			
-			System.out.println(" [강의 관리 메뉴] ");
-			System.out.println(" [1] 강의 등록 \t[2]강의 수정\t[0]관리자메뉴로 돌아가기");
-			System.out.print("메뉴를 선택해주세요  : ");
-			
-			int startMenuNumber = keyboard.nextInt();
+		try {
 
-			switch (startMenuNumber) {
+			while (true) {
 
-			case 1 :
+				System.out.println(" [강의 관리 메뉴] ");
+				Controllers.getAdminLectureController().requestSelectList();
+				System.out.println(" [1] 강의 등록 [2] 강의 수정 [0] 관리자메뉴로 돌아가기");
+				System.out.print("메뉴를 선택해주세요  : ");
 
-				Controllers.getAdminLectureController().requestRegisterLecture();
-				break;
+				int startMenuNumber = keyboard.nextInt();
 
-			case 2 :
+				switch (startMenuNumber) {
 
-				Controllers.getAdminLectureController().requestUpdateLectureNumberCheck();
-				break;
+				case 1 :
 
-			case 3 :
+					Controllers.getAdminLectureController().requestRegisterLecture();
+					break;
 
-				Controllers.getAdminMainController().requestadminMainMenu();
-				break;
+				case 2 :
 
-			default :
+					Controllers.getAdminLectureController().requestUpdateLectureNumberCheck();
+					break;
 
-				System.out.println("다시 입력해주세요 .");
+				case 0 :
+
+					Controllers.getAdminMainController().requestadminMainMenu();
+					break;
+
+				default :
+
+					System.out.println("다시 입력해주세요 .");
+
+				}
 
 			}
 			
-		}
+		} catch (InputMismatchException e) {
+			
+			new AlertView().alert("입력조건이 맞지 않습니다.");
+			Controllers.getAdminMainController().requestAdminManagementLectureMenuViewOutput();
 		
+		}
+
 	}
 	
 }

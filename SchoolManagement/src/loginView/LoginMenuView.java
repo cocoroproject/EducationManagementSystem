@@ -48,7 +48,7 @@ public class LoginMenuView {
 			}
 			
 		} catch (InputMismatchException e) {
-			new AlertView().alert("[알림] 잘못 입력하셨습니다. 다시 입력해주세요.");
+			new AlertView().alert("잘못 입력하셨습니다. 다시 입력해주세요.");
 			Controllers.getLoginController().requestLoginMenu();
 		}
 

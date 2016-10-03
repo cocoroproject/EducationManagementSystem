@@ -466,7 +466,7 @@ insert into LectureEvalGrade values (43, 2, 5, 3);
 insert into LectureEvalGrade values (44, 2, 5, 4);
 insert into LectureEvalGrade values (45, 2, 5, 5);
  
-
+select * from lecture;
 
 commit;
 

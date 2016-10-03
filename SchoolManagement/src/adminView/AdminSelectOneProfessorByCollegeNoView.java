@@ -5,6 +5,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import controllers.Controllers;
+import studentView.AlertView;
 
 public class AdminSelectOneProfessorByCollegeNoView {
 
@@ -39,8 +40,7 @@ public class AdminSelectOneProfessorByCollegeNoView {
 
 				}else{
 					
-					AdminMemberAlertView amav = new AdminMemberAlertView();
-					amav.outputMemberAlert("배정된 교수가 없습니다.");
+					new AlertView().alert("배정된 교수가 없습니다.");
 					Controllers.getAdminMemberController().requestSelectOneByCollegeNumberMenu(exist, college_number);
 					
 				}

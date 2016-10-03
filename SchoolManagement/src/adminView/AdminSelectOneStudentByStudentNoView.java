@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import controllers.Controllers;
+import studentView.AlertView;
 
 public class AdminSelectOneStudentByStudentNoView{
 
@@ -37,8 +38,7 @@ public class AdminSelectOneStudentByStudentNoView{
 
 				}else{
 					
-					AdminMemberAlertView amav = new AdminMemberAlertView();
-					amav.outputMemberAlert("잘못된 입력입니다.(학생이 존재하지 않음)");
+					new AlertView().alert("해당 학생이 존재하지 않습니다.");
 					Controllers.getAdminMemberController().requestSelectOneStudentByStudentNo(college_number);
 					
 				}

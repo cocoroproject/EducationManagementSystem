@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import controllers.Controllers;
+import studentView.AlertView;
 
 public class AdminSelectOneNoticeView{
 	
@@ -39,8 +40,7 @@ public class AdminSelectOneNoticeView{
 
 			}else{
 				
-				AdminNoticeAlertView nav = new AdminNoticeAlertView();
-				nav.outputNoticeAlert("해당글이 존재하지 않습니다.");	
+				new AlertView().alert("해당글이 존재하지 않습니다.");	
 			
 			}
 			

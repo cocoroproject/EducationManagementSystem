@@ -3,7 +3,7 @@ package adminControllers;
 import java.sql.ResultSet;
 
 import adminDAO.AdminMemberDAO;
-import adminView.AdminMemberAlertView;
+
 import adminView.AdminReselectOneStudentByStudentNoView;
 import adminView.AdminSelectAllCollegeView;
 import adminView.AdminSelectAllProfessorView;
@@ -26,12 +26,6 @@ public class AdminMemberController {
 		
 	}
 	
-	public void registerLectureSystemControll(){
-		
-		boolean success = false;	
-		
-	}
-	
 	public void requestSelectListByCollegeNumber(){
 
 		ResultSet rs = adminMemberDAO.SelectListCollege();
@@ -51,8 +45,7 @@ public class AdminMemberController {
 
 		if (!college_exist){
 
-			AdminMemberAlertView amav = new AdminMemberAlertView();
-			amav.outputMemberAlert("잘못된 입력입니다(학과가 존재하지 않음)");
+			new AlertView().alert("해당학과가 존재하지 않습니다.");
 			requestSelectListByCollegeNumber();
 
 		}else{

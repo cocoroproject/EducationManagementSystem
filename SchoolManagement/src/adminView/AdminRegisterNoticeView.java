@@ -2,6 +2,7 @@
 import java.util.Scanner;
 import adminDomain.Notice;
 import controllers.Controllers;
+import studentView.AlertView;
 
 public class AdminRegisterNoticeView{
 	
@@ -34,14 +35,14 @@ public class AdminRegisterNoticeView{
 					
 				}else{
 					
-					AdminNoticeAlertView anav = new AdminNoticeAlertView();
-					anav.outputNoticeAlert("잘못된 입력입니다");
+					new AlertView().alert("잘못된 입력입니다");
 					
 				}
 
 			}catch(NumberFormatException nfe){
-				AdminNoticeAlertView anav = new AdminNoticeAlertView();
-				anav.outputNoticeAlert("잘못된 입력입니다");
+				
+				new AlertView().alert("잘못된 입력입니다");
+				
 			}
 
 		}
