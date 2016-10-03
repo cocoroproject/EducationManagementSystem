@@ -174,7 +174,7 @@ public class AdminLectureDAO {
 
 		try {
 			stmt = Controllers.getProgramController().getConnection().createStatement();
-			String sql = "select l.lecture_number, p.professor_id, l.lecture_name, p.professor_name, sb.subject_name, l.lecture_time, l.lecture_capacity, l.lectureRoom_number, lr.lectureRoom_name, se.year, se.semester "
+			String sql = "select l.lecture_number, p.professor_id, l.lecture_name, p.professor_name, sb.subject_name, l.lecture_time, l.lecture_capacity, l.lectureRoom_number, lr.lectureRoom_name, sb.subject_year, se.semester "
 					+ "from lecture l, lectureRoom lr, professor p, semester se, subject sb "
 					+ "where p.professor_number = l.professor_number "
 					+ "and l.semester_number = se.semester_number "
@@ -187,8 +187,8 @@ public class AdminLectureDAO {
 				Lecture lecture = new Lecture(rs.getInt("lecture_number"), rs.getString("lecture_name"), rs.getString("lecture_time"), rs.getInt("lecture_capacity"), rs.getInt("lectureRoom_number"));
 				LectureRoom lectureRoom = new LectureRoom(rs.getString("lectureRoom_name"));
 				Professor professor = new Professor(rs.getString("professor_id"), rs.getString("professor_name"));
-				Subject subject = new Subject(rs.getString("subject_name"));
-				Semester semester = new Semester(rs.getInt("year"), rs.getString("semester"));
+				Subject subject = new Subject(rs.getString("subject_name"), rs.getInt("subject_year"));
+				Semester semester = new Semester(rs.getString("semester"));
 
 				LectureInfo lectureInfo = new LectureInfo(professor, lecture, subject, lectureRoom, semester);
 				lectureList.add(lectureInfo);

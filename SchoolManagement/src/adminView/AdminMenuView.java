@@ -38,7 +38,7 @@ public class AdminMenuView {
 
 				case 2 :
 
-					Controllers.getAdminSubjectController().requestSelectSubjectMenu();
+					Controllers.getAdminSubjectController().requestSelectList();
 					break;
 
 				case 3 :
