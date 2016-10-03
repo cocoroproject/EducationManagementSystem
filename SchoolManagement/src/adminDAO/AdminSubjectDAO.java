@@ -27,16 +27,16 @@ public class AdminSubjectDAO {
 			rs = stmt.executeQuery(sql);
 
 			while(rs.next()) {
-				
+
 				Subject subject = new Subject();
 				subject.setSubject_number(rs.getString("subject_number"));
 				subject.setSubject_name(rs.getString("subject_name"));
 				subject.setSubject_year(rs.getInt("subject_year"));
 				subject.setSubject_grade(rs.getInt("subject_grade"));
 				subjectList.add(subject);
-				
+
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("과목 목록 보기에서 예외 발생");
 			e.printStackTrace();
@@ -54,11 +54,11 @@ public class AdminSubjectDAO {
 	}
 	//과목 등록 메서드 
 	public boolean registerSubject(Subject newSubject) {
-		
+
 		Statement stmt = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		boolean success = false;
 
 		try {
@@ -67,28 +67,41 @@ public class AdminSubjectDAO {
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql1);
 			pstmt.setString(1, newSubject.getSubject_number());
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
-				
-				System.out.println("이미 등록된 과목 번호가 있습니다.");	
-				
-			} else {	
-				
-				pstmt.close();
-				//과목 등록
-				String sql2 = "insert into subject values(?, ?, ?, ?)";
-				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql2);
-				pstmt.setString(1, newSubject.getSubject_number());
-				pstmt.setString(2, newSubject.getSubject_name());
-				pstmt.setInt(3, newSubject.getSubject_year());
-				pstmt.setInt(4, newSubject.getSubject_grade());
-				int result = pstmt.executeUpdate();
 
-				if(result != 0) {
-					success = true;
+			if(rs.next()){
+
+				System.out.println("이미 등록된 과목 번호가 있습니다.");	
+
+			} else {	
+				if( newSubject.getSubject_year() == 0 || newSubject.getSubject_year() >= 5){
+
+					success = false;
+
+				} else if ( newSubject.getSubject_grade() <= 1 || newSubject.getSubject_grade() >= 4 ) {
+
+					success = false;
+
+				} else {
+
+					pstmt.close();
+					//과목 등록
+					String sql2 = "insert into subject values(?, ?, ?, ?)";
+					pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql2);
+					pstmt.setString(1, newSubject.getSubject_number());
+					pstmt.setString(2, newSubject.getSubject_name());
+					pstmt.setInt(3, newSubject.getSubject_year());
+					pstmt.setInt(4, newSubject.getSubject_grade());
+					int result = pstmt.executeUpdate();
+
+					if(result != 0) {
+						success = true;
+
+					}
+
 				}
+
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("과목 등록 중 예외가 발생했습니다.");
 			e.printStackTrace();
@@ -123,7 +136,7 @@ public class AdminSubjectDAO {
 				pstmt.setString(2, subject.getSubject_number());
 				pstmt.executeUpdate();
 				success = true;
-			//과목 권장학년 변경	
+				//과목 권장학년 변경	
 			} else if(menuNumber == 2) {
 
 				String sql = "update subject set subject_year = ? where subject_number = ?";
@@ -132,7 +145,7 @@ public class AdminSubjectDAO {
 				pstmt.setString(2, subject.getSubject_number());
 				pstmt.executeUpdate();
 				success = true;
-			//과목 학점 변경
+				//과목 학점 변경
 			} else if(menuNumber == 3) {
 
 				String sql = "update subject set subject_grade = ? where subject_number = ?";
@@ -143,7 +156,7 @@ public class AdminSubjectDAO {
 				success = true;
 
 			} 
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -156,7 +169,7 @@ public class AdminSubjectDAO {
 	}
 	//과목 목록에 수정할 과목 번호가 있는지 확인 메서드
 	public boolean searchUpdateSubjectNumber(String searchSubjectNumber) {
-		
+
 		boolean success = false;
 
 		PreparedStatement pstmt = null;
@@ -164,7 +177,7 @@ public class AdminSubjectDAO {
 		String sql = "select subject_number from subject where subject_number = ?";
 
 		try {
-			
+
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, searchSubjectNumber);
 			rs = pstmt.executeQuery();
