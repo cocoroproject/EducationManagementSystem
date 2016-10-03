@@ -179,7 +179,8 @@ public class AdminLectureDAO {
 					+ "where p.professor_number = l.professor_number "
 					+ "and l.semester_number = se.semester_number "
 					+ "and l.lectureRoom_number = lr.lectureRoom_number "
-					+ "and l.subject_number = sb.subject_number";
+					+ "and l.subject_number = sb.subject_number "
+					+ "ORDER BY l.lecture_number";
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
