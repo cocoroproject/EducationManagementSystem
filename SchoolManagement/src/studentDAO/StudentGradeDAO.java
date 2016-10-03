@@ -210,7 +210,7 @@ public class StudentGradeDAO {
 				lectureEvalCount = rs2.getInt("lectureEvalCount");
 			}
 
-			if(registerLectureCount <= lectureEvalCount) {
+			if(registerLectureCount <= lectureEvalCount/5) {
 				
 				success = true;
 			}

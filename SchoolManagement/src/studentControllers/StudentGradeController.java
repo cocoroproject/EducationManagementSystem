@@ -41,9 +41,24 @@ public class StudentGradeController {
 	//전체 성적조회를 요청받는 메서드
 	public void requestSelectListTotalGrade() {
 
-		ArrayList<ArrayList<GradeSheet>> totalGradeList = studentGradeDAO.selectListTotalGrade();
-		this.requestSelectListTotalGradeView(totalGradeList);
-
+		boolean success = false;
+		success = studentGradeDAO.selectOneCompleteEvalOrNot();
+		
+		if(!success) {
+			
+			//강의평가가 완료되지 않은 상태이므로 실패 메세지 출력
+			new AlertView().alert("강의평가가 완료되지 않았습니다. 강의평가가 완료된 후 성적조회를 할 수 있습니다.");
+			StudentSelectGradeView selectGradeView = new StudentSelectGradeView();
+			selectGradeView.inputAskContinue();
+			return;
+			
+		} else {
+			
+			ArrayList<ArrayList<GradeSheet>> totalGradeList = studentGradeDAO.selectListTotalGrade();
+			this.requestSelectListTotalGradeView(totalGradeList);
+			
+		}
+		
 	}
 
 	//선택 성적조회 뷰 호출을 요청받는 메서드
