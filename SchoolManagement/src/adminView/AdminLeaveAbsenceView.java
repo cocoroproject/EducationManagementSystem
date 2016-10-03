@@ -65,7 +65,8 @@ public class AdminLeaveAbsenceView {
 					break;
 
 				case 0 :
-
+					
+					Controllers.getAdminMainController().requestadminMainMenu();
 					break;
 
 				default :
@@ -125,7 +126,7 @@ public class AdminLeaveAbsenceView {
 
 				case 3:
 
-					//Controllers.getAdminLeaveAbsenceController().
+					Controllers.getAdminLeaveAbsenceController().requstSelectList();
 					break;
 
 				default :

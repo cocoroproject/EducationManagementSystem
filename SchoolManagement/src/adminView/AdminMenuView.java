@@ -22,7 +22,7 @@ public class AdminMenuView {
 
 			System.out.println("xx대학교 관리자 메뉴입니다.");
 			System.out.println("[1] 강의관리 [2] 과목관리 [3] 교수 학생 일람  [4] 학과별 상세 조회");
-			System.out.println("[5] 공지사항 관리 [9] 로그아웃 [0] 프로그램 종료");
+			System.out.println("[5] 공지사항 관리 [6] 학생 휴복학 관리 [9] 로그아웃 [0] 프로그램 종료");
 			System.out.print("선택하실 메뉴 번호를 입력  : ");
 
 			int adminMenuSelectedNumber = keyboard.nextInt();
@@ -56,6 +56,11 @@ public class AdminMenuView {
 					Controllers.getAdminNoticeController().requestSelectList();
 					break;
 
+				case 6 :
+					
+					Controllers.getAdminLeaveAbsenceController().requstSelectList();
+					break;
+					
 				case 9 :
 
 					Controllers.getLoginController().requestLogOut();
