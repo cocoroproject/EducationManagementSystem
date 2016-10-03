@@ -124,19 +124,19 @@ public class AdminLectureDAO {
 		return success;
 
 	}
-	
+
 	public boolean checkLecture(int searchedNumber){
-		
+
 		boolean success = false;
 		Statement stmt = null;
 		ResultSet rs = null;
-		
+
 		try {
-			
+
 			String sql = "select lecture_number from lecture where lecture_number =" + searchedNumber;
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
-			
+
 			if(rs.next()){
 				success = true;
 			} else {
@@ -145,7 +145,7 @@ public class AdminLectureDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
+
 			if(stmt != null){
 				try { stmt.close();} catch (SQLException e) {e.printStackTrace();}
 			}
@@ -154,53 +154,90 @@ public class AdminLectureDAO {
 			}
 		}
 		return success;
-		
+
 	}
 	//강의 업데이트
 	public boolean updateLecture(int updateNumber, int searchedNumber, Lecture updateLecture) {
 
 		boolean success = false;
 		Statement stmt = null;
+		Statement stmt2 = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
+		String time = null;
 		try {
-			
-			String sql = "select lecture_number from lecture where lecture_number =" + searchedNumber;
-			stmt = Controllers.getProgramController().getConnection().createStatement();
-			rs = stmt.executeQuery(sql);
-			
-			if(rs.next()){
-				//강의실 번호 수정
-				if (updateNumber == 1) {
 
-					sql = "update Lecture set lectureRoom_number = ? where lecture_number = " + searchedNumber; 
-					pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-					pstmt.setInt(1, updateLecture.getLectureRoom_number());
-					pstmt.executeUpdate();
-					success = true;
-				//강의 정원 수정
-				} else if(updateNumber == 2) {
+			//강의실 번호 수정
+			if (updateNumber == 1) {
 
-					sql = "update Lecture set lecture_capacity = ? where lecture_number = " + searchedNumber; 
-					pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-					pstmt.setInt(1, updateLecture.getLecture_capacity());
-					pstmt.executeUpdate();
-					success = true;
+				String sql = "select lecture_number from lecture where lecture_number =" + searchedNumber;
+				stmt = Controllers.getProgramController().getConnection().createStatement();
+				rs = stmt.executeQuery(sql);
+
+				if (rs.next()) {
 					
+					stmt.close();
+					rs.close();
+					
+					sql = "select lecture_time from lecture where lecture_number = " + searchedNumber;
+					stmt = Controllers.getProgramController().getConnection().createStatement();
+					rs = stmt.executeQuery(sql);
+
+					if (rs.next()) {
+
+						time = rs.getString("lecture_time");
+
+						sql = "select lectureRoom_number lecture_time "
+								+ "from lecture "
+								+ "where lectureRoom_number = " + updateLecture.getLectureRoom_number()
+								+ "and lecture_time = '" + time + "' "; 
+						System.out.println(time);
+						stmt2 = Controllers.getProgramController().getConnection().createStatement();
+						rs2 = stmt2.executeQuery(sql);
+
+						if(rs2.next()){
+
+							success = false;
+
+						} else {
+
+							sql = "update Lecture set lectureRoom_number = ? where lecture_number = " + searchedNumber; 
+							pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+							pstmt.setInt(1, updateLecture.getLectureRoom_number());
+							pstmt.executeUpdate();
+							success = true;
+
+						}
+					}
 				}
-	
+				//강의 정원 수정
+			} else if(updateNumber == 2) {
+
+				String sql = "update Lecture set lecture_capacity = ? where lecture_number = " + searchedNumber; 
+				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+				pstmt.setInt(1, updateLecture.getLecture_capacity());
+				pstmt.executeUpdate();
+				success = true;
+
 			} else {
-				
+
 				success = false;
-				
+
 			}
-			
-			
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			if(pstmt != null){
 				try { pstmt.close();} catch (SQLException e) {e.printStackTrace();}
+			}
+			if(rs2 != null){
+				try { rs.close();} catch (SQLException e) {e.printStackTrace();}
+			}
+			if(stmt2 != null){
+				try { stmt.close();} catch (SQLException e) {e.printStackTrace();}
 			}
 			if(rs != null){
 				try { rs.close();} catch (SQLException e) {e.printStackTrace();}
@@ -208,6 +245,7 @@ public class AdminLectureDAO {
 			if(stmt != null){
 				try { stmt.close();} catch (SQLException e) {e.printStackTrace();}
 			}
+
 		}
 
 		return success;
@@ -243,7 +281,7 @@ public class AdminLectureDAO {
 				lectureList.add(lectureInfo);
 
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
