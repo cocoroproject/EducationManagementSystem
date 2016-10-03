@@ -166,6 +166,7 @@ public class AdminLectureDAO {
 		ResultSet rs = null;
 		ResultSet rs2 = null;
 		String time = null;
+		
 		try {
 
 			//강의실 번호 수정
@@ -192,11 +193,11 @@ public class AdminLectureDAO {
 								+ "from lecture "
 								+ "where lectureRoom_number = " + updateLecture.getLectureRoom_number()
 								+ "and lecture_time = '" + time + "' "; 
-						System.out.println(time);
+						
 						stmt2 = Controllers.getProgramController().getConnection().createStatement();
 						rs2 = stmt2.executeQuery(sql);
 
-						if(rs2.next()){
+						if (rs2.next()) {
 
 							success = false;
 
@@ -209,7 +210,9 @@ public class AdminLectureDAO {
 							success = true;
 
 						}
+						
 					}
+					
 				}
 				//강의 정원 수정
 			} else if(updateNumber == 2) {
