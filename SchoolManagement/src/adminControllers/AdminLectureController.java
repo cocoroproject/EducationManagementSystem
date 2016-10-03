@@ -61,9 +61,20 @@ public class AdminLectureController {
 	// 강의 입력받은 강의 번호를 업데이트메뉴로 넘겨주는 화면 출력
 	public void requestUpdateLecture(int searchedNumber) {
 
-		AdminUpdateLectureInfoView adminUpdateLectureInfoView = new AdminUpdateLectureInfoView();
-		adminUpdateLectureInfoView.inputLectureInfo(searchedNumber);
 
+		boolean success = adminLectureDAO.checkLecture(searchedNumber);
+		
+		if(success){
+			
+			AdminUpdateLectureInfoView adminUpdateLectureInfoView = new AdminUpdateLectureInfoView();
+			adminUpdateLectureInfoView.inputLectureInfo(searchedNumber);
+			
+		} else {
+			
+			new AlertView().alert("해당 강의 번호를 찾을 수 없습니다.");
+			
+		}
+		
 	}
 	// 강의 업데이트 
 	public void requestUpdateLectureInfo(int updateNumber, int searchedNumber, Lecture updateLecture) {

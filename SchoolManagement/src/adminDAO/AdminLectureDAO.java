@@ -124,33 +124,78 @@ public class AdminLectureDAO {
 		return success;
 
 	}
+	
+	public boolean checkLecture(int searchedNumber){
+		
+		boolean success = false;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select lecture_number from lecture where lecture_number =" + searchedNumber;
+			stmt = Controllers.getProgramController().getConnection().createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()){
+				success = true;
+			} else {
+				success = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			if(stmt != null){
+				try { stmt.close();} catch (SQLException e) {e.printStackTrace();}
+			}
+			if(rs != null){
+				try { rs.close();} catch (SQLException e) {e.printStackTrace();}
+			}
+		}
+		return success;
+		
+	}
 	//강의 업데이트
 	public boolean updateLecture(int updateNumber, int searchedNumber, Lecture updateLecture) {
 
 		boolean success = false;
-
+		Statement stmt = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			//강의실 번호 수정
-			if (updateNumber == 1) {
+			
+			String sql = "select lecture_number from lecture where lecture_number =" + searchedNumber;
+			stmt = Controllers.getProgramController().getConnection().createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()){
+				//강의실 번호 수정
+				if (updateNumber == 1) {
 
-				String sql = "update Lecture set lectureRoom_number = ? where lecture_number = " + searchedNumber; 
-				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-				pstmt.setInt(1, updateLecture.getLectureRoom_number());
-				pstmt.executeUpdate();
-				success = true;
-			//강의 정원 수정
-			} else if(updateNumber == 2) {
+					sql = "update Lecture set lectureRoom_number = ? where lecture_number = " + searchedNumber; 
+					pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+					pstmt.setInt(1, updateLecture.getLectureRoom_number());
+					pstmt.executeUpdate();
+					success = true;
+				//강의 정원 수정
+				} else if(updateNumber == 2) {
 
-				String sql = "update Lecture set lecture_capacity = ? where lecture_number = " + searchedNumber; 
-				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-				pstmt.setInt(1, updateLecture.getLecture_capacity());
-				pstmt.executeUpdate();
-				success = true;
+					sql = "update Lecture set lecture_capacity = ? where lecture_number = " + searchedNumber; 
+					pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+					pstmt.setInt(1, updateLecture.getLecture_capacity());
+					pstmt.executeUpdate();
+					success = true;
+					
+				}
+	
+			} else {
+				
+				success = false;
 				
 			}
-
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -159,6 +204,9 @@ public class AdminLectureDAO {
 			}
 			if(rs != null){
 				try { rs.close();} catch (SQLException e) {e.printStackTrace();}
+			}
+			if(stmt != null){
+				try { stmt.close();} catch (SQLException e) {e.printStackTrace();}
 			}
 		}
 

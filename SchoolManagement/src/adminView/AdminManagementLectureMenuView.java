@@ -23,10 +23,10 @@ public class AdminManagementLectureMenuView {
 
 			while (true) {
 
-				System.out.println(" [강의 관리 메뉴] ");
 				Controllers.getAdminLectureController().requestSelectList();
+				System.out.println(" [강의 관리 메뉴] ");
 				System.out.println(" [1] 강의 등록 [2] 강의 수정 [0] 관리자메뉴로 돌아가기");
-				System.out.print("메뉴를 선택해주세요  : ");
+				System.out.print(" 메뉴를 선택해주세요  : ");
 
 				int startMenuNumber = keyboard.nextInt();
 
