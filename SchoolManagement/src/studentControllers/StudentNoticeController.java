@@ -47,7 +47,7 @@ public class StudentNoticeController {
 		if(selectedNotice == null) {
 			
 			new AlertView().alert("선택하신 글번호가 존재하지 않습니다. 다시 입력해주세요.");
-			Controllers.getStudentNoticeController().requestStudentNoticeMenu();
+			Controllers.getStudentNoticeController().requestStudentNoticeListSelect();
 			
 		}
 

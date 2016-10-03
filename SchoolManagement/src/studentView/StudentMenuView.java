@@ -27,11 +27,10 @@ public class StudentMenuView {
 
 			if(selectedMenu == 1) {
 				
-				Controllers.getStudentMainController().requestStudentInformationMenu(); //지은
+				Controllers.getStudentMainController().requestStudentInformationMenu();
 				
 			} else if(selectedMenu == 2) {
 				
-				System.out.println("신청정보메뉴로 이동합니다.");
 				Controllers.getStudentMainController().requestStudentApplyMenu();
 				
 			} else if(selectedMenu == 3) {

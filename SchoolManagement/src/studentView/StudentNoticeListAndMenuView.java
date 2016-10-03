@@ -35,7 +35,7 @@ public class StudentNoticeListAndMenuView {
 
 			}
 
-			System.out.println("[1] 글조회 [0] 이전메뉴 ");
+			System.out.println("[1] 글조회 [0] 학생메인메뉴로 돌아가기 ");
 			System.out.print("메뉴를 선택해주세요 : ");
 
 			int selectedMenu = keyboard.nextInt();

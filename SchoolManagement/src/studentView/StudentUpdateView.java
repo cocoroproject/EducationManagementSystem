@@ -28,7 +28,7 @@ public class StudentUpdateView {
 				
 				System.out.println("\n[개인 정보 수정 메뉴]");
 				System.out.println("[1] 휴대폰번호 [2] 이메일주소 [3] 학생주소 [4] 수정완료");
-				System.out.println("[0] 이전메뉴");
+				System.out.println("[0] 개인정보메뉴로 돌아가기");
 				System.out.print("메뉴를 선택해주세요 : ");
 				int selectedMenu = keyboard.nextInt();
 
@@ -57,7 +57,6 @@ public class StudentUpdateView {
 					
 				} else if(selectedMenu == 0) {
 					
-					System.out.println("이전메뉴로 이동합니다.");
 					Controllers.getStudentMainController().requestStudentInformationMenu();
 					
 				} else {
@@ -71,7 +70,7 @@ public class StudentUpdateView {
 		} catch (InputMismatchException e) {
 			System.out.println("수정이 제대로 완료되지않았습니다.");
 			e.printStackTrace();
-		}
+		} 
 
 		Controllers.getStudentMainController().requestStudentUpdate(studentUpdate);
 

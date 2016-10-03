@@ -21,6 +21,15 @@ public class SchoolRegisterDocument {
 
 	}
 
+	//학생조회
+	public SchoolRegisterDocument(int student_number, int applied_grade, int complete_grade) {
+
+		this.student_number = student_number;
+		this.applied_grade = applied_grade;
+		this.complete_grade = complete_grade;
+		
+	}
+
 	public int getSemester_number() {
 		return semester_number;
 	}

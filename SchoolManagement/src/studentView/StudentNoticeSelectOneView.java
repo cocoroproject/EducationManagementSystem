@@ -27,16 +27,19 @@ public class StudentNoticeSelectOneView {
 		
 		while(true){
 			
-			System.out.println("\n[0] 이전메뉴");
+			System.out.println("\n[1] 계속 조회 [0] 학사공지목록으로 돌아가기");
 			System.out.print("메뉴를 선택해주세요 : ");
 			
 			int selectedMenu = keyboard.nextInt();
 
-			if(selectedMenu == 0) {
+			if(selectedMenu == 1) {
 
-				System.out.println("이전메뉴로 이동합니다.");
+				Controllers.getStudentNoticeController().requestStudentNoticeListSelect();
+
+			} else if(selectedMenu == 0) {
+				
 				Controllers.getStudentNoticeController().requestStudentNoticeMenu();
-
+				
 			} else {
 
 				System.out.println("메뉴를 다시 선택해주세요.");

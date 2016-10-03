@@ -4,7 +4,7 @@ import professorDomain.Lecture;
 import professorDomain.LectureRoom;
 import professorDomain.Professor;
 
-public class TimeTable { //시간표 조회시 사용 지은
+public class TimeTable { //시간표 조회시 사용
 	private Lecture lecture;
 	private Professor professor;
 	private LectureRoom lectureRoom;

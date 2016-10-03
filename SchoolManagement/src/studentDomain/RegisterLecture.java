@@ -15,6 +15,7 @@ public class RegisterLecture {
 		this.registerLecture_number = registerLecture_number;
 		
 	}
+	
 	// getter, setter
 	public int getRegisterLecture_number() {
 		return registerLecture_number;

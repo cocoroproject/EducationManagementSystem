@@ -4,12 +4,9 @@ import studentDAO.StudentMainDAO;
 import studentDomain.StudentInfo;
 import studentView.AlertView;
 import studentView.StudentApplyMenuView;
-import studentView.StudentGradeMenuView;
 import studentView.StudentInformationMenuView;
 import studentView.StudentMenuView;
 import studentView.StudentMyPageView;
-import studentView.StudentNoticeListAndMenuView;
-import studentView.StudentRegisterLectureMenuView;
 import studentView.StudentUpdateView;
 
 public class StudentMainController {

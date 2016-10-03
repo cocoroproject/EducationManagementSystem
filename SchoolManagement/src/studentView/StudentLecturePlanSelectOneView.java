@@ -26,16 +26,20 @@ public class StudentLecturePlanSelectOneView {
 
 		while(true){
 
-			System.out.println("\n[0] 이전메뉴");
+			System.out.println("\n[1] 계속조회 [0] 이전메뉴");
 			System.out.print("메뉴를 선택해주세요 : ");
 
 			int selectedMenu = keyboard.nextInt();
 
-			if(selectedMenu == 0) {
+			if(selectedMenu == 1) {
 
+				Controllers.getStudentCourseController().requestSelectOneLecturePlan();
+
+			} else if(selectedMenu == 0) {
+				
 				System.out.println("이전메뉴로 이동합니다.");
 				Controllers.getStudentCourseController().requestStudentLectureList();
-
+				
 			} else {
 
 				System.out.println("메뉴를 다시 선택해주세요.");

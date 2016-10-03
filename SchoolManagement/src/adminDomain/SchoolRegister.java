@@ -16,6 +16,12 @@ public class SchoolRegister {
 	
 	}
 
+	public SchoolRegister(String schoolRegister_status) { //학생조회
+
+		this.schoolRegister_status = schoolRegister_status;
+		
+	}
+
 	public int getSchoolRegister_number() {
 		return schoolRegister_number;
 	}

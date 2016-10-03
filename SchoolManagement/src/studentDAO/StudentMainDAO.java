@@ -8,6 +8,8 @@ import java.sql.Statement;
 import Repository.LoginRepository;
 import adminDomain.College;
 import adminDomain.Major;
+import adminDomain.SchoolRegister;
+import adminDomain.SchoolRegisterDocument;
 import controllers.Controllers;
 import professorDomain.Professor;
 import studentDomain.Student;
@@ -33,9 +35,12 @@ public class StudentMainDAO {
 
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			String sql = "select college.college_name, major.major_name, professor.professor_name, student.student_number " 
-			        + ", student.student_name, student.student_phoneNumber, student.student_email, student.student_address " 
-					+ "from Student, College, Professor, major "
-			        + "where student.college_number = college.college_number "
+			        + ", student.student_name, student.student_phoneNumber, student.student_email, student.student_address "
+			        + ", schoolRegister.schoolRegister_status, schoolRegisterDocument.applied_grade, schoolRegisterDocument.complete_grade " 
+					+ "from Student, College, Professor, major, schoolRegisterDocument, schoolRegister "
+			        + "where schoolRegisterDocument.student_number = student.student_number "
+			        + " and schoolRegisterDocument.schoolRegister_number = schoolRegister.schoolRegister_number " 
+			        + " and student.college_number = college.college_number " 
 					+ " and student.major_number = major.major_number " 
 			        + " and student.professor_number = professor.professor_number " 
 					+ " and student.student_number =" + studentNumber;
@@ -46,11 +51,15 @@ public class StudentMainDAO {
 				College college_information = new College(rs.getString("college_name"));
 				Major major_information = new Major(rs.getString("major_name"));
 				Professor professor_information = new Professor(rs.getString("professor_name"));
+				SchoolRegisterDocument schoolRegisterDocument_information = 
+						new SchoolRegisterDocument(rs.getInt("applied_grade"), rs.getInt("complete_grade"));
+				SchoolRegister schoolRegister_information =
+						new SchoolRegister(rs.getString("schoolRegister_status"));
 				Student student_information = new Student(rs.getInt("student_number"), 
 						rs.getString("student_name"), rs.getString("student_address"),
 						rs.getString("student_phoneNumber"), rs.getString("student_email"));
-				OneStudentList = new StudentInfo(college_information, professor_information, 
-						major_information, student_information);
+				OneStudentList = new StudentInfo(college_information, professor_information, major_information,
+						schoolRegisterDocument_information, schoolRegister_information, student_information);
 
 			}						
 
@@ -129,6 +138,7 @@ public class StudentMainDAO {
 	public static void logout() {
 
 		LoginRepository.setLogin(null);
+		Controllers.getLoginController().requestLoginMenu();
 
 	}
 
