@@ -1,9 +1,11 @@
 package adminControllers;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import adminDAO.AdminMemberDAO;
-
+import adminDomain.Professor;
+import adminDomain.Student;
 import adminView.AdminReselectOneStudentByStudentNoView;
 import adminView.AdminSelectAllCollegeView;
 import adminView.AdminSelectAllProfessorView;
@@ -14,6 +16,12 @@ import adminView.AdminSelectOneStudentByStudentNoView;
 import adminView.AdminSelectOneStudentCollegeNumberView;
 import adminView.AdminSelectOneStudentView;
 import adminView.AdminStudentByCollegeNumberMenuView;
+import adminView.AdminSelectNewProfessorView;
+import adminView.AdminNewProfessorIDView;
+import adminView.AdminNewStudentView;
+import adminView.AdminNewStudentRegisterView;
+import adminView.AdminNewStudentIDView;
+import controllers.Controllers;
 import studentView.AlertView;
 
 public class AdminMemberController {
@@ -162,6 +170,149 @@ public class AdminMemberController {
 			//컨트롤러에 학생 메인 뷰 호출 컨트롤러를 호출
 		}
 
+	}
+	
+	public void ssequence() {
+		ResultSet rs = adminMemberDAO.sdao();
+		AdminNewStudentView sview1 = new AdminNewStudentView();
+		sview1.sview1(rs);
+	}
+
+	public void ssequence2(Student student) {
+
+		switch((int)(adminMemberDAO.sdao2(student).getStudent_number())){
+
+		case -1:
+			System.out.println("대응되는 전공 과목이 없습니다.");
+			Controllers.getAdminMainController().requestadminMainMenu();
+			break;
+		case -2:
+			System.out.println("아직 교수가 배정되지 않았습니다. 교수가 배정된 뒤 입력하세요.");
+			Controllers.getAdminMainController().requestadminMainMenu();
+			break;
+		case -3:
+			System.out.println("해당되는 학과가 없습니다.");
+			Controllers.getAdminMainController().requestadminMainMenu();
+			break;
+		default:
+
+			ssequence3(student);
+			break;
+		}
+	}
+
+	public void ssequence3(Student student){
+
+		boolean more_than_one_row = true;
+
+		ResultSet rs = adminMemberDAO.sdao3(student);
+
+		try{
+
+			rs.next();
+
+
+			if (rs.next()){
+
+				more_than_one_row = true;
+
+			}else{
+
+				more_than_one_row = false;
+
+			}
+
+		}catch(SQLException sqle){
+		}
+
+		if (more_than_one_row){
+
+			AdminNewStudentRegisterView sview2 = new AdminNewStudentRegisterView();
+			sview2.sview2(rs, student);
+
+		}else{
+			AdminNewStudentIDView sview3 = new AdminNewStudentIDView();
+			sview3.ouputID(student);
+		}
+
+	}
+
+	public void ssequence4(Student student) {
+
+		ResultSet rs = adminMemberDAO.sdao4(student);
+		try{
+
+			if (rs.next()){
+				AdminNewStudentIDView sview3 = new AdminNewStudentIDView();
+				sview3.ouputID(student);
+
+			}else{
+				System.out.println("[알림]잘못된 입력입니다.");
+				ssequence3(student);
+			}
+
+		}catch(SQLException e){
+		}
+	}
+
+	public void ssequence5(Student student) {
+
+		boolean success = adminMemberDAO.sdao5(student);
+
+		if (success){
+
+			System.out.println("성공했습니다.");
+
+		}else{
+
+			System.out.println("실패했습니다.");
+
+		}
+
+		System.out.println("메뉴로 가는 컨트롤러를 여기에");
+
+	}
+
+	public void psequence() {
+
+		ResultSet rs = adminMemberDAO.pdao();
+		AdminSelectNewProfessorView pview1 = new AdminSelectNewProfessorView();
+		pview1.pview1(rs);
+
+	}
+
+	public void psequence2(Professor professor) {
+
+		switch(adminMemberDAO.pdao2(professor).getProfessor_number()){
+
+		case -1:
+			System.out.println("[알림]학과 교수를 위한 연구실이 아직 없습니다. 연구실이 정해진 뒤 등록하세요.");
+			Controllers.getAdminMainController().requestadminMainMenu();
+			break;
+		case -2:
+			System.out.println("[알림]학과의 전공과목이 아직 정해지지 않았습니다. 전공과목이 정해진 뒤 등록하세요.");
+			Controllers.getAdminMainController().requestadminMainMenu();
+			break;
+		case -3:
+			System.out.println("[알림]해당되는 학과가 없습니다.");
+			Controllers.getAdminMainController().requestadminMainMenu();
+			break;
+		default:
+			AdminNewProfessorIDView pview2 = new AdminNewProfessorIDView();
+			pview2.outputID(professor);
+			break;
+		}
+	}
+
+	public void psequence3(Professor professor) {
+		// TODO Auto-generated method stub
+		boolean success = adminMemberDAO.pdao3(professor);
+		if (success){
+			System.out.println("성공했습니다.");
+		}else{
+			System.out.println("실패했습니다.");
+		}
+		Controllers.getAdminMainController().requestadminMainMenu();
 	}
 
 	

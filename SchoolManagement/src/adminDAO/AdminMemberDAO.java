@@ -4,10 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 
 import Repository.LoginRepository;
+import adminDomain.Professor;
 import adminDomain.SchoolRegister;
 import adminDomain.SchoolRegisterDocument;
+import adminDomain.Student;
 import controllers.Controllers;
 
 
@@ -302,4 +305,284 @@ public class AdminMemberDAO {
 		return schoolRegister_number;
 
 	}
+	
+	public ResultSet sdao(){
+		
+		try{
+			
+			sql = "select college_number 학과번호, college_name 학과명 from college";
+			ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			rs = ps.executeQuery();
+		
+		}catch(SQLException sqle){
+		}
+		
+		return rs;
+		
+	}
+	
+ public Student sdao2(Student student){
+		
+		int professor_number = 0;
+		int major_number = 0;
+
+		Calendar c = Calendar.getInstance();
+		int year = c.get(Calendar.YEAR);
+
+		try{
+
+			sql = "select * from college where college_number = ?";
+			ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			ps.setInt(1, student.getCollege_number());
+			rs = ps.executeQuery();
+
+			if(rs.next()){
+
+				ps.close();
+				rs.close();
+				sql = "select * from professor where college_number = ?";
+				ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+				ps.setInt(1, student.getCollege_number());
+				rs = ps.executeQuery();
+
+
+				if(rs.next()){
+
+					professor_number = rs.getInt("professor_number");
+					ps.close();
+					rs.close();
+					sql = "select * from major where major_number = ?";
+					ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+					ps.setInt(1, student.getCollege_number());
+					rs = ps.executeQuery();
+
+					if(rs.next()){
+
+						major_number = rs.getInt("major_number");
+						ps.close();
+						rs.close();
+						sql = "select max(substr(student_number,6,3)) from student where substr(student_number,1,4) = ? and substr(student_number,5,1) = ?";
+						ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+						ps.setInt(1, year);
+						ps.setInt(2, student.getCollege_number());
+						rs = ps.executeQuery();
+						if (rs.next()){
+							student.setStudent_number( (int)rs.getLong(1)+1 );
+						}else{
+							student.setStudent_number( 1 );
+						}
+					}else{
+						student.setStudent_number(-1);
+					}
+
+				}else{
+					student.setStudent_number(-2);
+				}
+			}else{
+				student.setStudent_number(-3);
+			}
+		}catch(SQLException sqle){
+		}
+		
+		student.setProfessor_number(professor_number);
+		student.setMajor_number(major_number);
+				
+		return student;
+		
+	}
+	
+	public ResultSet sdao3(Student student){ //교수가 복수 개 이상인지 체크하기 위해 
+		
+		try{
+			
+			sql = "select professor_number, professor_name from professor where college_number = ?";
+			ps = Controllers.getProgramController().getConnection().prepareStatement(sql,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+
+			ps.setInt(1, student.getCollege_number());
+			rs = ps.executeQuery();
+														
+		}catch(SQLException sqle){
+		}
+		
+		return rs;
+	}
+	
+	public ResultSet sdao4(Student student){ //교수 번호가 올바른지 체크
+		
+		try{
+			sql = "select * from professor where college_number = ? and professor_number = ?";
+			ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			ps.setInt(1, student.getCollege_number());
+			ps.setInt(2, student.getProfessor_number());
+			rs = ps.executeQuery();
+		}catch(SQLException sqle){
+		}
+		
+		return rs;
+	}
+	
+	public boolean sdao5(Student student) {
+		
+		boolean success = false;
+		
+		try{
+			
+			sql = "insert into student values(?,?,?,?,?,?,?,?,?,?)";
+			ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			ps.setLong(1, student.getStudent_number());
+			ps.setString(2, student.getStudent_name());
+			ps.setLong(3, student.getStudent_socialnumber());
+			ps.setString(4, student.getStudent_password());
+			ps.setString(5, student.getStudent_address());
+			ps.setString(6, student.getStudent_phonenumber());
+			ps.setString(7, student.getStudent_email());
+			ps.setInt(8, student.getProfessor_number());
+			ps.setInt(9, student.getMajor_number());
+			ps.setInt(10, student.getCollege_number());
+
+			int result = ps.executeUpdate();
+			
+		if (result == 1){
+			
+			success = true;
+			
+		}else{
+			
+			success = false;
+			
+		}
+		}catch(SQLException sqle){
+		}
+		return success;
+	}
+	
+public ResultSet pdao(){
+		
+		try{
+			
+			sql = "select college_number 학과번호, college_name 학과명 from college";
+			ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			rs = ps.executeQuery();
+		
+		}catch(SQLException sqle){
+		}
+		
+		return rs;
+		
+	}
+	
+	public Professor pdao2(Professor professor){
+		
+		int major_number = 0;
+		int lab_number = 0;
+		int professor_number = 0;
+
+		try{
+
+			sql = "select * from college where college_number = ?";
+			ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			ps.setInt(1, professor.getCollege_number());
+			rs = ps.executeQuery();
+
+			if(rs.next()){
+
+				ps.close();
+				rs.close();
+				sql = "select * from major where major_number = ?";
+				ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+
+				ps.setInt(1, professor.getCollege_number());
+				rs = ps.executeQuery();
+
+				if(rs.next()){
+
+					major_number = rs.getInt("major_number");
+
+					ps.close();
+					rs.close();
+					sql = "select * from lab where lab_number = ?";
+					ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+					ps.setInt(1, professor.getCollege_number());
+					rs = ps.executeQuery();
+
+					if(rs.next()){
+						lab_number = rs.getInt("lab_number");
+						ps.close();
+						rs.close();
+
+						sql = "select max(professor_number) from professor";
+						ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+						rs = ps.executeQuery();
+
+						if (rs.next()){
+
+							professor_number = (int)rs.getLong(1)+1;
+
+						}else{
+
+							professor_number = 1;
+
+						}
+
+					}else{
+						professor_number = -1;
+					}
+				}else{
+					professor_number = -2;
+				}
+			}else{
+				professor_number = -3;
+			}
+
+		}catch(SQLException sqle){
+		}
+		
+		professor.setMajor_number(major_number);
+		professor.setLab_number(lab_number);
+		professor.setProfessor_number(professor_number);
+		
+		return professor;
+		
+	}
+	
+	public boolean pdao3(Professor professor) {
+		
+		boolean success = false;
+		
+		try{
+			
+		sql = "insert into professor values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		ps = Controllers.getProgramController().getConnection().prepareStatement(sql);
+		ps.setInt(1, professor.getProfessor_number());
+		ps.setString(2, professor.getProfessor_name());
+		ps.setLong(3, professor.getProfessor_socialnumber());
+		ps.setString(4, professor.getProfessor_id());
+		ps.setString(5, professor.getProfessor_password());
+		ps.setString(6, professor.getProfessor_address());
+		ps.setLong(7, professor.getProfessor_salary());
+		ps.setString(8, professor.getProfessor_phonenumber());
+		ps.setString(9, professor.getProfessor_email());
+		ps.setString(10, professor.getProfessor_university());
+		ps.setInt(11, professor.getMajor_number());
+		ps.setInt(12, professor.getCollege_number());
+		ps.setInt(13, professor.getLab_number());
+
+		int result = ps.executeUpdate();
+		
+		if (result ==1){
+			
+			success = true;
+			
+		}else{
+			
+			success = false;
+			
+		}
+		
+		}catch(SQLException sqle){
+		}
+		
+		return success;
+	}
+	
 }
