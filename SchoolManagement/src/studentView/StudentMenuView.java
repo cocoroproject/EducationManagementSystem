@@ -2,46 +2,61 @@ package studentView;
 
 import java.util.Scanner;
 
-import professorView.AlertView;
+import controllers.Controllers;
+
 
 public class StudentMenuView {
-	
+
 	private Scanner keyboard;
-	
+
 	public StudentMenuView() {
 
 		keyboard = new Scanner(System.in);
 
 	}
-	
-	//학생메인메뉴를 보여주는 뷰
-	private void menu(int StudentNumber) {
+
+	public void studentMenu() {
 
 		while(true) {
-			System.out.print("[1. 개인정보, 2. 신청정보, 3. 수강정보, 4. 성적정보, 5. 학사공지, 6. 로그아웃] : "); // 제품 수정
+			
+			System.out.println("\n[ 학생 메뉴 ]");
+			System.out.println("[1] 개인정보 [2] 신청정보 [3] 수강정보 [4] 성적정보");
+			System.out.println("[5] 학사공지 [6] 로그아웃");
+			System.out.print("메뉴를 선택해주세요 : ");
 			int selectedMenu = keyboard.nextInt();
 
 			if(selectedMenu == 1) {
-				new AlertView().alert("개인정보 컨트롤러에 개인 정보 보기를 요청함.");
-				//Controllers.getProductController().requestSelectList();
+				
+				Controllers.getStudentMainController().requestStudentInformationMenu();
+				
 			} else if(selectedMenu == 2) {
-				new AlertView().alert("신청정보 컨트롤러에 신청 정보 보기를 요청함.");
-				//Controllers.getCartController().requestInsert(productNumber);
+				
+				Controllers.getStudentMainController().requestStudentApplyMenu();
+				
 			} else if(selectedMenu == 3) {
-				new AlertView().alert("수강정보");
-				//Controllers.getProductController().requestUpdateProduct(productNumber);
+				
+				System.out.println("수강정보메뉴로 이동합니다.");
+				Controllers.getStudentCourseController().requestStudentRegisterLectureMenu();
+			
 			} else if(selectedMenu == 4) {
-				new AlertView().alert("성적정보");
-				//Controllers.getProductController().requestDelete(productNumber);
+				
+				Controllers.getStudentGradeController().requestStudentGradeMenuView();
+			
 			} else if(selectedMenu == 5) {
-				new AlertView().alert("학사공지");
-				//Controllers.getProductController().requestDelete(productNumber);
+				
+				Controllers.getStudentNoticeController().requestStudentNoticeMenu();
+		
 			} else if(selectedMenu == 6) {
-				new AlertView().alert("로그아웃");
-				//Controllers.getProductController().requestDelete(productNumber);
+				
+				System.out.println("로그아웃 하셨습니다.");
+				Controllers.getStudentMainController().requestLogout();
+				
 			} else {
-				new AlertView().alert("메뉴를 다시 선택해 주세요.");
+				
+				System.out.println("메뉴를 다시 선택해 주세요.");
+				
 			}
+			
 		}
 
 	}

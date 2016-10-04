@@ -2,31 +2,48 @@ package adminDomain;
 
 public class Subject {
 
-	private int subject_number;
-	private String subject_name;
-	private int subject_year;
-	private int subject_grade;
+	private String subject_number; //과목 번호
+	private String subject_name; //과목 이름
+	private int subject_year; //과목 권장학년
+	private int subject_grade; //과목 취득학점
 	
 	public Subject() {
-	
+		
 	}
-
+	//관리자 강의 전체목록에 사용되는 생성자
+	public Subject(String subject_name, int subject_year) {
+		
+		this.subject_name = subject_name;
+		this.subject_year = subject_year;
+		
+	}
+	//과목 수정에 필요한 생성자
 	public Subject(String subject_name, int subject_year, int subject_grade) {
 	
+		
 		this.subject_name = subject_name;
 		this.subject_year = subject_year;
 		this.subject_grade = subject_grade;
 	
+		
+	}
+	//과목 등록에 필요한 생성자
+	public Subject(String subject_number, String subject_name, int subject_year, int subject_grade) {
+		
+		this.subject_number = subject_number;
+		this.subject_name = subject_name;
+		this.subject_year = subject_year;
+		this.subject_grade = subject_grade;
+		
 	}
 
-	public int getSubject_number() {
 	
+	public String getSubject_number() {
 		return subject_number;
 	
 	}
 
-	public void setSubject_number(int subject_number) {
-	
+	public void setSubject_number(String subject_number) {
 		this.subject_number = subject_number;
 	
 	}

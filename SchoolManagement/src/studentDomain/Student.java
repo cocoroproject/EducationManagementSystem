@@ -9,19 +9,33 @@ public class Student {
 	private String student_address;
 	private String student_phoneNumber;
 	private String student_email;
-	private String student_accessRight;
 	private int college_number;
 	private int professor_number;
 	private int major_number;
+	private String student_accessRight;
 	
-	// 디폴트 생성자
-	public Student() {
+	public Student() { // 디폴트 생성자
 
 	}
 	
-	
-	
-	// getter, setter
+	public Student(int student_number, String student_name, String student_address,
+			String student_phoneNumber, String student_email) { //조회, 수정에 필요
+		
+		this.student_number = student_number;
+		this.student_name = student_name;
+		this.student_address = student_address;
+		this.student_phoneNumber = student_phoneNumber;
+		this.student_email = student_email;
+		
+	}
+	//교수 성적 입력,수정시 사용
+	public Student(int student_number, String student_name) {
+		
+		this.student_number = student_number;
+		this.student_name = student_name;
+		
+	}
+
 	public int getStudent_number() {
 		return student_number;
 	}
@@ -109,7 +123,5 @@ public class Student {
 	public void setStudent_accessRight(String student_accessRight) {
 		this.student_accessRight = student_accessRight;
 	}
-
-	
 	
 }

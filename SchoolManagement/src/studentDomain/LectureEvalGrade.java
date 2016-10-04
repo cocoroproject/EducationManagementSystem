@@ -6,11 +6,9 @@ public class LectureEvalGrade {
 	private int lectureEvalGrade;
 	private int lectureEval_number;
 	
-	// 디폴트생성자
-	public LectureEvalGrade() {
+	public LectureEvalGrade() { // 디폴트생성자
 
 	}
-
 	// getter, setter
 	public int getLectureEvalGrade_number() {
 		return lectureEvalGrade_number;
@@ -36,5 +34,4 @@ public class LectureEvalGrade {
 		this.lectureEval_number = lectureEval_number;
 	}
 	
-
 }
