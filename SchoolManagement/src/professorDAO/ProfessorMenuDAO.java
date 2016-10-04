@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import Repository.LoginRepository;
 import adminDomain.Notice;
 import controllers.Controllers;
-import professorDomain.Professor;
 
 public class ProfessorMenuDAO {
 

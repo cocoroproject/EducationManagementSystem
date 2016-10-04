@@ -182,7 +182,8 @@ public class StudentCourseDAO {
 					+ "where semester.semester_number = lecture.semester_number " 
 					+ " and lecture.professor_number = professor.professor_number " 
 					+ " and lecture.lectureRoom_number = lectureRoom.lectureRoom_number " 
-					+ " and semester.semester_number != " + thisSemesterNumber;
+					+ " and semester.semester_number != " + thisSemesterNumber
+					+ " order by lecture.lecture_number asc ";
 
 			rs = stmt.executeQuery(sql);
 

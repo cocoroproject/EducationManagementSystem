@@ -22,7 +22,15 @@ public class LectureRoom {
 		this.lectureRoom_address = lectureRoom_address;
 
 	}
-
+	//수강조회
+	public LectureRoom(String lectureRoom_name, int lectureRoom_capacity, String lectureRoom_address) {
+		
+		this.lectureRoom_name = lectureRoom_name;
+		this.lectureRoom_capacity = lectureRoom_capacity;
+		this.lectureRoom_address = lectureRoom_address;
+		
+	}
+	
 	public LectureRoom(int lectureRoom_number) {
 
 		this.lectureRoom_number = lectureRoom_number;

@@ -26,6 +26,23 @@ public class Lecture {
 		
 	}
 	
+	public Lecture(int lecture_number, String lecture_name, String lecture_time, int lecture_capacity) {// 수강목록
+		
+		this.lecture_number = lecture_number;
+		this.lecture_name = lecture_name;
+		this.lecture_time = lecture_time;
+		this.lecture_capacity = lecture_capacity;
+		
+	}
+	
+	public Lecture(int lecture_number, String lecture_time, String lecture_name) {//수강신청
+
+		this.lecture_number = lecture_number;
+		this.lecture_time = lecture_time;
+		this.lecture_name = lecture_name;
+		
+	}
+	
 	public Lecture(int professor_number, String subject_number, int semester_number, String lecture_time,
 			String lecture_name, int lecture_capacity, int lectureRoom_number, int lecturePlan_number) {
 		

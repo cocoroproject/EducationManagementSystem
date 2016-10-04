@@ -25,7 +25,7 @@ public class StudentMyRegisterLectureView {
 
 		for(int i = 0 ; i < RegisterLectureRepository.getRegisterlectures().size(); i++) {
 
-			System.out.print(registerLectureList.get(i).getRegisterLecture_information().getRegisterLecture_number() + "\t"); 
+			System.out.print(registerLectureList.get(i).getLecture_information().getLecture_number() + "\t"); 
 			System.out.print(registerLectureList.get(i).getLecture_information().getLecture_name() + "\t");	    
 			System.out.print(registerLectureList.get(i).getLecture_information().getLecture_time() + "\t");
 			System.out.println(registerLectureList.get(i).getLectureRoom_information().getLectureRoom_name());
